@@ -1,4 +1,11 @@
-#coleslaw-logo { float: right; }
+#coleslaw-logo {
+    float: right;
+}
+#lisp-logo {
+    float: right;
+    margin-right: 1em;
+    margin-top: -0.5em;
+}
 hr {
     border: 0;
     height: 1px;
