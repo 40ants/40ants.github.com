@@ -1,0 +1,694 @@
+;;;;;
+url: examples/coleslaw.html
+format: rst
+;;;;;
+
+=================
+kingcons/coleslaw
+=================
+
+These are forks containing branches not merged to `kingcons/coleslaw <https://github.com/kingcons/coleslaw>`_.
+
+ebrasca/coleslaw
+================
+
+master
+------
+
+Add possibility to write posts/pages in lispy syntax with cl-who.
+
+Change asdf:load-system for ql:quickload.
+
+libre-man/coleslaw
+==================
+
+custom_bindings
+---------------
+
+Make it possible to read metadata from multiple lines.
+
+template-engine
+---------------
+
+Initial implementation of djula as templating engine
+
+Backwards compatible with previous versions. You can specify a engine
+in the config with the template-engine key.
+
+Added some documentation for djula templates.
+
+Added a hyde-djula theme and corrected a spelling mistake.
+
+Hyde-djula is the same as hyde only made using djula and not closure.
+
+Corrected the name for template-engine in the config.
+
+Updated some documentation.
+
+Refactored code to implement template engine as plugins.
+
+Added templates for atom, rss and sitemap each template engine.
+
+Updated source to add template engine to calls for rendering.
+
+mordocai/coleslaw
+=================
+
+mordocai-net-head
+-----------------
+
+Add blog-index and site-index-page to config.
+
+Move static files to be put directly in root.
+
+This allows things like favicon.ico and robots.txt and similar.
+
+However, it doesn't clean up old files so you will have to cleanup the
+dist/staging dirs yourself.
+
+Make blog page not the index and allow index conf
+
+This is far from the best way to do this, but works for me for now.
+
+Fix blog-index default.
+
+mawis/coleslaw
+==============
+
+master
+------
+
+New theme 'bootstrap'.
+
+This theme is based on the 'readable' theme but using plain bootstrap 3.3.5
+instead of readable.
+
+It also adds support for the :img configuration in the sitenav that allows links
+to be shown as images.
+
+Applying the readable theme again now using bootstrap 3.
+
+Making the templates polyglot HTML5.
+
+The existing templates could not be served as XHTML as some tags weren't closed.
+I also modified some markup to use more semantic tags from HTML5.
+
+Adding a meta description to the generated HTML pages.
+
+theme-bootstrap
+---------------
+
+New theme 'bootstrap'.
+
+This theme is based on the 'readable' theme but using plain bootstrap 3.3.5
+instead of readable.
+
+It also adds support for the :img configuration in the sitenav that allows links
+to be shown as images.
+
+Applying the readable theme again now using bootstrap 3.
+
+Making the templates polyglot HTML5.
+
+The existing templates could not be served as XHTML as some tags weren't closed.
+I also modified some markup to use more semantic tags from HTML5.
+
+ljanyst/coleslaw
+================
+
+my-stuff
+--------
+
+Allow a custom name for the blog index
+
+This allows for the index.html to be generated as a static page.
+
+Rename and export content tag and date accessors.
+
+Make it possible to us functions to compute URLs of generated content.
+
+Add silent mode.
+
+Make sure that the blog index points to the first numeric index.
+
+routing
+-------
+
+Allow a custom name for the blog index
+
+This allows for the index.html to be generated as a static page.
+
+Rename and export content tag and date accessors.
+
+Make it possible to us functions to compute URLs of generated content.
+
+Make sure that the blog index points to the first numeric index.
+
+6x13/coleslaw
+=============
+
+content-protocol
+----------------
+
+Added CTYPE Registry system for content extensions by plugins. Added
+metadata plugin for testing content modifier plugins.
+
+content-shouts
+--------------
+
+Added CTYPE Registry system for content extensions by plugins. Added
+metadata plugin for testing content modifier plugins.
+
+Initial version of shouts.
+
+metadata
+--------
+
+Added Metadata Plugin and documentation.
+
+dertuxmalwieder/coleslaw
+========================
+
+master
+------
+
+Added support for isso: http://posativ.org/isso/
+
+Added info.
+
+dmitrys99/coleslaw
+==================
+
+master
+------
+
+Перевод на русский язык темы readable.
+
+Добавлены кавычки.
+
+Make static dir configurable.
+
+chunseoklee/coleslaw
+====================
+
+cli-commands
+------------
+
+Preliminary CLI work
+
+  * src/cli.lisp: utility functions for CLI processing.
+  * cli/launch/build.lisp: Builds the blog/site
+  * cli/launch/clean.lisp: Deletes the staging and deploy dir
+  * cli/launch/rebuild.lisp: Same as clean and build.
+  * cli/launch/serve.lisp: Doesn't work.
+  * src/config.lisp: load-config now takes the path to the config file
+    as an argument instead of trying to discover it itself.
+
+hernanex3/coleslaw
+==================
+
+cli-commands
+------------
+
+Preliminary CLI work
+
+  * src/cli.lisp: utility functions for CLI processing.
+  * cli/launch/build.lisp: Builds the blog/site
+  * cli/launch/clean.lisp: Deletes the staging and deploy dir
+  * cli/launch/rebuild.lisp: Same as clean and build.
+  * cli/launch/serve.lisp: Doesn't work.
+  * src/config.lisp: load-config now takes the path to the config file
+    as an argument instead of trying to discover it itself.
+
+lisp2-theme
+-----------
+
+Starting lisp2 theme.
+
+Color changes.
+
+Added config variations, allowing a same project use more than one config file.
+
+master
+------
+
+Now the user can choose directly the configuration file.
+
+multiple-configuration-files
+----------------------------
+
+Now the user can choose directly the configuration file.
+
+flingjie/coleslaw
+=================
+
+cli-commands
+------------
+
+Preliminary CLI work
+
+  * src/cli.lisp: utility functions for CLI processing.
+  * cli/launch/build.lisp: Builds the blog/site
+  * cli/launch/clean.lisp: Deletes the staging and deploy dir
+  * cli/launch/rebuild.lisp: Same as clean and build.
+  * cli/launch/serve.lisp: Doesn't work.
+  * src/config.lisp: load-config now takes the path to the config file
+    as an argument instead of trying to discover it itself.
+
+master
+------
+
+Add simple theme.
+
+Add archives.
+
+Refactor archives.
+
+Fix archives.
+
+Refactor macro.
+
+Remove invalid stuff.
+
+ryuslash/coleslaw
+=================
+
+cli-commands
+------------
+
+Preliminary CLI work
+
+  * src/cli.lisp: utility functions for CLI processing.
+  * cli/launch/build.lisp: Builds the blog/site
+  * cli/launch/clean.lisp: Deletes the staging and deploy dir
+  * cli/launch/rebuild.lisp: Same as clean and build.
+  * cli/launch/serve.lisp: Doesn't work.
+  * src/config.lisp: load-config now takes the path to the config file
+    as an argument instead of trying to discover it itself.
+
+master
+------
+
+Add oni theme.
+
+Allow relative URLs in the sitenav for oni.
+
+Add viewport meta-tag.
+
+Add center CSS class.
+
+Fix font issue
+
+Openfontlibrary isn't accessible through HTTPS, so webfont includes
+weren't working.
+
+Automatically overflow codeblocks
+
+This looks much better on small screens.
+
+Give unordered lists within articles some space
+
+It is very hard to discern nested lists and regular paragraphs inside
+lists opposed to multi-paragraph list items without it.
+
+hoelzl/coleslaw
+===============
+
+dev
+---
+
+Readable theme should include links to prev/next page.
+
+cmstrickland/coleslaw
+=====================
+
+add-post-types
+--------------
+
+Additional post metadata - type
+
+Posts can have a 'type' attribute. I want my blog to have different
+categories of posts, that are exactly like posts in all respects but are
+styled differently ( linkblog entries, photo galleries etc. )
+Adding this as metadata makes it easy to wrap posts in a container element to
+attach styles to.
+
+Temporary hack of hyde theme
+
+integrate post types into index.
+
+Subposts as a plugin (WIP)
+
+Fixed repo-dir
+
+changed repo-dir -> repo
+use 'subpost as class key for writing indexes.
+
+Minimum implementation of subclass for posts
+
+hacky override of discover post method, still needs work.
+
+Find-all matching adjusted
+
+find-all implementation returns false positives for subclasses
+added parameter of a predicate to implement matching, with a default
+value that preserves original behaviour
+
+added an exact class matcher to purge-all invocation of find-all to stop
+it purging subclasses.
+
+dev
+---
+
+Readable theme should include links to prev/next page.
+
+document-find-class
+-------------------
+
+Find-all matching adjusted
+
+find-all implementation returns false positives for subclasses
+added parameter of a predicate to implement matching, with a default
+value that preserves original behaviour
+
+added an exact class matcher to purge-all invocation of find-all to stop
+it purging subclasses.
+
+Renamed find-all matching parameter to matches-p
+
+In response to feedback on PR-78
+  https://github.com/redline6561/coleslaw/pull/78.
+
+Refactored class name matching code
+
+added class-name-p function to util
+refactored incremental plugin process-change and documents purge-all
+to use class-name-p when matching against exact class names.
+
+zlrth/coleslaw
+==============
+
+dev
+---
+
+Bugfix: Feed should be an abstract class.
+
+Remove scaffolded parallel plugin.
+
+jamiepg1/coleslaw
+=================
+
+basic-deploy
+------------
+
+Bugfix: Feed should be an abstract class.
+
+Remove scaffolded parallel plugin.
+
+Tentatively factor deploy method into git-hook plugin. TODO follows...
+
+* Deploy :after plugins probably need revision now, and coleslaw-heroku.
+* README, HACKING need updates. Plugin-api.md too.
+* NEWS needs a carefully worded entry.
+
+Is that what we want?
+
+Incremental compilation is done, note some new goals.
+
+Add some error-handling notes.
+
+More notes.
+
+Some TODO notes.
+
+Bugfixes.
+
+Half-way commit to getting hardcoded paths out of templates.
+
+dev
+---
+
+Bugfix: Feed should be an abstract class.
+
+Remove scaffolded parallel plugin.
+
+Ferada/coleslaw
+===============
+
+basic-deploy
+------------
+
+Bugfix: Feed should be an abstract class.
+
+Remove scaffolded parallel plugin.
+
+Tentatively factor deploy method into git-hook plugin. TODO follows...
+
+* Deploy :after plugins probably need revision now, and coleslaw-heroku.
+* README, HACKING need updates. Plugin-api.md too.
+* NEWS needs a carefully worded entry.
+
+Is that what we want?
+
+Incremental compilation is done, note some new goals.
+
+Add some error-handling notes.
+
+More notes.
+
+custom-eval
+-----------
+
+Introduce custom bindings form for posts.
+
+Use `bindings: name1 value1 ...` to bind special variables while
+compiling a post.  Only a single bindings directive is supported in the
+post metadata.
+
+Fix order of forms.
+
+dev
+---
+
+Bugfix: Feed should be an abstract class.
+
+a1ip/coleslaw
+=============
+
+basic-deploy
+------------
+
+Bugfix: Feed should be an abstract class.
+
+Remove scaffolded parallel plugin.
+
+Tentatively factor deploy method into git-hook plugin. TODO follows...
+
+* Deploy :after plugins probably need revision now, and coleslaw-heroku.
+* README, HACKING need updates. Plugin-api.md too.
+* NEWS needs a carefully worded entry.
+
+Is that what we want?
+
+dev
+---
+
+Bugfix: Feed should be an abstract class.
+
+cl-pdx/coleslaw
+===============
+
+experimental
+------------
+
+Sketch out incremental plugin.
+
+PuercoPop/coleslaw
+==================
+
+coleslaw-conf-uiop
+------------------
+
+Simplify the setting of COLESLAW-CONF:*BASEDIR*
+
+No need to use a before method specializing in the LOAD-OP. Use uiop's
+pathname-parent-directory-pathname instead.
+
+Improve COLESLAW-CONF:*BASEDIR* tests
+
+Check for the presence of plugins and themes sub-directories.
+
+limajs-take2
+------------
+
+First stab at plugins.
+
+limajs
+------
+
+Make tags more palatable to the repl.
+
+Better error reporting for theme errors
+
+    This covers the case of when a theme doesn't have a specific
+    template, say post.html and (theme-fn 'post) is called.
+
+Current-directory not needed, use uiop instead
+
+   Add setf expansion for getcwd.
+
+More robust directory changing
+
+     - Doesn't fail when the directory is missing a trailing '/'
+     - When directory doesn't exist it signals an informative
+       condition.
+
+WIP towards LimaJS new web page.
+
+First Working(ish) build.
+
+patch-2
+-------
+
+Verify that parse-field returns an array.
+
+Otherwise read-content fails to parse files with empty headers as it tries to aref nil.
+
+twitter-summary-card
+--------------------
+
+Add twitter meta-data to posts
+
+  This depends on a pending change to add-injection.
+
+Bind content-text & add quotes to HTML attributes.
+
+Add tests as a PoC. Do not for merge.
+
+nathanielksmith/coleslaw
+========================
+
+theme
+-----
+
+Example theme.
+
+Flail.
+
+Foo.
+
+Foo.
+
+Foo.
+
+Foo.
+
+Foo.
+
+Foo.
+
+Finish theme, for now.
+
+Fix article.
+
+Make older/newer more visible.
+
+user-defined-routing
+--------------------
+
+Update all page-url calls to only use the slug.
+
+Hey, look! User-defined routes are easy. Slot-value is gross though.
+
+Remove page-url methods now stored in the config.
+
+We probably don't want to merge this in until users have had an
+adjustment period or without putting a *big* warning in the NEWS.
+Users will need to know to update their configs/steal the :routing
+block from the example config.
+
+tychoish/coleslaw
+=================
+
+master
+------
+
+Adding additional data to the environment, making more build factors configurable.
+
+Revisions to configuration option patch in response to code review.
+
+vseloved/coleslaw
+=================
+
+master
+------
+
+Added possibility to change *config-file* name.
+
+Added BASE-DIR to config.
+
+.gitignore update.
+
+Added tables support using 3bmd-ext-tables extension.
+
+.gitignore.
+
+Handling static/ as a directory.
+
+Added AUTHORS slot to post.
+
+woudshoo/coleslaw
+=================
+
+new-theme
+---------
+
+Wanted to make slighter different theme.
+
+Lets see if we can make this work.
+
+Changed namespace to new theme name.
+
+Moved atom.tmpl and rss.tmpl into the theme directories.
+
+Also added them to the theme directories.
+
+Merged fix of atom/rss templates with new theme.
+
+Fixed comma space issue.
+
+Updating style.
+
+Removed unused font, added style for article-title in post.tmpl.
+
+Added <base> to template so images work.
+
+Updated template, so links to images work.
+
+Already applied changes to my own templates.
+
+Added first draft of theme documentation.
+
+Updated template.
+
+Removed base href.
+
+Use .jpeg instead of .png.
+
+Slight update to template.
+
+Added secret google key.
+
+Changed timestamp format of the sitemap so google does not complain (and it conforms to the specs.)
+
+relative-links-fix
+------------------
+
+Added <base> tag to make relative links work.
+
+theme-doc
+---------
+
+Added first draft of theme documentation.
+
+
