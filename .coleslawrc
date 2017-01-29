@@ -16,7 +16,8 @@
            (:feed           "~a.xml")
            (:tag-feed       "tag/~a.xml"))
  :sitenav ((:url "/about.html" :name "About us")
-           (:url "/1.html" :name "Blog"))
+           ;; (:url "/1.html" :name "Blog")
+           )
  :title "40Ants"
  :theme "the40ants")
 
