@@ -31,6 +31,9 @@
 (defvar *index-page* nil
   "Name of the page to make an \"index\". For example: \"about.html\".")
 
+(defvar *branch* "gh-pages"
+  "Documentation branch. For project pages it should be \"gh-pages\" for user's or organization's site – \"master\".")
+
 (defvar *push-to-github* nil
   "If true, then new site will be pushed to the github after successful deployment.")
 
@@ -99,16 +102,19 @@ pointed by staging-dir and checking out gh-pages branch there."
                                 :validate t))
   
   (run "git clone . ~a" staging-dir)
-  (switch-to-branch staging-dir "gh-pages")
+  (switch-to-branch staging-dir *branch*)
   (remove-git-files staging-dir))
 
 
-(defun enable (&key cname index-page push)
+(defun enable (&key cname index-page push branch)
   (setf *cname* (if cname
                     cname
                     (domain *config*)))
 
   (setf *index-page* index-page)
+  
+  (when branch
+    (setf *branch* branch))
 
   (setf *push-to-github* push)
 
@@ -161,6 +167,6 @@ pointed by staging-dir and checking out gh-pages branch there."
   (when *push-to-github*
     ;; if :push option was given, then upload gh-pages branch
     ;; to the GitHub
-    (git-push "gh-pages")))
+    (git-push *branch*)))
 
 
