@@ -1,0 +1,23 @@
+(:author "Alexander Artemenko"
+ :deploy-dir "./site-static"
+ :domain "12forks.com"
+ :feeds ("blog")
+ :plugins (;; (analytics :tracking-code "foo")
+           ;; (disqus :shortname "my-site-name")
+           (static-pages)
+           (rst)
+           (gh-pages
+            :index-page "about.html"
+            :push t))
+ :routing ((:post           "posts/~a")
+           (:tag-index      "tag/~a")
+           (:month-index    "date/~a")
+           (:numeric-index  "~d")
+           (:feed           "~a.xml")
+           (:tag-feed       "tag/~a.xml"))
+ :sitenav ((:url "/about.html" :name "Rationale")
+           (:url "/1.html" :name "Blog")
+           (:url "https://github.com/12forks/command-line/releases" :name "Download"))
+ :title "12 Forks"
+ :theme "the40ants")
+
