@@ -53,11 +53,11 @@ span.paren6:hover { color : inherit; background-color : #FFBAFF; }
     margin-top: -0.5em;
 }
 
-.brand {
+.navbar .brand {
     padding: 0;
     margin: 5px -15px 0px 0px;
 }
 
-.brand > .logo {
+.navbar .brand > .logo {
     width: 60px;
 }
