@@ -29,11 +29,26 @@ and make docutils output only html fragment with document itself."
                                      body)))
 
 
+(defun remove-system-messages (document)
+  (typecase document
+    ((or docutils.nodes:document
+         docutils.nodes:section)
+     (with-slots (docutils::children) document
+       (let  ((new-children (remove-if
+                             (lambda (item)
+                               (typecase item (docutils.nodes:system-message t)))
+                             docutils::children)))
+         (setf docutils::children (mapcar #'remove-system-messages2
+                                          new-children))))))
+  document)
+
+
 (defmethod render-text (text (format (eql :rst)))
   (register-settings-spec '((:generator nil)
                             (:datestamp nil)))
   (let ((writer (make-instance 'html-writer))
-        (document (read-rst text)))
+        (document (remove-system-messages (read-rst text))))
+
     (write-document writer document 'string)))
 
 (defun enable ())
