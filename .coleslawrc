@@ -16,7 +16,8 @@
            (:numeric-index  "~d")
            (:feed           "~a.xml")
            (:tag-feed       "tag/~a.xml"))
- :sitenav ((:url "/about.html" :name "About us")
+ :sitenav ((:url "/about.html" :name "Who we are")
+           (:url "https://gitter.im/40ants/team" :name "Chat us")
            ;; (:url "/1.html" :name "Blog")
            )
  :title "40Ants"
