@@ -21,4 +21,4 @@ and could be used in site's footer. For example, look at our's footer.
 
 .. image:: /img/made-with-lisp.svg
    :alt: Made with Lisp
-   :target: /img/made-with-lisp.svg
+   :target: http://40ants.com/img/made-with-lisp.svg
