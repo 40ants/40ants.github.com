@@ -20,7 +20,7 @@ Main ideas are
 Our roadmap
 -----------
 
-1. To build a guidelines (or framework) for webdevelopment.
+1. To build a guidelines (or framework) for web development.
 2. To fix `Ceramic <https://github.com/ceramic/ceramic>`_ to build desktop apps
    using Electron.
 3. Figure out a way how to do the similar for mobile apps, may be by using
@@ -30,7 +30,16 @@ Our roadmap
 Work with us
 ============
 
-If you with to support us, please, donate your time working on our projects or money:
+We are alway glad to new members, no matter who you are a beginner or a mature Lisp developer.
+
+Starting is easy. Open a `Gitter chat <https://github.com/kingcons/coleslaw>`_ and say "Hello!".
+
+Support us
+==========
+
+Supporting hackers is not always bad thing. Especially if they are Lisp hackers.
+
+If you with to support us, please, donate money:
 
 .. raw:: html
 
