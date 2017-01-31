@@ -15,10 +15,10 @@ Works nicely with Fukamachi's `Prove <https://github.com/fukamachi/prove>`_ unit
 "Made with Lisp" SVG version
 ----------------------------
 
-SVG version of the great "Made with Lisp" logo by ???. It scales nicely
-and could be used in site's footer. For example, look at our's footer.
-
+SVG version of the great "Made with Lisp" logo by Manfred Spiller:
 
 .. image:: /img/made-with-lisp.svg
    :alt: Made with Lisp
    :target: http://40ants.com/img/made-with-lisp.svg
+
+It scales nicely and could be used in site's footer. For example, look at our's footer.
