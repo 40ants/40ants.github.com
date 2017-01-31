@@ -3,9 +3,6 @@ url: projects.html
 format: rst
 ;;;;;
 
-Our projects
-============
-
 CL-HAMCREST
 -----------
 
@@ -22,6 +19,5 @@ SVG version of the great "Made with Lisp" logo by ???. It scales nicely
 and could be used in site's footer. For example, look at our's footer.
 
 
-
-.. image:: http://40ants.com/img/made-with-lisp.svg
-   :target: http://40ants.com/img/made-with-lisp.svg
+.. image:: /img/made-with-lisp.svg
+   :target: /img/made-with-lisp.svg
