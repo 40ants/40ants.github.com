@@ -38,7 +38,7 @@ and make docutils output only html fragment with document itself."
                              (lambda (item)
                                (typecase item (docutils.nodes:system-message t)))
                              docutils::children)))
-         (setf docutils::children (mapcar #'remove-system-messages2
+         (setf docutils::children (mapcar #'remove-system-messages
                                           new-children))))))
   document)
 
