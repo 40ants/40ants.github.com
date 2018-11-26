@@ -9,7 +9,7 @@
            (gh-pages
             :index-page "about.html"
             :branch "master"
-            :push t))
+            :push-from-branch "develop"))
  :routing ((:post           "posts/~a")
            (:tag-index      "tag/~a")
            (:month-index    "date/~a")

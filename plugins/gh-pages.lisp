@@ -113,7 +113,7 @@ pointed by staging-dir and checking out gh-pages branch there."
   (remove-git-files staging-dir))
 
 
-(defun enable (&key cname index-page push branch)
+(defun enable (&key cname index-page push-from-branch branch)
   (setf *cname* (if cname
                     cname
                     (domain *config*)))
