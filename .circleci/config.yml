@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu:18.04
+    steps:
+      - checkout
+      - run:
+          name: Install Roswell
+          command: curl -L https://raw.githubusercontent.com/snmsts/roswell/master/scripts/install-for-ci.sh | sh
+      - run:
+          name: Install Coleslaw
+          command: ros install 'guicho271828/coleslaw/roswell'
+      - run:
+          name: Build and upload new version of the site
+          command: coleslaw generate
