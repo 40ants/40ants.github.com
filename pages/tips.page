@@ -1,0 +1,15 @@
+;;;;;
+url: tips.html
+format: rst
+;;;;;
+
+Here is a collection of small tips for Lisp newcomers.
+
+Wanted to recompile all places where Lisp macro was expanded?
+-------------------------------------------------------------
+
+Here is how to do it:
+
+* On a macro name, hit ``C-c C-w m <ENTER>``.
+* Then Emacs will show a buffer with all places where this macro was expanded.
+* Now, hit ``C-c C-k`` to recompile all of them at once!

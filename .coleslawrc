@@ -18,8 +18,8 @@
            (:tag-feed       "tag/~a.xml"))
  :sitenav ((:url "/about.html" :name "Who we are")
            (:url "https://gitter.im/40ants/team" :name "Chat us")
+           (:url "/tips.html" :name "Lisp Tips")
            (:url "/projects.html" :name "Our projects")
            )
  :title "40Ants"
  :theme "the40ants")
-
