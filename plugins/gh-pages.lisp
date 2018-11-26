@@ -34,8 +34,15 @@
 (defvar *branch* "gh-pages"
   "Documentation branch. For project pages it should be \"gh-pages\" for user's or organization's site – \"master\".")
 
-(defvar *push-to-github* nil
-  "If true, then new site will be pushed to the github after successful deployment.")
+
+(defvar *push-to-github-from-branch* nil
+  "Set this to a string like \"master\" or \"develop\", and new site will be pushed to the github after successful deployment.
+
+   Current branch will be taken from CIRCLE_BRANCH env variable.")
+
+
+(defun get-current-branch ()
+  (uiop:getenv "CIRCLE_BRANCH"))
 
 
 (defun run (program &rest args)
@@ -116,7 +123,7 @@ pointed by staging-dir and checking out gh-pages branch there."
   (when branch
     (setf *branch* branch))
 
-  (setf *push-to-github* push)
+  (setf *push-to-github-from-branch* push-from-branch)
 
   (prepare-staging-dir (staging-dir *config*)))
 
@@ -168,9 +175,9 @@ pointed by staging-dir and checking out gh-pages branch there."
     ;; and to push them into the working dir (origin)
     (git-push))
 
-  (when *push-to-github*
+  (when (and *push-to-github-from-branch*
+             (string-equal (get-current-branch)
+                           *push-to-github-from-branch*))
     ;; if :push option was given, then upload gh-pages branch
     ;; to the GitHub
     (git-push :branch *branch*)))
-
-
