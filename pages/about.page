@@ -1,12 +1,8 @@
 ;;;;;
 url: about.html
-title: About BLAH
+title: Who we are
 format: rst
 ;;;;;
-
-
-Who we are
-==========
 
 We are a group of Lisp hackers. Our goal is to extend Common Lisp's ecosystem
 and to solve realworld problems using the most powerful programming language.
