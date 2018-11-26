@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu:18.04
+    environment:
+      - LISP: ccl-bin
+      - PATH: /root/.roswell/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - LC_ALL: C.UTF-8
+    branches:
+      # We ignore it because master branch has a final version
+      # of gh-pages static html
+      ignore:
+        - master
+
+    steps:
+      - checkout
+      - run:
+          name: Install curl
+          command: apt update && apt install -y curl automake gcc libcurl4-openssl-dev make git rsync
+      - run:
+          name: Setup git
+          command: git config --global user.email "svetlyak.40wt@gmail.com" && git config --global user.name "Alexander Artemenko"
+      - run:
+          name: Setup SSH
+          command: mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
+          name: Install Roswell
+          command: curl -L https://raw.githubusercontent.com/snmsts/roswell/master/scripts/install-for-ci.sh | sh
+      - run:
+          name: Install Coleslaw
+          command: ros install 'guicho271828/coleslaw/roswell'
+      - run:
+          name: Build and upload new version of the site
+          command: coleslaw generate

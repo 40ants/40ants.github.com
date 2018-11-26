@@ -123,10 +123,10 @@ pointed by staging-dir and checking out gh-pages branch there."
 
 (defun create-commit-message ()
   "Returns something like \"Update from 2016-10-14 10:45\"."
-  (let* ((today (local-time:today))
+  (let* ((now (local-time:now))
          (formatted-datetime (local-time:format-timestring
                               nil
-                              today
+                              now
                               :format *datetime-format*)))
     (format nil "Update from ~A" formatted-datetime)))
 
@@ -137,12 +137,15 @@ pointed by staging-dir and checking out gh-pages branch there."
   (run "git commit -m '~A'" message))
 
 
-(defun git-push (&optional branch)
+(defun git-push (&key (branch "HEAD") force)
   "Pushes current branch to origin branch."
-  (run "git push origin ~A"
-       (if branch
-           branch
-           "HEAD")))
+  (run "git rev-parse ~A"
+       branch)
+  (if force
+      (run "git push --force origin ~A"
+           branch)
+    (run "git push origin ~A"
+         branch)))
 
 
 (defmethod coleslaw:deploy (staging)
@@ -151,7 +154,9 @@ pointed by staging-dir and checking out gh-pages branch there."
   (with-current-directory staging
     (when *cname*
       (run "echo ~a > CNAME" *cname*))
-  
+    
+    (run "cp -R /root/project/.circleci ./")
+    
     (when *index-page*
       (run "rm index.html")
       (run "cp ~a index.html" *index-page*))
@@ -163,10 +168,9 @@ pointed by staging-dir and checking out gh-pages branch there."
     ;; and to push them into the working dir (origin)
     (git-push))
 
-
   (when *push-to-github*
     ;; if :push option was given, then upload gh-pages branch
     ;; to the GitHub
-    (git-push *branch*)))
+    (git-push :branch *branch*)))
 
 
