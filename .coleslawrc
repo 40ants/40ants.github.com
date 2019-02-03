@@ -8,6 +8,7 @@
            (rst)
            (gh-pages
             ;; :index-page "about.html"
+            :force t
             :branch "master"
             :push-from-branch "develop"))
  :routing ((:post           "posts/~a")
