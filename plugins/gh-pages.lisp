@@ -177,11 +177,12 @@ pointed by staging-dir and checking out gh-pages branch there."
     ;; all we need is to commit changes to the branch
     (git-commit-all (create-commit-message))
     ;; and to push them into the working dir (origin)
-    (git-push :force *force*))
+    (git-push))
 
   (when (and *push-to-github-from-branch*
              (string-equal (get-current-branch)
                            *push-to-github-from-branch*))
     ;; if :push option was given, then upload gh-pages branch
     ;; to the GitHub
-    (git-push :branch *branch*)))
+    (git-push :branch *branch*
+              :force *force*)))
