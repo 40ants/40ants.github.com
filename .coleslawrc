@@ -7,7 +7,7 @@
            (static-pages)
            (rst)
            (gh-pages
-            :index-page "about.html"
+            ;; :index-page "about.html"
             :branch "master"
             :push-from-branch "develop"))
  :routing ((:post           "posts/~a")
