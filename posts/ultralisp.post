@@ -53,12 +53,10 @@ How to use Ultralisp.org
 ========================
 
 Using libraries from Ultralisp is as easy as adding it to the list of
-quicklisp distributions. You can do it in the REPL with this command:
+quicklisp distributions. You can do it in the REPL with this command::
 
-.. code:: common-lisp
-
-   (ql-dist:install-dist "http://dist.ultralisp.org/"
-                         :prompt nil)
+  (ql-dist:install-dist "http://dist.ultralisp.org/"
+                        :prompt nil)
 
 However, I recommend you to pin distribution or libraries versions in
 every project. The easiest way to do this is to use Qlot. With Qlot
