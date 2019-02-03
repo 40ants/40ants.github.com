@@ -34,6 +34,8 @@
 (defvar *branch* "gh-pages"
   "Documentation branch. For project pages it should be \"gh-pages\" for user's or organization's site – \"master\".")
 
+(defvar *force* nil
+  "Add --force flag when pushing results to the github.")
 
 (defvar *push-to-github-from-branch* nil
   "Set this to a string like \"master\" or \"develop\", and new site will be pushed to the github after successful deployment.
@@ -113,12 +115,14 @@ pointed by staging-dir and checking out gh-pages branch there."
   (remove-git-files staging-dir))
 
 
-(defun enable (&key cname index-page push-from-branch branch)
+(defun enable (&key cname index-page push-from-branch branch force)
   (setf *cname* (if cname
                     cname
                     (domain *config*)))
 
   (setf *index-page* index-page)
+
+  (setf *force* force)
   
   (when branch
     (setf *branch* branch))
@@ -173,7 +177,7 @@ pointed by staging-dir and checking out gh-pages branch there."
     ;; all we need is to commit changes to the branch
     (git-commit-all (create-commit-message))
     ;; and to push them into the working dir (origin)
-    (git-push))
+    (git-push :force *force*))
 
   (when (and *push-to-github-from-branch*
              (string-equal (get-current-branch)
