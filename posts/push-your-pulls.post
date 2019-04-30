@@ -1,0 +1,31 @@
+;;;;;
+title: How to push your pulls!
+tags: github, startup, idea
+date: 2019-04-30 23:00
+format: rst
+;;;;;
+
+Today I’m going to share an idea I’ve been nurturing for a long time, my friends. It came into my mind many years ago. It’s core message has to do with development of a service, which would aggregate and conveniently display all communications related to your favorite GitHub projects. This service will be very helpful for users having many own GitHub projects. It’ll also help GitHub users with numerous pulls and tickets for third party projects.
+
+I believe that tickets and pulls creators create them to improve their open source projects of interest. In order to do that, tickets must become pulls. The pulls in turn should merge in a timely manner. The faster this process will be, the quicker open source projects will be developed.
+
+Yet, communication around a ticket or a pull often gets less intense and can be lost on GitHub. This situation can arise for a number of reasons. As a rule, some participant misses a GitHub email notification about a comment, and the issue emerges. The end result stays the same despite various reasons — a ticket is lost. At times, it may take years for the ticket to be discovered.
+
+For that matter, there are special pages on GitHub, of course. E. g. see web pages with pull lists on https://github.com/pulls and web pages with ticket lists on https://github.com/issues. Yet, these lists are not user-friendly, as they don’t give you a slightest idea about which ticket requires your reaction and which does not. That’s what I’m going to fix.
+
+My project is called 12Forks.com. It will provide an experimental interface for ticket and pull processing. All the tickets to be responded to, pulls that require merge conflict fix, and situations calling for a maintainer who is unwilling to react promptly for some reason will be summarized on a single page. Future integration with a variety of messengers (e. g. Slack or Telegram) is also considered. The point is to boost communication and task completion with
+open source projects.
+
+I already use MVP (minimal viable product) of this tool, which operates in console mode for the time being.
+It helped to halve overflow consisting of 103 pulls and tickets. I closed some of them because of their age. In other cases, a library maintainer has responded to feedback and merged pulls:
+
+.. image:: https://i.ibb.co/2P9sYng/12forks-illustration.png
+
+I’m sure that such tool will quicken change acceptance process. Any open source projects participant is likely to find it helpful.
+
+My estimates show that about 3% of all GitHub users actively work with tickets and pulls. But you know what? 3% of 48,000,000 users (the figure was taken from my research) totals to ~1,500,000 users. So, this large community may benefit from my solution.
+
+Ready publicly available MVP is planned for June.
+If you want to be one of its early adopters, please, provide your email address. To do this, fill in a form on https://12forks.com site.
+
+Any concepts to be realized in this product? Speak up. You're more than welcome. Put them down in your comments to the post. Or send them to ideas@12forks.com.
