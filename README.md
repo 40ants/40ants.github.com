@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/40ants/40ants.github.com.svg?style=svg)](https://circleci.com/gh/40ants/40ants.github.com)
 
 ### Introduction ###
 
