@@ -32,9 +32,8 @@ jobs:
       # - run:
       #     name: Install Coleslaw
       #     run: qlot install ros install 'guicho271828/coleslaw/roswell'
-      - run:
-          name: Build and upload new version of the site
-          run: qlot exec .qlot/bin/coleslaw generate
+      - name: Build and upload new version of the site
+        run: qlot exec .qlot/bin/coleslaw generate
 
       # - name: Build docs
       #   run: qlot exec docs/scripts/build.ros
