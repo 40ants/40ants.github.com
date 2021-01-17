@@ -9,7 +9,7 @@ Here are some projects we are making or helping to develop.
 CL-HAMCREST
 -----------
 
-It is implementation of `Hamcrest <http://hamcrest.org/>`_ idea in Common Lisp.
+It is implementation of `Hamcrest <http://hamcrest.org/>`_ idea in Common Lisp!
 
 It simplifes unittests and make them more readable. Hamcrest uses idea of pattern-matching, to construct matchers from different pieces and to apply them to the data.
 
