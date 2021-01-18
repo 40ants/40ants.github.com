@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"> <channel> <title>40Ants</title> <link>40ants.com</link> <atom:link href="40ants.com/rss.xml" rel="self" type="application/rss+xml" /> <language>en-us</language> <pubDate>Mon, 18 Jan 2021 00:12:33 +0300</pubDate> <item> <title>Pushing your pulls faster!</title> <link>40ants.com/posts/Pushing-your-pulls-faster.html</link> <pubDate>2019-04-30 23:00</pubDate> <author>Alexander Artemenko</author> <guid isPermaLink="true">40ants.com/posts/Pushing-your-pulls-faster.html</guid> <category><![CDATA[ github ]]></category><category><![CDATA[ startup ]]></category><category><![CDATA[ idea ]]></category> <description><![CDATA[ <div class="document"><p>Today I’m going to share an idea I’ve been nurturing for a long time, my friends. It came into my mind many years ago. It’s core message has to do with development of a service, which would aggregate and conveniently display all communications related to your favorite GitHub projects. This service will be very helpful for users having many own GitHub projects. It’ll also help GitHub users with numerous pulls and tickets for third party projects.</p>
+<p>I believe that tickets and pulls creators create them to improve their open source projects of interest. In order to do that, tickets must become pulls. The pulls in turn should merge in a timely manner. The faster this process will be, the quicker open source projects will be developed.</p>
+<p>Yet, communication around a ticket or a pull often gets less intense and can be lost on GitHub. This situation can arise for a number of reasons. As a rule, some participant misses a GitHub email notification about a comment, and the issue emerges. The end result stays the same despite various reasons — a ticket is lost. At times, it may take years for the ticket to be discovered.</p>
+<p>For that matter, there are special pages on GitHub, of course. E. g. see web pages with pull lists on <a class="reference" href="https://github.com/pulls"><span>https://github.com/pulls</span></a> and web pages with ticket lists on <a class="reference" href="https://github.com/issues"><span>https://github.com/issues</span></a>. Yet, these lists are not user-friendly, as they don’t give you a slightest idea about which ticket requires your reaction and which does not. That’s what I’m going to fix.</p>
+<p>My project is called <a class="reference" href="http://12forks.com"><span>12Forks</span></a>. It will provide an experimental interface for ticket and pull processing. All the tickets to be responded to, pulls that require merge conflict fix, and situations calling for a maintainer who is unwilling to react promptly for some reason will be summarized on a single page. Future integration with a variety of messengers (e. g. Slack or Telegram) is also considered. The point is to boost communication and task completion with open source projects.</p>
+<p>I already use MVP (minimal viable product) of this tool, which operates in console mode for the time being. It helped to halve overflow consisting of 103 pulls and tickets. I closed some of them because of their age. In other cases, a library maintainer has responded to feedback and merged pulls:</p>
+<div class="image"><img name="id1" alt="https://i.ibb.co/2P9sYng/12forks-illustration.png" src="https://i.ibb.co/2P9sYng/12forks-illustration.png" id="id1" /></div>
+<p>I’m sure that such tool will quicken change acceptance process. Any open source projects participant is likely to find it helpful.</p>
+<p>My estimates show that about 3% of all GitHub users actively work with tickets and pulls. But you know what? 3% of 48,000,000 users (the figure was taken from my research) totals to &nbsp;1,500,000 users. So, this large community may benefit from my solution.</p>
+<p>Ready publicly available MVP is planned for June. If you want to be one of its early adopters, please, provide your email address. To do this, fill in a form on <a class="reference" href="http://12forks.com"><span>http://12forks.com</span></a> site.</p>
+<p>Any concepts to be realized in this product? Speak up. You're more than welcome. Put them down in your comments to the post. Or send them to <a class="reference" href="mailto:ideas@12forks.com"><span>ideas@12forks.com</span></a>.</p>
+ ]]></description> </item><item> <title>Second version of Ultralisp.org is available now!</title> <link>40ants.com/posts/Second-version-of-Ultralisporg-is-available-now.html</link> <pubDate>2019-02-03 15:00</pubDate> <author>Alexander Artemenko</author> <guid isPermaLink="true">40ants.com/posts/Second-version-of-Ultralisporg-is-available-now.html</guid> <category><![CDATA[ release ]]></category> <description><![CDATA[ <div class="document"><p>I believe, that software should evolve and evolve quickly. One of the reasons why Common Lisp seems strange to newcomers is its ecosystem. It takes a long time to add a new library and make it useful to other common lispers.</p>
+<p>Just pretend that you've made a brand new library and want to show it to the world. Now you have two options.</p>
+<ol class="arabic" start="1"><li><p class="first last">Include it into the Quicklisp and probably wait for 1 month before announcing the library on the Reddit or StackOverflow.</p>
+</li>
+<li><p class="first last">Put the library on the Github and ask everybody to download it and put somewhere where ASDF will be able to find it. Not very user-friendly, especially if your library has dependencies which aren't on the Quicklisp yet.</p>
+</li>
+</ol>
+<p>Now ask yourself a question, what if you've chosen the first option, and some user found a critical bug in your library?</p>
+<p>The answer is: "Your users will have to wait another month until the next release of the Quicklisp."</p>
+<p>Quicklisp is a perfect distribution for very stable software, but if we want our ecosystem to grow, we need something that can move faster. That is why I decided to spend all my free time working on the <a class="reference" href="https://ultralisp.org"><span>https://ultralisp.org</span></a>.</p>
+<p>Ultralisp is a Quicklisp compatible distribution, but it has two core features:</p>
+<ol class="arabic" start="1"><li><p class="first last">It let you (and anybody else) to add their libraries from the GitHub in few clicks.</p>
+</li>
+<li><p class="first last">It builds the next version within 5 minutes after a library was added or updated.</p>
+</li>
+</ol>
+<p>There are other features as well. Some of them are already implemented, others only planned and exist as the <a class="reference" href="https://github.com/ultralisp/ultralisp/issues"><span>GitHub issues</span></a>. You can help this project by using it, complaining about it and developing it.</p>
+<p>Ultralisp was made not only to be used as a yet another quicklisp distribution. You can run your own instance of the Ultralisp. It is as easy as doing <tt class="docutils literal">
+<span class="pre">docker-compose</span> <span class="pre">run</span> <span class="pre">app</span></tt>.</p>
+<p>If you are a company who uses Common Lisp, then you can set up a private Ultralisp server inside your infrastructure. However, don't forget to become a sponsor of the project ;-)</p>
+<div id="how-to-use-ultralisp-org" class="section"><h2><a name="how-to-use-ultralisp-org">How to use Ultralisp.org</a></h2>
+<p>Using libraries from Ultralisp is as easy as adding it to the list of quicklisp distributions. You can do it in the REPL with this command:</p>
+<pre class="literal-block">
+(ql-dist:install-dist "http://dist.ultralisp.org/"
+                      :prompt nil)
+</pre><p>However, I recommend you to pin distribution or libraries versions in every project. The easiest way to do this is to use Qlot. With Qlot you'll be able to pin version numbers and commit a config into the repository. This will give you stable builds which don't depend on future releases of Quicklisp or Ultralisp.</p>
+<p>Here is the simplest config for the <a href="#id2" name="id3"><span id="id3" class="problematic"><span id="id3">Qlot</span></span></a>:</p>
+<pre class="literal-block">
+dist ultralisp http://dist.ultralisp.org/
+ql :all :latest
+ultralisp :all :latest
+</pre><p>It says, that if some system is present in the Ultralisp, it will will have priority over the same system from the Quicklisp.</p>
+<p>After running <tt class="docutils literal">
+<span class="pre">qlot</span> <span class="pre">install</span></tt> or <tt class="docutils literal">
+<span class="pre">qlot</span> <span class="pre">update</span></tt>, Qlot will create a <tt class="docutils literal">
+<span class="pre">qlfile.lock</span></tt> file with pinned versions of the Quicklisp and Ultralisp. It will look like that:</p>
+<pre class="literal-block">
+("quicklisp" .
+ (:class qlot.source.ql:source-ql-all
+  :initargs (:distribution "http://beta.quicklisp.org/dist/quicklisp.txt" :%version :latest)
+  :version "2019-02-02"))
+("ultralisp" .
+ (:class qlot.source.ql:source-ql-all
+  :initargs (:distribution "http://dist.ultralisp.org/" :%version :latest)
+  :version "20190202213040"))
+</pre><p>Commit both <tt class="docutils literal">
+<span class="pre">qlfile</span></tt> and <tt class="docutils literal">
+<span class="pre">qlfile.lock</span></tt> into you source control system.</p>
+<p>From time to time you'll need to run <tt class="docutils literal">
+<span class="pre">qlot</span> <span class="pre">update</span></tt> to update versions in the <tt class="docutils literal">
+<span class="pre">qlfile.lock</span></tt>, and run all your project's tests to ensure that it still works with newer distributions. If you discover that something went wrong, you can pin an older version of Ultralisp in the <tt class="docutils literal">
+<span class="pre">qlfile</span></tt>, just replace the line:</p>
+<pre class="literal-block">
+ultralisp :all :latest
+</pre><p>With the line:</p>
+<pre class="literal-block">
+ultralisp :all 20190130205039
+</pre><p>Or you can pin a single library by adding a line:</p>
+<pre class="literal-block">
+ultralisp cl-pgpass 20190202203038
+</pre><p>if it stopped to work for you after some changes in recent versions.</p>
+</div>
+<div id="final-words" class="section"><h2><a name="final-words">Final words</a></h2>
+<p>We are all responsible for improving tooling around Common Lisp. If you feel that something can be made better, just do it. I hope that together we will make Common Lisp more convenient and attractive for the newcomers.</p>
+</div>
+ ]]></description> </item> </channel> </rss>
