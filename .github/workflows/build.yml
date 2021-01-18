@@ -31,9 +31,10 @@ jobs:
         run: qlot install
       - name: Build and upload new version of the site
         run: qlot exec .qlot/bin/coleslaw generate
+      - name: Install gh-pages
+        run: qlot exec ros install gh-pages
       - name: Deploy site
         run: |
-          qlot exec ros install gh-pages
           ls .qlot/bin
           qlot exec .qlot/bin/gh-pages.ros /tmp/coleslaw/
         env:
