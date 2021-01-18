@@ -33,7 +33,7 @@ jobs:
         run: qlot exec .qlot/bin/coleslaw generate
       - name: Deploy site
         run: |
-          qlot install 40ants/gh-pages
+          qlot exec ros install 40ants/gh-pages
           qlot exec .qlot/bin/gh-pages.ros /tmp/coleslaw/
         env:
           # This token is automaticall added to the secrets
