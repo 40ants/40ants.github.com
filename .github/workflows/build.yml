@@ -29,16 +29,15 @@ jobs:
         run: ros install qlot
       - name: Install Dependencies
         run: qlot install
-      # - run:
-      #     name: Install Coleslaw
-      #     run: qlot install ros install 'guicho271828/coleslaw/roswell'
       - name: Build and upload new version of the site
-        run: qlot exec .qlot/bin/coleslaw deploy
+        run: qlot exec .qlot/bin/coleslaw generate
+      - name: Deploy site
+        run: |
+          qlot install 40ants/gh-pages
+          qlot exec .qlot/bin/gh-pages.ros /tmp/coleslaw/
+        env:
+          # This token is automaticall added to the secrets
+          # by GitHub. Read more here:
+          # https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Build docs
-      #   run: qlot exec docs/scripts/build.ros
-      #   env:
-      #     # This token is automaticall added to the secrets
-      #     # by GitHub. Read more here:
-      #     # https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
