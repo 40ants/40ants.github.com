@@ -1,0 +1,38 @@
+;;;;;
+url: test.html
+title: Test MGL PAX page
+format: mgl-pax
+;;;;;
+
+;; This is a hack and should be contributed to MGL-PAX
+(defmethod mgl-pax::locate-object (symbol (locative-type (eql 'method))
+                                   locative-args)
+  (assert (= 2 (length locative-args)))
+  (destructuring-bind (qualifiers specializers)
+      locative-args
+    (or (ignore-errors
+         (find-method (symbol-function symbol) qualifiers
+                      (loop for specializer in specializers
+                            collect (typecase specializer
+                                      (cons specializer)
+                                      (t (find-class specializer))))))
+        (mgl-pax:locate-error))))
+
+
+(mgl-pax:defsection post (:title "")
+  "
+This is an experimental page. Here I'm embedding [MGL-PAX](http://melisgl.github.io/mgl-pax/) documentation builder
+into a [Coleslaw](https://github.com/coleslaw-org/coleslaw) static blog generator.
+
+This is accomplished by adding a Coleslaw extension which defines this method to render pages of \"mgl-pax\" type:
+"
+
+  (coleslaw::render-text (method nil (t (eql :mgl-pax))))
+
+  "By the way, this post above was created using MGL-PAX's *locative* inserted into this blog post's body:
+
+```lisp
+(coleslaw::render-text (method nil (t (eql :mgl-pax))))
+```
+"
+  )
