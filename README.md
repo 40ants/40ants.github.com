@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/40ants/40ants.github.com.svg?style=svg)](https://circleci.com/gh/40ants/40ants.github.com)
+![Build Site](https://github.com/40ants/40ants.github.com/workflows/Build%20Site/badge.svg)
 
 ### Introduction ###
 
