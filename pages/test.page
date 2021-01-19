@@ -29,7 +29,7 @@ This is accomplished by adding a Coleslaw extension which defines this method to
 
   (coleslaw::render-text (method nil (t (eql :mgl-pax))))
 
-  "By the way, this post above was created using MGL-PAX's *locative* inserted into this blog post's body:
+  "By the way, the method documentation above was created using MGL-PAX's *locative* inserted into this blog post's body:
 
 ```lisp
 (coleslaw::render-text (method nil (t (eql :mgl-pax))))
