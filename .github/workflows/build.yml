@@ -34,7 +34,7 @@ jobs:
       - name: Build new version of the site
         run: qlot exec .qlot/bin/coleslaw generate
       - name: Install gh-pages
-        run: ros install gh-pages
+        run: qlot exec ros install 40ants/gh-pages
       - name: Deploy site
         run: |
           echo ".qlot content:
@@ -42,7 +42,7 @@ jobs:
           echo ".roswell content:
           ls /home/runner/.roswell/
           
-          qlot exec gh-pages /tmp/coleslaw/
+          qlot exec .qlot/bin/gh-pages /tmp/coleslaw/
         env:
           # This token is automaticall added to the secrets
           # by GitHub. Read more here:
