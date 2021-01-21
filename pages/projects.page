@@ -1,27 +1,164 @@
 ;;;;;
 url: projects.html
 title: Our projects
-format: rst
+format: spinneret
 ;;;;;
 
-Here are some projects we are making or helping to develop.
+(ql:quickload '(dexador)
+              :silent t)
 
-CL-HAMCREST
------------
+(:p "Here are some projects we are making or helping to develop.")
 
-It is implementation of `Hamcrest <http://hamcrest.org/>`_ idea in Common Lisp.
+(:h2 "Software")
+
+(let ((data '(
+              ;; ("Web"
+              ;;  "40ants/weblocks"
+              ;;  "40ants/weblocks-ui"
+              ;;  "40ants/weblocks-parenscript"
+              ;;  "40ants/weblocks-file-server"
+              ;;  "40ants/weblocks-navigation-widget"
+              ;;  "40ants/weblocks-websocket"
+              ;;  "40ants/weblocks-auth"
+              ;;  "40ants/weblocks-skeleton"
+              ;;  "40ants/mito-email-auth"
+              ;;  "40ants/cl-link-header"
+              ;;  "40ants/cl-yandex-metrika"
+              ;;  "40ants/weblocks-lass")
+
+              ;; ("Networking"
+              ;;  "40ants/cl-telegram-bot"
+              ;;  "40ants/trivial-imap"
+              ;;  "40ants/mailgun"
+              ;;  "40ants/cl-github")
+
+              ("Database"
+               "40ants/cl-prevalence"
+               "40ants/cl-prevalence-multimaster")
+
+              ;; ("IDE"
+              ;;  "40ants/lem-solarized"
+              ;;  "40ants/lem-theme"
+              ;;  "40ants/lem-pareto"
+              ;;  "40ants/lem-docker"
+              ;;  "40ants/sly-package-inferred"
+              ;;  "40ants/log4sly"
+              ;;  "40ants/recompile")
+
+              ;; ("Documentation"
+              ;;  "40ants/sphinxcontrib-cldomain"
+              ;;  "40ants/cldomain"
+              ;;  "40ants/gh-pages"
+              ;;  "40ants/lisp-project-of-the-day"
+              ;;  "cl-doc-systems")
+
+              ("Testing"
+               ("40ants/cl-hamcrest"
+                :desc "
+It is implementation of [Hamcrest](http://hamcrest.org) idea in Common Lisp.
 
 It simplifes unittests and make them more readable. Hamcrest uses idea of pattern-matching, to construct matchers from different pieces and to apply them to the data.
 
-Works nicely with Fukamachi's `Prove <https://github.com/fukamachi/prove>`_ unittest framework, but could be extended to support other frameworks.
+Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove>) and [Rove](https://github.com/fukamachi/rove>) unittesting frameworks, but could be extended to support other frameworks.
+")
+               "40ants/cl-flamegraph")
 
-"Made with Lisp" SVG version
-----------------------------
+              ("Soft"
+               ;; "40ants/multitrainer"
+               ;; "40ants/barista"
+               ;; "40ants/resume"
+               ;; "40ants/hacrm"
+               ;; "40ants/progressor"
+               ;; "40ants/python-progressor"
+               ;; "40ants/cl-bitbar"
+               ;; "40ants/coleslaw-cli"
+               ("12forks"
+                :desc "An organization behind <a href=\"https://12forks.com/advisor\">12 Forks</a> site. This is a tool to learn which pulls are waiting for your attention."))
 
-SVG version of the great "Made with Lisp" logo by Manfred Spiller:
+              ;; ("Data Processing"
+              ;;  "40ants/genetic-algorithm"
+              ;;  "40ants/teddy")
 
-.. image:: /img/made-with-lisp.svg
-   :alt: Made with Lisp
-   :target: http://40ants.com/img/made-with-lisp.svg
+              ;; ("Utils"
+              ;;  "40ants/log4cl-extras"
+              ;;  "40ants/gen-deps-system"
+              ;;  "40ants/cl-info"
+              ;;  "40ants/html2text")
 
-It scales nicely and could be used in site's footer. For example, look at our's footer.
+              ;; ("Distribution"
+              ;;  "40ants/base-lisp-image"
+              ;;  "40ants/docker.ubuntu"
+              ;;  "40ants/defmain"
+              ;;  "40ants/homebrew-soft"
+              ;;  "40ants/docker-haproxy"
+              ;;  "40ants/portable-ca-bundle"
+              ;;  "40ants/cl-project-with-docs"
+              ;;  "40ants/command-line-template")
+
+              ;; ("Forks"
+              ;;  "40ants/qlot"
+              ;;  "40ants/cl-nntp"
+              ;;  "40ants/cl-mime"
+              ;;  "40ants/pygments-cl-repl"
+              ;;  "40ants/lack"
+              ;;  "40ants/clack"
+              ;;  "40ants/rove"
+              ;;  "40ants/dissect"
+              ;;  "40ants/post-office"
+              ;;  "40ants/ceramic"
+              ;;  "40ants/mel-base"
+              ;;  "40ants/cl-notebook"
+              ;;  "40ants/weblocks-stores"
+              ;;  "40ants/log4cl"
+              ;;  "40ants/todomvc"
+              ;;  "40ants/sigil"
+              ;;  "40ants/ansible-swapfile"
+              ;;  "40ants/cl-icalendar"
+              ;;  "40ants/cxml")
+
+              ;; ("Experiments"
+              ;;  "40ants/therepl"
+              ;;  "40ants/parenative")
+
+              ;; ("Obsolete"
+              ;;  "40ants/log4cl-json"
+              ;;  "40ants/wheel-builder"
+              ;;  "40ants/update-gh-pages")
+              )))
+
+  (flet ((make-url (project)
+           (destructuring-bind (name &key url &allow-other-keys)
+               (uiop:ensure-list project)
+             (or url
+                 (format nil "https://github.com/~A" name))))
+         (get-name (project)
+           (first (uiop:ensure-list project)))
+         (get-description (project)
+           (destructuring-bind (name &key desc &allow-other-keys)
+               (uiop:ensure-list project)
+             (or desc
+                 (let ((response (github:get (format nil "/repos/~A" name))))
+                   (getf response :|description|))))))
+    (loop for (section . projects) in data
+          do (:h3 section)
+             (:dl :class "projects"
+                  (loop for project in projects
+                        for name = (get-name project)
+                        for url = (make-url project)
+                        for desc = (get-description project)
+                        do (:dt (:a :href url
+                                    name))
+                           (:dd (when desc
+                                  (:raw desc))))))))
+
+(:h2 "Other")
+
+(:h3 "\"Made with Lisp\" SVG version of the Logo")
+
+(:p "SVG version of the great \"Made with Lisp\" logo by Manfred Spiller:")
+
+(:a :href "http://40ants.com/img/made-with-lisp.svg"
+    (:img :src "/img/made-with-lisp.svg"
+          :alt "Made with Lisp logo"))
+
+(:p "It scales nicely and could be used in site's footer. For example, look at our's footer.")
