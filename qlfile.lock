@@ -5,8 +5,12 @@
 ("ultralisp" .
  (:class qlot/source/dist:source-dist
   :initargs (:distribution "http://dist.ultralisp.org" :%version :latest)
-  :version "20210118130500"))
+  :version "20210121190000"))
 ("coleslaw" .
  (:class qlot/source/github:source-github
   :initargs (:repos "coleslaw-org/coleslaw" :ref nil :branch nil :tag nil)
   :version "github-022f080bc180242eac0f7e6fbd613bf9"))
+("mgl-pax" .
+ (:class qlot/source/github:source-github
+  :initargs (:repos "svetlyak40wt/mgl-pax" :ref nil :branch "patches" :tag nil)
+  :version "github-a55a41567a254f4d20e6d6b9c11a8d69"))
