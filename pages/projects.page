@@ -156,6 +156,10 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                    (getf response :|description|))
                  ;; No description
                  ""))))))
+    (when (or (not (boundp github::*token*))
+              (null github::*token*))
+      (setf github::*token*
+            (uiop:getenv "GITHUB_TOKEN")))
     (loop for (section . projects) in data
           do (:h3 section)
              (:dl :class "projects"
