@@ -33,19 +33,15 @@ jobs:
         run: qlot install
       - name: Build new version of the site
         run: qlot exec .qlot/bin/coleslaw generate
-      - name: Install gh-pages
-        run: qlot exec ros install 40ants/gh-pages
-      - name: Deploy site
-        run: |
-          echo ".qlot content:
-          ls .qlot/bin
-          echo ".roswell content:
-          ls /home/runner/.roswell/
-          
-          qlot exec .qlot/bin/gh-pages /tmp/coleslaw/
         env:
           # This token is automaticall added to the secrets
           # by GitHub. Read more here:
           # https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install gh-pages
+        run: qlot exec ros install 40ants/gh-pages
+      - name: Deploy site
+        run: qlot exec .qlot/bin/gh-pages /tmp/coleslaw/
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
