@@ -13,24 +13,35 @@ format: spinneret
 
 (let ((data '(
               ("Web"
-               "40ants/weblocks"
-               "40ants/weblocks-ui"
-               "40ants/weblocks-parenscript"
-               "40ants/weblocks-file-server"
-               "40ants/weblocks-navigation-widget"
-               "40ants/weblocks-websocket"
-               "40ants/weblocks-auth"
-               "40ants/weblocks-skeleton"
-               "40ants/mito-email-auth"
-               "40ants/cl-link-header"
-               "40ants/cl-yandex-metrika"
-               "40ants/weblocks-lass")
+               ;;  :docs nil :tests nil :ci nil
+               ("40ants/weblocks" :docs t :tests t :ci :travis)
+               ("40ants/weblocks-ui" :docs nil :tests nil :ci nil)
+               ("40ants/weblocks-parenscript" :docs nil :tests nil :ci nil)
+               ("40ants/weblocks-lass" :docs nil :tests nil :ci nil)
+               ("40ants/weblocks-file-server" :docs nil :tests nil :ci nil)
+               ("40ants/weblocks-navigation-widget" :docs nil :tests nil :ci nil)
+               ("40ants/weblocks-websocket"
+                ;; thereis one example in the readme only
+                :docs nil :tests nil :ci nil)
+               ("40ants/weblocks-auth" :docs nil :tests nil :ci nil)
+               ("40ants/weblocks-skeleton" :docs nil :tests nil :ci nil)
+               ("40ants/mito-email-auth" :docs nil :tests nil :ci nil)
+               ("40ants/cl-link-header"
+                ;; There is an example in the readme
+                :docs nil :tests nil :ci nil)
+               ("40ants/cl-yandex-metrika" :docs nil :tests nil :ci nil))
 
               ("Networking"
-               "40ants/cl-telegram-bot"
-               "40ants/trivial-imap"
-               "40ants/mailgun"
-               "40ants/cl-github")
+               ("40ants/cl-telegram-bot"
+                ;; Tutorial in the README
+                :docs t :tests nil :ci nil)
+               ("40ants/trivial-imap"
+                ;; Examples in the readme
+                :docs t :tests nil :ci nil)
+               ("40ants/mailgun"
+                ;; Example in the readme
+                :docs t :tests nil :ci nil)
+               ("40ants/cl-github" :docs nil :tests nil :ci nil))
 
               ("Database"
                "40ants/cl-prevalence"
@@ -127,10 +138,12 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
 
               ("Obsolete"
                ("40ants/log4cl-json"
-                :desc "Use [log4cl-extras](https://github.com/40ants/log4cl-extras) instead.")
+                :desc "Use [log4cl-extras](https://github.com/40ants/log4cl-extras) instead."
+                :hide-status t)
                "40ants/wheel-builder"
                ("40ants/update-gh-pages"
-                :desc "Use [gh-pages](https://github.com/40ants/gh-pages) instead.")))))
+                :desc "Use [gh-pages](https://github.com/40ants/gh-pages) instead."
+                :hide-status t)))))
 
   (labels
       ((markdown (text)
@@ -155,23 +168,69 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                  (let ((response (github:get (format nil "/repos/~A" name))))
                    (getf response :|description|))
                  ;; No description
-                 ""))))))
+                 "")))))
+       (get-status-line (project)
+         (destructuring-bind (name &key docs tests ci hide-status &allow-other-keys)
+             (uiop:ensure-list project)
+           (declare (ignore name))
+           (unless hide-status
+             (flet ((good (text)
+                      (format nil "<span class=\"good\">~A</span>"
+                              text))
+                    (bad (text)
+                      (format nil "<span class=\"bad\">~A</span>"
+                              text)))
+               (format nil "~A ~A ~A"
+                       (if docs
+                           (good "Has docs.")
+                           (bad "No docs!"))
+                       (if tests
+                           (good "Has tests.")
+                           (bad "No tests!"))
+                       (if ci
+                           (good "Has CI.")
+                           (bad "No CI!"))))))))
     (unless github::*token*
       (setf github::*token*
             (uiop:getenv "GITHUB_TOKEN")))
-    (loop for (section . projects) in data
+
+    (:style "
+.status {
+    margin-left: 0.5em;
+    font-weight: normal;
+}
+.status .good {
+    color: green;
+}
+.status .bad {
+    color: red;
+}
+")
+    
+    (loop with need-to-tag = 0
+          for (section . projects) in data
           do (:h3 section)
              (:dl :class "projects"
                   (loop for project in projects
                         for name = (get-name project)
                         for url = (make-url project)
+                        for status = (get-status-line project)
                         for (desc &key raw) = (get-description project)
                         do (:dt (:a :href url
-                                    name))
+                                    name)
+                                (when (and (consp project)
+                                           status)
+                                  (:span :class "status"
+                                         (:raw status))))
                            (:dd (when desc
                                   (if raw
                                       (:raw desc)
-                                      desc))))))))
+                                      desc)))
+                           (unless (consp project)
+                             (incf need-to-tag))))
+          finally (when (> need-to-tag 0)
+                    (:p ("Need to tag ~A projects"
+                         need-to-tag))))))
 
 (:h2 "Other")
 
@@ -179,8 +238,8 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
 
 (:p "SVG version of the great \"Made with Lisp\" logo by Manfred Spiller:")
 
-(:a :href "http://40ants.com/img/made-with-lisp.svg"
-    (:img :src "/img/made-with-lisp.svg"
-          :alt "Made with Lisp logo"))
+(:p (:a :href "http://40ants.com/img/made-with-lisp.svg"
+        (:img :src "/img/made-with-lisp.svg"
+              :alt "Made with Lisp logo")))
 
 (:p "It scales nicely and could be used in site's footer. For example, look at our's footer.")

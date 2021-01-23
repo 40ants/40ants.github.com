@@ -7,18 +7,24 @@ format: mgl-pax
 
 (mgl-pax:defsection post (:title "")
   "
-This is an experimental page. Here I'm embedding [MGL-PAX](http://melisgl.github.io/mgl-pax/) documentation builder
-into a [Coleslaw](https://github.com/coleslaw-org/coleslaw) static blog generator.
+This is an experimental page. Here I'm embedding
+[MGL-PAX](http://melisgl.github.io/mgl-pax/) documentation builder
+into a [Coleslaw](https://github.com/coleslaw-org/coleslaw)
+static blog generator.
 
-This is accomplished by adding a Coleslaw extension which defines this method to render pages of \"mgl-pax\" type:
+This is accomplished by adding a Coleslaw extension which defines
+this method to render pages of \"mgl-pax\" type:
 "
 
   (coleslaw::render-text (method nil (t (eql :mgl-pax))))
 
-  "By the way, the method documentation above was created using MGL-PAX's *locative* inserted into this blog post's body:
+  "
+By the way, the method documentation above was created using
+MGL-PAX's *locative* inserted into this blog post's body:
 
 ```lisp
 (coleslaw::render-text (method nil (t (eql :mgl-pax))))
 ```
 "
   )
+
