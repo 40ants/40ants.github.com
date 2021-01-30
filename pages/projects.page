@@ -243,3 +243,5 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
               :alt "Made with Lisp logo")))
 
 (:p "It scales nicely and could be used in site's footer. For example, look at our's footer.")
+
+(:p ("There is also [other SVG version](https://github.com/azzamsa/lisp-logo) of this logo by Azzam S.A"))
