@@ -14,17 +14,17 @@ format: spinneret
 (let ((data '(
               ("Web"
                ;;  :docs nil :tests nil :ci nil
-               ("40ants/weblocks" :docs t :tests t :ci :travis)
-               ("40ants/weblocks-ui" :docs nil :tests nil :ci nil)
-               ("40ants/weblocks-parenscript" :docs nil :tests nil :ci nil)
-               ("40ants/weblocks-lass" :docs nil :tests nil :ci nil)
-               ("40ants/weblocks-file-server" :docs nil :tests nil :ci nil)
-               ("40ants/weblocks-navigation-widget" :docs nil :tests nil :ci nil)
-               ("40ants/weblocks-websocket"
+               ("40ants/reblocks" :docs t :tests t :ci :github)
+               ("40ants/reblocks-ui" :docs nil :tests nil :ci nil)
+               ("40ants/reblocks-parenscript" :docs nil :tests nil :ci nil)
+               ("40ants/reblocks-lass" :docs nil :tests nil :ci nil)
+               ("40ants/reblocks-file-server" :docs nil :tests nil :ci nil)
+               ("40ants/reblocks-navigation-widget" :docs nil :tests nil :ci nil)
+               ("40ants/reblocks-websocket"
                 ;; thereis one example in the readme only
                 :docs nil :tests nil :ci nil)
-               ("40ants/weblocks-auth" :docs nil :tests nil :ci nil)
-               ("40ants/weblocks-skeleton" :docs nil :tests nil :ci nil)
+               ("40ants/reblocks-auth" :docs nil :tests nil :ci nil)
+               ("40ants/reblocks-skeleton" :docs nil :tests nil :ci nil)
                ("40ants/mito-email-auth" :docs nil :tests nil :ci nil)
                ("40ants/cl-link-header"
                 ;; There is an example in the readme
@@ -57,16 +57,17 @@ format: spinneret
                "40ants/recompile")
 
               ("Documentation"
-               "40ants/sphinxcontrib-cldomain"
-               "40ants/cldomain"
-               "40ants/gh-pages"
+               ("40ants/doc" :docs t :tests t :ci t)
                "40ants/lisp-project-of-the-day"
                ("cl-doc-systems"
                 :desc "Collection of a dozen examples of different CL documentation systems.
 
 All examples have a similar structure and use GitHub Actions to update GitHub pages.
 
-You will find a short summary on each documentation builder on the [main project's site](https://cl-doc-systems.github.io/)."))
+You will find a short summary on each documentation builder on the [main project's site](https://cl-doc-systems.github.io/).")
+               "40ants/sphinxcontrib-cldomain"
+               "40ants/cldomain"
+               "40ants/gh-pages")
 
               ("Testing"
                ("40ants/cl-hamcrest"
@@ -96,6 +97,7 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                "40ants/teddy")
 
               ("Utils"
+               ("40ants/commondoc-markdown" :docs t)
                "40ants/log4cl-extras"
                "40ants/gen-deps-system"
                "40ants/cl-info"
