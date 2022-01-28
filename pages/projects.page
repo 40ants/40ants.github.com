@@ -97,7 +97,7 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                "40ants/teddy")
 
               ("Utils"
-               ("40ants/commondoc-markdown" :docs t)
+               ("40ants/commondoc-markdown" :docs t :ci github)
                "40ants/log4cl-extras"
                "40ants/gen-deps-system"
                "40ants/cl-info"
