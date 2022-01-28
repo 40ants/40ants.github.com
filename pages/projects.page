@@ -60,6 +60,7 @@ format: spinneret
                ("40ants/doc" :docs t :tests t :ci t)
                "40ants/lisp-project-of-the-day"
                ("cl-doc-systems"
+                :hide-status t
                 :desc "Collection of a dozen examples of different CL documentation systems.
 
 All examples have a similar structure and use GitHub Actions to update GitHub pages.
@@ -67,7 +68,9 @@ All examples have a similar structure and use GitHub Actions to update GitHub pa
 You will find a short summary on each documentation builder on the [main project's site](https://cl-doc-systems.github.io/).")
                "40ants/sphinxcontrib-cldomain"
                "40ants/cldomain"
-               "40ants/gh-pages")
+               ("40ants/gh-pages" :docs t
+                                  :tests nil
+                                  :ci :github))
 
               ("Testing"
                ("40ants/cl-hamcrest"
@@ -77,8 +80,13 @@ It is implementation of [Hamcrest](http://hamcrest.org) idea in Common Lisp.
 It simplifes unittests and make them more readable. Hamcrest uses idea of pattern-matching, to construct matchers from different pieces and to apply them to the data.
 
 Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [Rove](https://github.com/fukamachi/rove) unittesting frameworks, but could be extended to support other frameworks.
-")
-               "40ants/cl-flamegraph")
+"
+                :docs :sphinx
+                :tests t
+                :ci :circleci)
+               ("40ants/cl-flamegraph" :docs :readme
+                                       :tests nil
+                                       :ci nil))
 
               ("Soft"
                "40ants/multitrainer"
@@ -93,15 +101,20 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                 :desc "An organization behind <a href=\"https://12forks.com/advisor\">12 Forks</a> site. This is a tool to learn which pulls are waiting for your attention."))
 
               ("Data Processing"
-               "40ants/genetic-algorithm"
-               "40ants/teddy")
+               ("40ants/genetic-algorithm" :docs :literate
+                                           :tests nil
+                                           :ci nil)
+               ("40ants/teddy" :docs :litterae
+                               :tests nil
+                               :ci nil))
 
               ("Utils"
-               ("40ants/commondoc-markdown" :docs t :ci github)
-               "40ants/log4cl-extras"
-               "40ants/gen-deps-system"
-               "40ants/cl-info"
-               "40ants/html2text")
+               ("40ants/commondoc-markdown" :docs t :ci :github)
+               ("40ants/log4cl-extras" :docs t :tests t :ci :github)
+               ("40ants/gen-deps-system" :docs nil :tests nil :ci nil)
+               ("40ants/cl-info" :docs t :tests t :ci :github)
+               ;; No docs on link-revealer
+               ("40ants/html2text" :docs :old :tests t :ci :travis))
 
               ("Distribution"
                "40ants/base-lisp-image"
