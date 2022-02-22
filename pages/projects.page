@@ -72,7 +72,15 @@ You will find a short summary on each documentation builder on the [main project
                                   :tests nil
                                   :ci :github))
 
-              ("Testing"
+              ("Tests and CI"
+               ("40ants/ci"
+                :docs t
+                :tests nil
+                :ci :github)
+               ("40ants/40ants-critic"
+                :docs t
+                :tests nil
+                :ci :github)
                ("40ants/cl-hamcrest"
                 :desc "
 It is implementation of [Hamcrest](http://hamcrest.org) idea in Common Lisp.
