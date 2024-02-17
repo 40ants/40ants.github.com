@@ -12,148 +12,148 @@ format: spinneret
 (:h2 "Software")
 
 (let ((data '(
-              ("Web"
-               ;;  :docs nil :tests nil :ci nil
-               ("40ants/reblocks" :docs t :tests t :ci :github)
-               ("40ants/reblocks-ui" :docs nil :tests nil :ci nil)
-               ("40ants/reblocks-parenscript" :docs nil :tests nil :ci nil)
-               ("40ants/reblocks-lass" :docs nil :tests nil :ci nil)
-               ("40ants/reblocks-file-server" :docs nil :tests nil :ci nil)
-               ("40ants/reblocks-navigation-widget" :docs nil :tests nil :ci nil)
-               ("40ants/reblocks-websocket"
-                ;; thereis one example in the readme only
-                :docs nil :tests nil :ci nil)
-               ("40ants/reblocks-auth" :docs nil :tests nil :ci nil)
-               ("40ants/reblocks-skeleton" :docs nil :tests nil :ci nil)
-               ("40ants/mito-email-auth" :docs nil :tests nil :ci nil)
-               ("40ants/cl-link-header"
-                ;; There is an example in the readme
-                :docs nil :tests nil :ci nil)
-               ("40ants/cl-yandex-metrika" :docs nil :tests nil :ci nil))
+;;               ("Web"
+;;                ;;  :docs nil :tests nil :ci nil
+;;                ("40ants/reblocks" :docs t :tests t :ci :github)
+;;                ("40ants/reblocks-ui" :docs nil :tests nil :ci nil)
+;;                ("40ants/reblocks-parenscript" :docs nil :tests nil :ci nil)
+;;                ("40ants/reblocks-lass" :docs nil :tests nil :ci nil)
+;;                ("40ants/reblocks-file-server" :docs nil :tests nil :ci nil)
+;;                ("40ants/reblocks-navigation-widget" :docs nil :tests nil :ci nil)
+;;                ("40ants/reblocks-websocket"
+;;                 ;; thereis one example in the readme only
+;;                 :docs nil :tests nil :ci nil)
+;;                ("40ants/reblocks-auth" :docs nil :tests nil :ci nil)
+;;                ("40ants/reblocks-skeleton" :docs nil :tests nil :ci nil)
+;;                ("40ants/mito-email-auth" :docs nil :tests nil :ci nil)
+;;                ("40ants/cl-link-header"
+;;                 ;; There is an example in the readme
+;;                 :docs nil :tests nil :ci nil)
+;;                ("40ants/cl-yandex-metrika" :docs nil :tests nil :ci nil))
 
-              ("Networking"
-               ("40ants/cl-telegram-bot"
-                ;; Tutorial in the README
-                :docs t :tests nil :ci nil)
-               ("40ants/trivial-imap"
-                ;; Examples in the readme
-                :docs t :tests nil :ci nil)
-               ("40ants/mailgun"
-                ;; Example in the readme
-                :docs t :tests nil :ci nil)
-               ("40ants/cl-github" :docs nil :tests nil :ci nil))
+;;               ("Networking"
+;;                ("40ants/cl-telegram-bot"
+;;                 ;; Tutorial in the README
+;;                 :docs t :tests nil :ci nil)
+;;                ("40ants/trivial-imap"
+;;                 ;; Examples in the readme
+;;                 :docs t :tests nil :ci nil)
+;;                ("40ants/mailgun"
+;;                 ;; Example in the readme
+;;                 :docs t :tests nil :ci nil)
+;;                ("40ants/cl-github" :docs nil :tests nil :ci nil))
 
-              ("Database"
-               "40ants/cl-prevalence"
-               "40ants/cl-prevalence-multimaster")
+;;               ("Database"
+;;                "40ants/cl-prevalence"
+;;                "40ants/cl-prevalence-multimaster")
 
-              ("IDE"
-               "40ants/lem-solarized"
-               "40ants/lem-theme"
-               "40ants/lem-pareto"
-               "40ants/lem-docker"
-               "40ants/sly-package-inferred"
-               "40ants/log4sly"
-               "40ants/recompile")
+;;               ("IDE"
+;;                "40ants/lem-solarized"
+;;                "40ants/lem-theme"
+;;                "40ants/lem-pareto"
+;;                "40ants/lem-docker"
+;;                "40ants/sly-package-inferred"
+;;                "40ants/log4sly"
+;;                "40ants/recompile")
 
-              ("Documentation"
-               ("40ants/doc" :docs t :tests t :ci t)
-               "40ants/lisp-project-of-the-day"
-               ("cl-doc-systems"
-                :hide-status t
-                :desc "Collection of a dozen examples of different CL documentation systems.
+;;               ("Documentation"
+;;                ("40ants/doc" :docs t :tests t :ci t)
+;;                "40ants/lisp-project-of-the-day"
+;;                ("cl-doc-systems"
+;;                 :hide-status t
+;;                 :desc "Collection of a dozen examples of different CL documentation systems.
 
-All examples have a similar structure and use GitHub Actions to update GitHub pages.
+;; All examples have a similar structure and use GitHub Actions to update GitHub pages.
 
-You will find a short summary on each documentation builder on the [main project's site](https://cl-doc-systems.github.io/).")
-               "40ants/sphinxcontrib-cldomain"
-               "40ants/cldomain"
-               ("40ants/gh-pages" :docs t
-                                  :tests nil
-                                  :ci :github))
+;; You will find a short summary on each documentation builder on the [main project's site](https://cl-doc-systems.github.io/).")
+;;                "40ants/sphinxcontrib-cldomain"
+;;                "40ants/cldomain"
+;;                ("40ants/gh-pages" :docs t
+;;                                   :tests nil
+;;                                   :ci :github))
 
-              ("Tests and CI"
-               ("40ants/ci"
-                :docs t
-                :tests nil
-                :ci :github)
-               ("40ants/40ants-critic"
-                :docs t
-                :tests nil
-                :ci :github)
-               ("40ants/cl-hamcrest"
-                :desc "
-It is implementation of [Hamcrest](http://hamcrest.org) idea in Common Lisp.
+;;               ("Tests and CI"
+;;                ("40ants/ci"
+;;                 :docs t
+;;                 :tests nil
+;;                 :ci :github)
+;;                ("40ants/40ants-critic"
+;;                 :docs t
+;;                 :tests nil
+;;                 :ci :github)
+;;                ("40ants/cl-hamcrest"
+;;                 :desc "
+;; It is implementation of [Hamcrest](http://hamcrest.org) idea in Common Lisp.
 
-It simplifes unittests and make them more readable. Hamcrest uses idea of pattern-matching, to construct matchers from different pieces and to apply them to the data.
+;; It simplifes unittests and make them more readable. Hamcrest uses idea of pattern-matching, to construct matchers from different pieces and to apply them to the data.
 
-Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [Rove](https://github.com/fukamachi/rove) unittesting frameworks, but could be extended to support other frameworks.
-"
-                :docs :sphinx
-                :tests t
-                :ci :circleci)
-               ("40ants/cl-flamegraph" :docs :readme
-                                       :tests nil
-                                       :ci nil))
+;; Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [Rove](https://github.com/fukamachi/rove) unittesting frameworks, but could be extended to support other frameworks.
+;; "
+;;                 :docs :sphinx
+;;                 :tests t
+;;                 :ci :circleci)
+;;                ("40ants/cl-flamegraph" :docs :readme
+;;                                        :tests nil
+;;                                        :ci nil))
 
-              ("Soft"
-               "40ants/multitrainer"
-               "40ants/barista"
-               "40ants/resume"
-               "40ants/hacrm"
-               "40ants/progressor"
-               "40ants/python-progressor"
-               "40ants/cl-bitbar"
-               "40ants/coleslaw-cli"
-               ("12forks"
-                :desc "An organization behind <a href=\"https://12forks.com/advisor\">12 Forks</a> site. This is a tool to learn which pulls are waiting for your attention."))
+;;               ("Soft"
+;;                "40ants/multitrainer"
+;;                "40ants/barista"
+;;                "40ants/resume"
+;;                "40ants/hacrm"
+;;                "40ants/progressor"
+;;                "40ants/python-progressor"
+;;                "40ants/cl-bitbar"
+;;                "40ants/coleslaw-cli"
+;;                ("12forks"
+;;                 :desc "An organization behind <a href=\"https://12forks.com/advisor\">12 Forks</a> site. This is a tool to learn which pulls are waiting for your attention."))
 
-              ("Data Processing"
-               ("40ants/genetic-algorithm" :docs :literate
-                                           :tests nil
-                                           :ci nil)
-               ("40ants/teddy" :docs :litterae
-                               :tests nil
-                               :ci nil))
+;;               ("Data Processing"
+;;                ("40ants/genetic-algorithm" :docs :literate
+;;                                            :tests nil
+;;                                            :ci nil)
+;;                ("40ants/teddy" :docs :litterae
+;;                                :tests nil
+;;                                :ci nil))
 
-              ("Utils"
-               ("40ants/commondoc-markdown" :docs t :ci :github)
-               ("40ants/log4cl-extras" :docs t :tests t :ci :github)
-               ("40ants/gen-deps-system" :docs nil :tests nil :ci nil)
-               ("40ants/cl-info" :docs t :tests t :ci :github)
-               ;; No docs on link-revealer
-               ("40ants/html2text" :docs :old :tests t :ci :travis))
+;;               ("Utils"
+;;                ("40ants/commondoc-markdown" :docs t :ci :github)
+;;                ("40ants/log4cl-extras" :docs t :tests t :ci :github)
+;;                ("40ants/gen-deps-system" :docs nil :tests nil :ci nil)
+;;                ("40ants/cl-info" :docs t :tests t :ci :github)
+;;                ;; No docs on link-revealer
+;;                ("40ants/html2text" :docs :old :tests t :ci :travis))
 
-              ("Distribution"
-               "40ants/base-lisp-image"
-               "40ants/docker.ubuntu"
-               "40ants/defmain"
-               "40ants/homebrew-soft"
-               "40ants/docker-haproxy"
-               "40ants/portable-ca-bundle"
-               "40ants/cl-project-with-docs"
-               "40ants/command-line-template")
+;;               ("Distribution"
+;;                "40ants/base-lisp-image"
+;;                "40ants/docker.ubuntu"
+;;                "40ants/defmain"
+;;                "40ants/homebrew-soft"
+;;                "40ants/docker-haproxy"
+;;                "40ants/portable-ca-bundle"
+;;                "40ants/cl-project-with-docs"
+;;                "40ants/command-line-template")
 
-              ("Forks"
-               "40ants/qlot"
-               "40ants/cl-nntp"
-               "40ants/cl-mime"
-               "40ants/pygments-cl-repl"
-               "40ants/lack"
-               "40ants/clack"
-               "40ants/rove"
-               "40ants/dissect"
-               "40ants/post-office"
-               "40ants/ceramic"
-               "40ants/mel-base"
-               "40ants/cl-notebook"
-               "40ants/weblocks-stores"
-               "40ants/log4cl"
-               "40ants/todomvc"
-               "40ants/sigil"
-               "40ants/ansible-swapfile"
-               "40ants/cl-icalendar"
-               "40ants/cxml")
+;;               ("Forks"
+;;                "40ants/qlot"
+;;                "40ants/cl-nntp"
+;;                "40ants/cl-mime"
+;;                "40ants/pygments-cl-repl"
+;;                "40ants/lack"
+;;                "40ants/clack"
+;;                "40ants/rove"
+;;                "40ants/dissect"
+;;                "40ants/post-office"
+;;                "40ants/ceramic"
+;;                "40ants/mel-base"
+;;                "40ants/cl-notebook"
+;;                "40ants/weblocks-stores"
+;;                "40ants/log4cl"
+;;                "40ants/todomvc"
+;;                "40ants/sigil"
+;;                "40ants/ansible-swapfile"
+;;                "40ants/cl-icalendar"
+;;                "40ants/cxml")
 
               ("Experiments"
                "40ants/therepl"

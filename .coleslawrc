@@ -8,13 +8,15 @@
            (rst)
            (mgl-pax)
            (spinneret)
+           (extended-post)
            ;; (gh-pages
            ;;  ;; :index-page "about.html"
            ;;  :force t
            ;;  :branch "master"
            ;;  :push-from-branch "develop")
-            )
+           )
  :routing ((:post           "posts/~a")
+           (:xpost          "posts/~a")
            (:tag-index      "tag/~a")
            (:month-index    "date/~a")
            (:numeric-index  "~d")
