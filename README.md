@@ -10,6 +10,9 @@ How to build a site:
 ```common-lisp
 (ql:quickload :cl-plus-ssl-osx-fix)
 (ql:quickload :coleslaw-cli)
+;; To make high a limit on API calls
+(setf github:*token*
+      "ghp_*******")
 (coleslaw-cli:generate)
 ```
 
