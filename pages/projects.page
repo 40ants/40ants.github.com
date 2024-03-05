@@ -4,7 +4,7 @@ title: Our projects
 format: spinneret
 ;;;;;
 
-(ql:quickload '(dexador)
+(ql:quickload '(dexador str github)
               :silent t)
 
 (:p "Here are some projects we are making or helping to develop.")
@@ -172,10 +172,21 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
       ((markdown (text)
          (with-output-to-string (s)
            (3bmd:parse-string-and-print-to-stream text s)))
+       (guess-project-url (project-name)
+         (when (str:starts-with-p "40ants/" project-name)
+           (let ((possible-url (format nil "https://40ants.com/~A/"
+                                       (second (str:split "/" project-name)))))
+             (multiple-value-bind (result status-code)
+                 (handler-bind ((dexador:http-request-failed #'continue))
+                   (dex:get possible-url :connect-timeout 1 :read-timeout 1))
+               (when (= status-code 200)
+                 possible-url)))))
+       
        (make-url (project)
          (destructuring-bind (name &key url &allow-other-keys)
              (uiop:ensure-list project)
            (or url
+               (guess-project-url name)
                (format nil "https://github.com/~A" name))))
        (get-name (project)
          (first (uiop:ensure-list project)))
