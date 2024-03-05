@@ -4,9 +4,6 @@ title: Our projects
 format: spinneret
 ;;;;;
 
-(ql:quickload '(dexador str github)
-              :silent t)
-
 (:p "Here are some projects we are making or helping to develop.")
 
 (:h2 "Software")

@@ -1,6 +1,8 @@
 (eval-when (:compile-toplevel :load-toplevel)
   (ql:quickload '(spinneret
-                  ;; We need this lib on the pages
+                  ;; We need these libs on the pages
+                  dexador
+                  str
                   github)
                 :silent t))
 
