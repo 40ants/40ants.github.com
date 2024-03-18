@@ -178,6 +178,16 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                    (dex:get possible-url :connect-timeout 1 :read-timeout 1))
                (when (= status-code 200)
                  possible-url)))))
+
+       (get-github-projects ()
+         (sort (mapcar (lambda (project)
+                         (list (getf project :|full_name|)
+                               :desc (or (getf project :|description|)
+                                         "")
+                               :hide-status t))
+                       (github:get "/orgs/40ants/repos"))
+               #'string<
+               :key #'car))
        
        (make-url (project)
          (destructuring-bind (name &key url &allow-other-keys)
@@ -187,7 +197,7 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                (format nil "https://github.com/~A" name))))
        (get-name (project)
          (first (uiop:ensure-list project)))
-       (get-description (project)
+       (get-description (project all-github-projects)
          (destructuring-bind (name &key desc &allow-other-keys)
              (uiop:ensure-list project)
            (if desc
@@ -196,8 +206,13 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                ;; because it is fetched from untrusted source:
                (list
                 (or
-                 (let ((response (github:get (format nil "/repos/~A" name))))
-                   (getf response :|description|))
+                 (let ((response (find name all-github-projects :key #'car)
+                                 ;; (github:get (format nil "/repos/~A" name))
+                                 ))
+                   (getf (cdr response)
+                         :desc)
+                   ;; (getf response :|description|)
+                   )
                  ;; No description
                  "")))))
        (get-status-line (project)
@@ -239,14 +254,31 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
 ")
     
     (loop with need-to-tag = 0
-          for (section . projects) in data
+          with all-github-projects = (get-github-projects)
+          with manually-listed = (loop with result = (make-hash-table :test 'equal)
+                                       for (section . projects) in data
+                                       do (loop for project in projects
+                                                for name = (first (uiop:ensure-list project))
+                                                do (setf (gethash name result) t))
+                                       finally (return result))
+          ;; Projects which are not listed in the code manually
+          with other-projects = (remove-if (lambda (project)
+                                             (gethash (car project)
+                                                      manually-listed))
+                                           all-github-projects)
+          with full-data = (append data
+                                   (when other-projects
+                                     (list
+                                      (list* "Other"
+                                             other-projects))))
+          for (section . projects) in full-data
           do (:h3 section)
              (:dl :class "projects"
                   (loop for project in projects
                         for name = (get-name project)
                         for url = (make-url project)
                         for status = (get-status-line project)
-                        for (desc &key raw) = (get-description project)
+                        for (desc &key raw) = (get-description project all-github-projects)
                         do (:dt (:a :href url
                                     name)
                                 (when (and (consp project)
