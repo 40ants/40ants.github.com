@@ -295,7 +295,7 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                     (:p ("Need to tag ~A projects"
                          need-to-tag))))))
 
-(:h2 "Other")
+(:h2 "And Some Art")
 
 (:h3 "\"Made with Lisp\" SVG version of the Logo")
 
