@@ -206,7 +206,8 @@ Works nicely with Fukamachi's [Prove](https://github.com/fukamachi/prove) and [R
                ;; because it is fetched from untrusted source:
                (list
                 (or
-                 (let ((response (find name all-github-projects :key #'car)
+                 (let ((response (find name all-github-projects
+                                       :key #'car :test #'string-equal)
                                  ;; (github:get (format nil "/repos/~A" name))
                                  ))
                    (getf (cdr response)
