@@ -3,7 +3,7 @@ name: 'Build Site'
 on:
   push:
     branches:
-      - 'develop'
+      - 'move-to-staticl'
   schedule:
     # rebuild docs at 10 AM every Monday
     - cron:  '0 10 * * 1'
@@ -19,7 +19,7 @@ jobs:
       - name: Install Dependencies
         run: qlot install
       - name: Build new version of the site
-        run: qlot exec .qlot/bin/coleslaw generate
+        run: qlot exec .qlot/bin/staticl generate
         env:
           # This token is automaticall added to the secrets
           # by GitHub. Read more here:
@@ -28,7 +28,7 @@ jobs:
       - name: Install gh-pages
         run: qlot exec ros install 40ants/gh-pages
       - name: Deploy site
-        run: qlot exec .qlot/bin/gh-pages /tmp/coleslaw/
+        run: qlot exec .qlot/bin/gh-pages stage/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
