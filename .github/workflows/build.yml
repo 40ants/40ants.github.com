@@ -3,7 +3,7 @@ name: 'Build Site'
 on:
   push:
     branches:
-      - 'move-to-staticl'
+      - 'develop'
   schedule:
     # rebuild docs at 10 AM every Monday
     - cron:  '0 10 * * 1'
