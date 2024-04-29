@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><feed xlmns="http://www.w3.org/2005/Atom"><title type="text">40Ants</title><id>https://40ants.com/</id><updated>2024-04-29T17:21:52.968635Z</updated><link>https://40ants.com/</link><subtitle type="text">40Ants</subtitle><entry><title type="text">Pushing your pulls faster!</title><id>https://40ants.com/posts/push-your-pulls/</id><updated>2024-04-29T17:21:52.952486Z</updated><link>https://40ants.com/posts/push-your-pulls/</link><summary type="text">&lt;p&gt;Today I’m going to share an idea I’ve been nurturing for a long time, my friends. It came into my mind many years ago. It’s core message has to do with development of a service, which would aggregate and conveniently display all communications related to your favorite GitHub projects. This service will be very helpful for users having many own GitHub projects. It’ll also help GitHub users with numerous pulls and tickets for third party projects.&lt;/p&gt;
+
+&lt;p&gt;I believe that tickets and pulls creators create them to improve their open source projects of interest. In order to do that, tickets must become pulls. The pulls in turn should merge in a timely manner. The faster this process will be, the quicker open source projects will be developed.&lt;/p&gt;
+</summary><content type="text">&lt;p&gt;Today I’m going to share an idea I’ve been nurturing for a long time, my friends. It came into my mind many years ago. It’s core message has to do with development of a service, which would aggregate and conveniently display all communications related to your favorite GitHub projects. This service will be very helpful for users having many own GitHub projects. It’ll also help GitHub users with numerous pulls and tickets for third party projects.&lt;/p&gt;
+
+&lt;p&gt;I believe that tickets and pulls creators create them to improve their open source projects of interest. In order to do that, tickets must become pulls. The pulls in turn should merge in a timely manner. The faster this process will be, the quicker open source projects will be developed.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;Yet, communication around a ticket or a pull often gets less intense and can be lost on GitHub. This situation can arise for a number of reasons. As a rule, some participant misses a GitHub email notification about a comment, and the issue emerges. The end result stays the same despite various reasons — a ticket is lost. At times, it may take years for the ticket to be discovered.&lt;/p&gt;
+
+&lt;p&gt;For that matter, there are special pages on GitHub, of course. E. g. see web pages with pull lists on https://github.com/pulls and web pages with ticket lists on https://github.com/issues. Yet, these lists are not user-friendly, as they don’t give you a slightest idea about which ticket requires your reaction and which does not. That’s what I’m going to fix.&lt;/p&gt;
+
+&lt;p&gt;My project is called &lt;a href=&quot;http://12forks.com&quot; &gt;12Forks&lt;/a&gt;. It will provide an experimental interface for ticket and pull processing. All the tickets to be responded to, pulls that require merge conflict fix, and situations calling for a maintainer who is unwilling to react promptly for some reason will be summarized on a single page. Future integration with a variety of messengers (e. g. Slack or Telegram) is also considered. The point is to boost communication and task completion with
+open source projects.&lt;/p&gt;
+
+&lt;p&gt;I already use MVP (minimal viable product) of this tool, which operates in console mode for the time being.
+It helped to halve overflow consisting of 103 pulls and tickets. I closed some of them because of their age. In other cases, a library maintainer has responded to feedback and merged pulls:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.ibb.co/2P9sYng/12forks-illustration.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m sure that such tool will quicken change acceptance process. Any open source projects participant is likely to find it helpful.&lt;/p&gt;
+
+&lt;p&gt;My estimates show that about 3% of all GitHub users actively work with tickets and pulls. But you know what? 3% of 48,000,000 users (the figure was taken from my research) totals to ~1,500,000 users. So, this large community may benefit from my solution.&lt;/p&gt;
+
+&lt;p&gt;Ready publicly available MVP is planned for June.
+If you want to be one of its early adopters, please, provide your email address. To do this, fill in a form on http://12forks.com site.&lt;/p&gt;
+
+&lt;p&gt;Any concepts to be realized in this product? Speak up. You're more than welcome. Put them down in your comments to the post. Or send them to ideas@12forks.com.&lt;/p&gt;
+</content></entry><entry><title type="text">Second version of Ultralisp.org is available now!</title><id>https://40ants.com/posts/ultralisp/</id><updated>2024-04-29T17:21:52.966345Z</updated><link>https://40ants.com/posts/ultralisp/</link><summary type="text">&lt;p&gt;I believe, that software should evolve and evolve quickly.
+One of the reasons why Common Lisp seems strange to newcomers is its
+ecosystem. It takes a long time to add a new library and make it useful
+to other common lispers.&lt;/p&gt;
+
+&lt;p&gt;Just pretend that you've made a brand new library and want to show it to
+the world. Now you have two options.&lt;/p&gt;
+</summary><content type="text">&lt;p&gt;I believe, that software should evolve and evolve quickly.
+One of the reasons why Common Lisp seems strange to newcomers is its
+ecosystem. It takes a long time to add a new library and make it useful
+to other common lispers.&lt;/p&gt;
+
+&lt;p&gt;Just pretend that you've made a brand new library and want to show it to
+the world. Now you have two options.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Include it into the Quicklisp and probably wait for 1 month before
+   announcing the library on the Reddit or StackOverflow.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Put the library on the Github and ask everybody to download it and
+   put somewhere where ASDF will be able to find it. Not very
+   user-friendly, especially if your library has dependencies which
+   aren't on the Quicklisp yet.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now ask yourself a question, what if you've chosen the first option, and
+some user found a critical bug in your library?&lt;/p&gt;
+
+&lt;p&gt;The answer is: &amp;quot;Your users will have to wait another month until the next release of the Quicklisp.&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;Quicklisp is a perfect distribution for very stable software, but if we want
+our ecosystem to grow, we need something that can move faster. That is
+why I decided to spend all my free time working on the https://ultralisp.org.&lt;/p&gt;
+
+&lt;p&gt;Ultralisp is a Quicklisp compatible distribution, but it has two core features:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;It let you (and anybody else) to add their libraries from the GitHub in few clicks.&lt;/li&gt;
+&lt;li&gt;It builds the next version within 5 minutes after a library was added or updated.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are other features as well. Some of them are already implemented,
+others only planned and exist as the [GitHub issues](https://github.com/ultralisp/ultralisp/issues&amp;gt;).
+You can help this project by using it, complaining about it and developing it.&lt;/p&gt;
+
+&lt;p&gt;Ultralisp was made not only to be used as a yet another quicklisp
+distribution. You can run your own instance of the Ultralisp. It is as
+easy as doing &lt;code&gt;docker-compose run app&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you are a company who uses Common Lisp, then you can set up a
+private Ultralisp server inside your infrastructure. However, don't forget to
+become a sponsor of the project ;-)&lt;/p&gt;
+
+&lt;h1&gt;How to use Ultralisp.org&lt;/h1&gt;
+
+&lt;p&gt;Using libraries from Ultralisp is as easy as adding it to the list of
+quicklisp distributions. You can do it in the REPL with this command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(ql-dist:install-dist &quot;http://dist.ultralisp.org/&quot;
+                      :prompt nil)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, I recommend you to pin distribution or libraries versions in
+every project. The easiest way to do this is to use Qlot. With Qlot
+you'll be able to pin version numbers and commit a config into the
+repository. This will give you stable builds which don't depend on
+future releases of Quicklisp or Ultralisp.&lt;/p&gt;
+
+&lt;p&gt;Here is the simplest config for the &lt;a href=&quot;https://github.com/fukamachi/qlot&quot; &gt;Qlot&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dist ultralisp http://dist.ultralisp.org/
+ql :all :latest
+ultralisp :all :latest&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It says, that if some system is present in the Ultralisp, it will will
+have priority over the same system from the Quicklisp.&lt;/p&gt;
+
+&lt;p&gt;After running &lt;code&gt;qlot install&lt;/code&gt; or &lt;code&gt;qlot update&lt;/code&gt;, Qlot will create a
+&lt;code&gt;qlfile.lock&lt;/code&gt; file with pinned versions of the Quicklisp and
+Ultralisp. It will look like that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(&quot;quicklisp&quot; .
+ (:class qlot.source.ql:source-ql-all
+  :initargs (:distribution &quot;http://beta.quicklisp.org/dist/quicklisp.txt&quot; :%version :latest)
+  :version &quot;2019-02-02&quot;))
+(&quot;ultralisp&quot; .
+ (:class qlot.source.ql:source-ql-all
+  :initargs (:distribution &quot;http://dist.ultralisp.org/&quot; :%version :latest)
+  :version &quot;20190202213040&quot;))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Commit both &lt;code&gt;qlfile&lt;/code&gt; and &lt;code&gt;qlfile.lock&lt;/code&gt; into you source control
+system.&lt;/p&gt;
+
+&lt;p&gt;From time to time you'll need to run &lt;code&gt;qlot update&lt;/code&gt; to update versions
+in the &lt;code&gt;qlfile.lock&lt;/code&gt;, and run all your project's tests to ensure that
+it still works with newer distributions. If you discover that something
+went wrong, you can pin an older version of Ultralisp in the
+&lt;code&gt;qlfile&lt;/code&gt;, just replace the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ultralisp :all :latest&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ultralisp :all 20190130205039&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or you can pin a single library by adding a line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ultralisp cl-pgpass 20190202203038&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;if it stopped to work for you after some changes in recent versions.&lt;/p&gt;
+
+&lt;h1&gt;Final words&lt;/h1&gt;
+
+&lt;p&gt;We are all responsible for improving tooling around Common Lisp. If
+you feel that something can be made better, just do it. I hope
+that together we will make Common Lisp more convenient and attractive
+for the newcomers.&lt;/p&gt;
+</content></entry></feed>

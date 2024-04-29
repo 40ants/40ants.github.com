@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang=""> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>40Ants - Our projects</title>  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen"> <link href="/css/custom.css" rel="stylesheet" media="screen"> <link rel="alternate" href="/rss.xml" type="application/rss+xml" /> 
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(42462884, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/42462884" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL71WXK73K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FL71WXK73K');
+    </script>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <div class="row-fluid">
+<h1 class="page-header">Our projects</h1>
+  <p class="date-posted"> Written on 2021-01-21 </p> <p>Here are some projects we are making or helping to develop.
+<h2>Software</h2>
+<style>
+.status {
+    margin-left: 0.5em;
+    font-weight: normal;
+}
+.status .good {
+    color: green;
+}
+.status .bad {
+    color: red;
+}
+</style>
+<h3>Web</h3>
+<dl class=projects>
+ <dt><a href="https://40ants.com/reblocks/">40ants/reblocks</a><span class=status><span class="good">Has docs.</span> <span class="good">Has tests.</span> <span class="good">Has CI.</span></span>
+ <dd>A fork of Weblocks Common Lisp web framework
+ <dt><a href="https://40ants.com/reblocks-ui/">40ants/reblocks-ui</a><span
+  class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A set of widget for Reblocks framework, to simplify UI elements creation. 
+  Based on Zurb&#39;s Foundation and jQuery.
+ <dt><a href="https://40ants.com/reblocks-parenscript/">40ants/reblocks-parenscript</a>
+  <span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>An utility to define JavaScript dependencies for Reblocks widgets using 
+  Parenscript.
+ <dt><a href="https://40ants.com/reblocks-lass/">40ants/reblocks-lass</a><span
+  class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A helper for Reblocks framework to define CSS dependencies in LASS syntax.
+ <dt><a href="https://40ants.com/reblocks-file-server/">40ants/reblocks-file-server</a>
+  <span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A file browser for Reblocks Common Lisp web framework.
+ <dt><a href="https://40ants.com/reblocks-navigation-widget/">
+   40ants/reblocks-navigation-widget</a><span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A widget which changes it&#39;s children when user goes to another URL
+ <dt><a href="https://40ants.com/reblocks-websocket/">40ants/reblocks-websocket</a>
+  <span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>Websocket support for Reblocks framework
+ <dt><a href="https://40ants.com/reblocks-auth/">40ants/reblocks-auth</a><span
+  class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A system to add authentication to the Reblocks based site.
+ <dt><a href=https://github.com/40ants/reblocks-skeleton>40ants/reblocks-skeleton</a>
+  <span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>
+ <dt><a href=https://github.com/40ants/mito-email-auth>40ants/mito-email-auth</a>
+  <span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>Helper to authenticate website&#39;s users by sending them unique code by 
+  email.
+ <dt><a href=https://github.com/40ants/cl-link-header>40ants/cl-link-header</a>
+  <span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A library to parse content of the Link header
+ <dt><a href=https://github.com/40ants/cl-yandex-metrika>40ants/cl-yandex-metrika</a>
+  <span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A client library for metrika.yandex.ru
+</dl>
+<h3>Networking</h3>
+<dl class=projects>
+ <dt><a href="https://40ants.com/cl-telegram-bot/">40ants/cl-telegram-bot</a><span
+  class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>Telegram Bot API for Common Lisp
+ <dt><a href=https://github.com/40ants/trivial-imap>40ants/trivial-imap</a><span
+  class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>This is a thin wrapper over post-office library (which is a fork of 
+  Franz&#39;s cl-imap)
+ <dt><a href="https://40ants.com/mailgun/">40ants/mailgun</a><span class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A thin wrapper to post HTML emails through mailgun.com
+ <dt><a href=https://github.com/40ants/cl-github>40ants/cl-github</a><span
+  class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A thin wrapper around GitHub API. Supports rate limiting and pagination.
+</dl>
+<h3>Database</h3>
+<dl class=projects>
+ <dt><a href=https://github.com/40ants/cl-prevalence>40ants/cl-prevalence</a>
+ <dd>In memory database system for Common Lisp
+ <dt><a href=https://github.com/40ants/cl-prevalence-multimaster>
+   40ants/cl-prevalence-multimaster</a>
+ <dd>This system contains an addon which allows to syncronize multiple 
+  cl-prevalence systems state.
+</dl>
+<h3>IDE</h3>
+<dl class=projects>
+ <dt><a href=https://github.com/40ants/lem-solarized>40ants/lem-solarized</a>
+ <dd>Solarized color theme for the Lem editor
+ <dt><a href=https://github.com/40ants/lem-theme>40ants/lem-theme</a>
+ <dd>The base for CLOS based themes for Lem editor!
+ <dt><a href=https://github.com/40ants/lem-pareto>40ants/lem-pareto</a>
+ <dd>A LEM mode to make Lisp code editing more efficient!
+ <dt><a href=https://github.com/40ants/lem-docker>40ants/lem-docker</a>
+ <dd>A dockerized Lem, the Common Lisp editor
+ <dt><a href=https://github.com/40ants/sly-package-inferred>
+   40ants/sly-package-inferred</a>
+ <dd>A better package inferred systems support for SLY
+ <dt><a href=https://github.com/40ants/log4sly>40ants/log4sly</a>
+ <dd>This package adds a C-c C-g shortcut which allows to setup log4cl&#39;s log 
+  levels from Emacs.
+ <dt><a href=https://github.com/40ants/recompile>40ants/recompile</a>
+ <dd>This is a small helper to recompile given Common Lisp system, very useful if 
+  you wish to produce high quality software by demolution of all compiler&#39;s 
+  warnings.
+</dl>
+<h3>Documentation</h3>
+<dl class=projects>
+ <dt><a href="https://40ants.com/doc/">40ants/doc</a><span class=status><span class="good">Has docs.</span> <span class="good">Has tests.</span> <span class="good">Has CI.</span></span>
+ <dd>Flexible documentation generator for Common Lisp projects.
+ <dt><a href="https://40ants.com/lisp-project-of-the-day/">
+   40ants/lisp-project-of-the-day</a>
+ <dd>Here I&#39;ll post notes about Quicklisp projects. Also I publish them on 
+  Twitter account svetlyak40wt.
+ <dt><a href=https://github.com/cl-doc-systems>cl-doc-systems</a>
+ <dd><p>Collection of a dozen examples of different CL documentation systems.</p>
+
+<p>All examples have a similar structure and use GitHub Actions to update GitHub pages.</p>
+
+<p>You will find a short summary on each documentation builder on the <a href="https://cl-doc-systems.github.io/" >main project's site</a>.</p>
+
+ <dt><a href=https://github.com/40ants/sphinxcontrib-cldomain>
+   40ants/sphinxcontrib-cldomain</a>
+ <dd>A CL domain for sphinx
+ <dt><a href="https://40ants.com/cldomain/">40ants/cldomain</a>
+ <dd>Helper for sphinxcontrib.cldomain to collect docstrings from Lisp systems.
+ <dt><a href="https://40ants.com/gh-pages/">40ants/gh-pages</a><span class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="good">Has CI.</span></span>
+ <dd>A universal tool for updating GitHub Pages for different CI systems.
+</dl>
+<h3>Tests and CI</h3>
+<dl class=projects>
+ <dt><a href="https://40ants.com/ci/">40ants/ci</a><span class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="good">Has CI.</span></span>
+ <dd>Highly opionated Github Actions workflow builder for Common Lisp projects.
+ <dt><a href="https://40ants.com/40ants-critic/">40ants/40ants-critic</a><span
+  class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="good">Has CI.</span></span>
+ <dd>A wrapper around LISP-CRITIC which provides a better interface to analyze 
+  ASDF systems and a command-line interface.
+ <dt><a href="https://40ants.com/cl-hamcrest/">40ants/cl-hamcrest</a><span
+  class=status><span class="good">Has docs.</span> <span class="good">Has tests.</span> <span class="good">Has CI.</span></span>
+ <dd><p>It is implementation of <a href="http://hamcrest.org" >Hamcrest</a> idea in Common Lisp.</p>
+
+<p>It simplifes unittests and make them more readable. Hamcrest uses idea of pattern-matching, to construct matchers from different pieces and to apply them to the data.</p>
+
+<p>Works nicely with Fukamachi's <a href="https://github.com/fukamachi/prove" >Prove</a> and <a href="https://github.com/fukamachi/rove" >Rove</a> unittesting frameworks, but could be extended to support other frameworks.</p>
+
+ <dt><a href=https://github.com/40ants/cl-flamegraph>40ants/cl-flamegraph</a><span
+  class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A wrapper around SBCL&#39;s statistical profiler, to generate FlameGraph 
+  charts for Common Lisp programs
+</dl>
+<h3>Soft</h3>
+<dl class=projects>
+ <dt><a href="https://40ants.com/multitrainer/">40ants/multitrainer</a>
+ <dd>A math game for children to help them learning multiplication
+ <dt><a href=https://github.com/40ants/barista>40ants/barista</a>
+ <dd>A framework for writing OSX menu bar plugins in Common Lisp.
+ <dt><a href=https://github.com/40ants/resume>40ants/resume</a>
+ <dd>A data-driven resume builder.
+ <dt><a href=https://github.com/40ants/hacrm>40ants/hacrm</a>
+ <dd>Hacker&#39;s CRM – Emacs in the world of CRMs.
+ <dt><a href=https://github.com/40ants/progressor>40ants/progressor</a>
+ <dd>A tool to track multiple progress bars on distributed machines.
+ <dt><a href=https://github.com/40ants/python-progressor>40ants/python-progressor</a>
+ <dd>A Python client library to progressor server
+ <dt><a href=https://github.com/40ants/cl-bitbar>40ants/cl-bitbar</a>
+ <dd>Utils to build BitBar plugins in CommonLisp
+ <dt><a href=https://github.com/40ants/coleslaw-cli>40ants/coleslaw-cli</a>
+ <dd>Command line tool to create static sites with Coleslaw.
+ <dt><a href=https://github.com/12forks>12forks</a><span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd><p>An organization behind <a href="https://12forks.com/advisor">12 Forks</a> site. This is a tool to learn which pulls are waiting for your attention.</p>
+
+</dl>
+<h3>Data Processing</h3>
+<dl class=projects>
+ <dt><a href=https://github.com/40ants/genetic-algorithm>40ants/genetic-algorithm</a>
+  <span class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A generic implementation of Genetic Algorithm.
+ <dt><a href="https://40ants.com/teddy/">40ants/teddy</a><span class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A data framework for Common Lisp
+</dl>
+<h3>Utils</h3>
+<dl class=projects>
+ <dt><a href="https://40ants.com/commondoc-markdown/">40ants/commondoc-markdown</a>
+  <span class=status><span class="good">Has docs.</span> <span class="bad">No tests!</span> <span class="good">Has CI.</span></span>
+ <dd>Converts Markdown text into CommonDoc nodes and vice versa.
+ <dt><a href="https://40ants.com/log4cl-extras/">40ants/log4cl-extras</a><span
+  class=status><span class="good">Has docs.</span> <span class="good">Has tests.</span> <span class="good">Has CI.</span></span>
+ <dd>A few addons for log4cl Common Lisp logging library.
+ <dt><a href=https://github.com/40ants/gen-deps-system>40ants/gen-deps-system</a>
+  <span class=status><span class="bad">No docs!</span> <span class="bad">No tests!</span> <span class="bad">No CI!</span></span>
+ <dd>A command line utility to generate ASDF system to improve caching of Common 
+  Lisp application packaged into the Docker container.
+ <dt><a href="https://40ants.com/cl-info/">40ants/cl-info</a><span class=status><span class="good">Has docs.</span> <span class="good">Has tests.</span> <span class="good">Has CI.</span></span>
+ <dd>An utility which collects information about Common Lisp implementation and 
+  systems for bugreports
+ <dt><a href="https://40ants.com/html2text/">40ants/html2text</a><span class=status><span class="good">Has docs.</span> <span class="good">Has tests.</span> <span class="good">Has CI.</span></span>
+ <dd>A Common Lisp utility which converts HTML into Markdown text
+</dl>
+<h3>Distribution</h3>
+<dl class=projects>
+ <dt><a href=https://github.com/40ants/base-lisp-image>40ants/base-lisp-image</a>
+ <dd>Base image for Common Lisp projects with SBCL or CCL and latest ASDF, Qlot 
+  and Roswell
+ <dt><a href=https://github.com/40ants/docker.ubuntu>40ants/docker.ubuntu</a>
+ <dd>Docker role for Ansible on Ubuntu 12.04+
+ <dt><a href="https://40ants.com/defmain/">40ants/defmain</a>
+ <dd>A helper to simplify command line arguments usage in Common Lisp
+ <dt><a href=https://github.com/40ants/homebrew-soft>40ants/homebrew-soft</a>
+ <dd>Homebrew formulas for our soft.
+ <dt><a href=https://github.com/40ants/docker-haproxy>40ants/docker-haproxy</a>
+ <dd>Docker image for Haproxy with proper logging.
+ <dt><a href=https://github.com/40ants/portable-ca-bundle>40ants/portable-ca-bundle</a>
+ <dd>A macro to restore Dexador&#39;s CA bundle when running LISP binary on a 
+  different machine
+ <dt><a href="https://40ants.com/cl-project-with-docs/">40ants/cl-project-with-docs</a>
+ <dd>Common Lisp project skeleton generator which uses Sphinx and reStructured 
+  text to render nice and readable HTML documentation.
+ <dt><a href=https://github.com/40ants/command-line-template>
+   40ants/command-line-template</a>
+ <dd>A template for Common Lisp command line application
+</dl>
+<h3>Forks</h3>
+<dl class=projects>
+ <dt><a href=https://github.com/40ants/qlot>40ants/qlot</a>
+ <dd>A project-local library installer for Common Lisp
+ <dt><a href=https://github.com/40ants/cl-nntp>40ants/cl-nntp</a>
+ <dd>&#39;( :author &quot;Dimitre Liotev &lt;dl@liotev.com&gt;&quot; :version 
+  &quot;1.0&quot; :maintainer &quot;Dimitre Liotev &lt;dl@liotev.com&gt;&quot; 
+  :licence &quot;GPL&quot;)
+ <dt><a href=https://github.com/40ants/cl-mime>40ants/cl-mime</a>
+ <dd>
+ <dt><a href=https://github.com/40ants/pygments-cl-repl>40ants/pygments-cl-repl</a>
+ <dd>Pygments lexer for Common Lisp REPL sessions
+ <dt><a href=https://github.com/40ants/lack>40ants/lack</a>
+ <dd>
+ <dt><a href=https://github.com/40ants/clack>40ants/clack</a>
+ <dd>Web application environment for Common Lisp
+ <dt><a href=https://github.com/40ants/rove>40ants/rove</a>
+ <dd>#1=(yet another . #1#) common lisp testing library
+ <dt><a href=https://github.com/40ants/dissect>40ants/dissect</a>
+ <dd>Common Lisp introspection library for the call stack and restarts
+ <dt><a href=https://github.com/40ants/post-office>40ants/post-office</a>
+ <dd>Allegro POP, IMAP and SMTP client ported to Common Lisp (with SMTP part not 
+  working yet)
+ <dt><a href=https://github.com/40ants/ceramic>40ants/ceramic</a>
+ <dd>Attention! This is a fork.
+ <dt><a href=https://github.com/40ants/mel-base>40ants/mel-base</a>
+ <dd>A versatile mail library for common lisp (active fork of neonsquare/mel-base)
+ <dt><a href=https://github.com/40ants/cl-notebook>40ants/cl-notebook</a>
+ <dd>A notebook-style editor for Common Lisp
+ <dt><a href=https://github.com/40ants/weblocks-stores>40ants/weblocks-stores</a>
+ <dd>This fork is fixed to work with 40ants/weblocks
+ <dt><a href=https://github.com/40ants/log4cl>40ants/log4cl</a>
+ <dd>Common Lisp logging framework, modeled after Log4J
+ <dt><a href=https://github.com/40ants/todomvc>40ants/todomvc</a>
+ <dd>Helping you select an MV* framework - Todo apps for Backbone.js, Ember.js, 
+  AngularJS, and many more
+ <dt><a href=https://github.com/40ants/sigil>40ants/sigil</a>
+ <dd>A Parenscript to Javascript command line compiler and interpreter.
+ <dt><a href=https://github.com/40ants/ansible-swapfile>40ants/ansible-swapfile</a>
+ <dd>A swapfile role for Ansible
+ <dt><a href=https://github.com/40ants/cl-icalendar>40ants/cl-icalendar</a>
+ <dd>An (incomplete) Common Lisp implementation of the iCalendar RFC5545 
+  specification.
+ <dt><a href=https://github.com/40ants/cxml>40ants/cxml</a>
+ <dd>This fork was made to fix ASDF complaints about secondary systems in cxml.asd 
+  file.
+</dl>
+<h3>Experiments</h3>
+<dl class=projects>
+ <dt><a href=https://github.com/40ants/therepl>40ants/therepl</a>
+ <dd>An extension for IPython to switch between modules and evaluate the code from 
+  Emacs like we do in Common Lisp.
+ <dt><a href=https://github.com/40ants/parenative>40ants/parenative</a>
+ <dd>I framework, to write React Native applications in Common Lisp and 
+  Parenscript
+</dl>
+<h3>Obsolete</h3>
+<dl class=projects>
+ <dt><a href=https://github.com/40ants/log4cl-json>40ants/log4cl-json</a>
+ <dd><p>Use <a href="https://github.com/40ants/log4cl-extras" >log4cl-extras</a> instead.</p>
+
+ <dt><a href=https://github.com/40ants/wheel-builder>40ants/wheel-builder</a>
+ <dd>Builds python wheels from given requirements.txt file.
+ <dt><a href=https://github.com/40ants/update-gh-pages>40ants/update-gh-pages</a>
+ <dd><p>Use <a href="https://github.com/40ants/gh-pages" >gh-pages</a> instead.</p>
+
+</dl>
+<h3>Other</h3>
+<dl class=projects>
+ <dt><a href="https://40ants.com/40ants-asdf-system/">40ants/40ants-asdf-system</a>
+ <dd><p>Provides a class for being used instead of asdf:package-inferred-system in 40ANT systems</p>
+
+ <dt><a href=https://github.com/40ants/40ants-deploy>40ants/40ants-deploy</a>
+ <dd><p>Utilities making it easier to use Deploy library.</p>
+
+ <dt><a href=https://github.com/40ants/40ants-doc-theme-40ants>
+   40ants/40ants-doc-theme-40ants</a>
+ <dd><p>A custom theme for 40ANTS-DOC documentation builder.</p>
+
+ <dt><a href="https://40ants.com/40ants-openrpc/">40ants/40ants-openrpc</a>
+ <dd><p>A set of helpers to start JSON-RPC server based on https://40ants.com/openrpc/ library.</p>
+
+ <dt><a href="https://40ants.com/40ants-pg/">40ants/40ants-pg</a>
+ <dd><p>Utilities to simplify use of Postgresql in my Common Lisp projects</p>
+
+ <dt><a href="https://40ants.com/40ants.github.com/">40ants/40ants.github.com</a>
+ <dd>
+ <dt><a href="https://40ants.com/build-docs/">40ants/build-docs</a>
+ <dd><p>GitHub action to build documentation for Common Lisp libraries.</p>
+
+ <dt><a href="https://40ants.com/cl-anafanafo/">40ants/cl-anafanafo</a>
+ <dd><p>Calculates text width as if it be rendered by a web browser.</p>
+
+ <dt><a href="https://40ants.com/cl-brewer/">40ants/cl-brewer</a>
+ <dd><p>Brew formula generator for common lisp projects</p>
+
+ <dt><a href="https://40ants.com/cl-plus-ssl-osx-fix/">40ants/cl-plus-ssl-osx-fix</a>
+ <dd><p>A fix for CL+SSL library paths on OSX needed when you have Intel and Arm64 Homebrew installations. Should be loaded before CL+SSL.</p>
+
+ <dt><a href="https://40ants.com/clack-cors/">40ants/clack-cors</a>
+ <dd><p>A Clack middleware to set CORS related HTTP headers.</p>
+
+ <dt><a href="https://40ants.com/clack-prometheus/">40ants/clack-prometheus</a>
+ <dd><p>Clack middleware to serve stats in Prometheus format.</p>
+
+ <dt><a href=https://github.com/40ants/clack-sitemap>40ants/clack-sitemap</a>
+ <dd><p>Sitemap generator for your site written in Common Lisp</p>
+
+ <dt><a href=https://github.com/40ants/cloud-analyzer>40ants/cloud-analyzer</a>
+ <dd><p>A helper to analyze cloud storage usage.</p>
+
+ <dt><a href="https://40ants.com/docs-builder/">40ants/docs-builder</a>
+ <dd><p>A generic documentation builder for Common Lisp projects.</p>
+
+ <dt><a href=https://github.com/40ants/example-clack-app>40ants/example-clack-app</a>
+ <dd><p>A demo repository showing how to combine different Clack applications, serve static and add other middlewares.</p>
+
+ <dt><a href=https://github.com/40ants/github-actions>40ants/github-actions</a>
+ <dd><p>A web app to render SVG badges with results of GitHub action run.</p>
+
+ <dt><a href=https://github.com/40ants/heroku-buildpack-common-lisp>
+   40ants/heroku-buildpack-common-lisp</a>
+ <dd><p>https://gitlab.com/duncan-bayne/heroku-buildpack-common-lisp</p>
+
+ <dt><a href=https://github.com/40ants/homebrew-lake>40ants/homebrew-lake</a>
+ <dd><p>A thin wrapper to package https://github.com/takagi/lake for OSX using Homebrew.</p>
+
+ <dt><a href="https://40ants.com/humanize-duration/">40ants/humanize-duration</a>
+ <dd><p>A better date duration representation for Common Lisp programs</p>
+
+ <dt><a href="https://40ants.com/interactive-demo/">40ants/interactive-demo</a>
+ <dd><p>A demo of interactive image based development in Common Lisp, created specially for YouTube video.</p>
+
+ <dt><a href=https://github.com/40ants/lack-to-be-deleted>40ants/lack-to-be-deleted</a>
+ <dd><p>Lack, the core of Clack (this fork is obsolete, all patches were merged)</p>
+
+ <dt><a href="https://40ants.com/linter/">40ants/linter</a>
+ <dd><p>A wrapper around SBLINT, which uses defmain for command line parsing</p>
+
+ <dt><a href="https://40ants.com/lisp-hug/">40ants/lisp-hug</a>
+ <dd><p>An archive of the lisp-hug maillist.</p>
+
+ <dt><a href="https://40ants.com/logging/">40ants/logging</a>
+ <dd><p>Functions to configure log4cl for different contexts: REPL, Backend, Command Line Application.</p>
+
+ <dt><a href="https://40ants.com/lw-add-ons/">40ants/lw-add-ons</a>
+ <dd><p>ED Weidz's LispWorks Add Ons</p>
+
+ <dt><a href=https://github.com/40ants/lw-color-theme>40ants/lw-color-theme</a>
+ <dd><p>LispWorks Editor color theme addon</p>
+
+ <dt><a href=https://github.com/40ants/lw-doc>40ants/lw-doc</a>
+ <dd><p>This system originally was written by Edi Weitz.</p>
+
+ <dt><a href=https://github.com/40ants/lw-vim-mode>40ants/lw-vim-mode</a>
+ <dd><p>Vim Mode for the LispWorks editor.</p>
+
+ <dt><a href=https://github.com/40ants/ngrok>40ants/ngrok</a>
+ <dd>
+ <dt><a href="https://40ants.com/openrpc/">40ants/openrpc</a>
+ <dd><p>OpenRPC implementation for Common Lisp</p>
+
+ <dt><a href="https://40ants.com/project-templates/">40ants/project-templates</a>
+ <dd><p>A bunch of Mystic templates to create CL library, web-project, API microservice and CLI command.</p>
+
+ <dt><a href="https://40ants.com/prometheus-gc/">40ants/prometheus-gc</a>
+ <dd><p>Extension for prometheus.cl which collects metrics about garbage collector state.</p>
+
+ <dt><a href=https://github.com/40ants/quicklisp-client-fix>
+   40ants/quicklisp-client-fix</a>
+ <dd><p>A fix to make ql:quickload work with package inferred ASDF systems better</p>
+
+ <dt><a href="https://40ants.com/reblocks-prometheus/">40ants/reblocks-prometheus</a>
+ <dd><p>Addon for monitoring Reblocks web applications</p>
+
+ <dt><a href=https://github.com/40ants/reblocks-text-editor>
+   40ants/reblocks-text-editor</a>
+ <dd><p>A Widget with editor supporting markup and inline preview</p>
+
+ <dt><a href="https://40ants.com/reblocks-typeahead/">40ants/reblocks-typeahead</a>
+ <dd><p>A Typeahead widget for Reblocks Common Lisp framework.</p>
+
+ <dt><a href="https://40ants.com/reblocks-ui2/">40ants/reblocks-ui2</a>
+ <dd><p>Second version of UI toolkit for Reblocks – Common Lisp web-framework (Work In Progress)</p>
+
+ <dt><a href="https://40ants.com/resend/">40ants/resend</a>
+ <dd><p>A Common Lisp client library for sending emails via resend.com</p>
+
+ <dt><a href="https://40ants.com/run-tests/">40ants/run-tests</a>
+ <dd><p>GitHub Action to run tests of your Common Lisp library.</p>
+
+ <dt><a href=https://github.com/40ants/sbcl-shared-library-examples>
+   40ants/sbcl-shared-library-examples</a>
+ <dd><p>These examples show how to build so or dll dynamic libraries using SBCL (Common Lisp implementation)</p>
+
+ <dt><a href="https://40ants.com/scrapycl/">40ants/scrapycl</a>
+ <dd><p>The web scraping framework for writing crawlers in Common Lisp.</p>
+
+ <dt><a href="https://40ants.com/setup-lisp/">40ants/setup-lisp</a>
+ <dd><p>GitHub Action to Setup Common Lisp tools</p>
+
+ <dt><a href="https://40ants.com/slon.media/">40ants/slon.media</a>
+ <dd>
+ <dt><a href="https://40ants.com/slynk/">40ants/slynk</a>
+ <dd><p>Utilities to start SLYNK if needed and to track active connections.</p>
+
+ <dt><a href=https://github.com/40ants/staticl>40ants/staticl</a>
+ <dd><p>Flexible and customizable static site generator with a lot of plugins!</p>
+
+ <dt><a href="https://40ants.com/test-cl-library/">40ants/test-cl-library</a>
+ <dd><p>New test lib</p>
+
+ <dt><a href=https://github.com/40ants/tree-shaker>40ants/tree-shaker</a>
+ <dd><p>A tree shaker for SBCL</p>
+
+ <dt><a href="https://40ants.com/weblocks/">40ants/weblocks</a>
+ <dd><p>This fork was created to experiment with some refactorings. They are collected in branch &quot;reblocks&quot;.</p>
+
+ <dt><a href=https://github.com/40ants/weblocks-auth>40ants/weblocks-auth</a>
+ <dd><p>A system to add an authentication to the Weblocks based site.</p>
+
+ <dt><a href=https://github.com/40ants/weblocks-demo>40ants/weblocks-demo</a>
+ <dd><p>A demo for Moscow Common Lisp Group's meetup</p>
+
+ <dt><a href=https://github.com/40ants/weblocks-file-server>
+   40ants/weblocks-file-server</a>
+ <dd><p>A file browser for Weblocks web framework.</p>
+
+ <dt><a href=https://github.com/40ants/weblocks-lass>40ants/weblocks-lass</a>
+ <dd><p>A helper for Weblocks framework to define widget dependencies in LASS syntax.</p>
+
+ <dt><a href="https://40ants.com/weblocks-navigation-widget/">
+   40ants/weblocks-navigation-widget</a>
+ <dd><p>A widget which changes it's children when user goes to another URL</p>
+
+ <dt><a href=https://github.com/40ants/weblocks-parenscript>
+   40ants/weblocks-parenscript</a>
+ <dd><p>An utility to define JavaScript dependencies for Weblocks widgets using Parenscript.</p>
+
+ <dt><a href=https://github.com/40ants/weblocks-skeleton>40ants/weblocks-skeleton</a>
+ <dd><p>An opionated boilerplate app, which uses Weblocks, Postgres and Docker.</p>
+
+ <dt><a href=https://github.com/40ants/weblocks-ui>40ants/weblocks-ui</a>
+ <dd><p>A set of widget for Weblocks framework, to simplify UI elements creation. Based on Zurb's Foundation and jQuery.</p>
+
+ <dt><a href=https://github.com/40ants/weblocks-websocket>40ants/weblocks-websocket</a>
+ <dd><p>Websocket support for Common Lisp framework weblocks.</p>
+
+</dl>
+<p>
+ Need to tag 50 projects
+<h2>And Some Art</h2>
+<h3>&quot;Made with Lisp&quot; SVG version of the Logo</h3>
+<p>SVG version of the great &quot;Made with Lisp&quot; logo by Manfred Spiller:
+<p><a href=http://40ants.com/img/made-with-lisp.svg>
+  <img src=/img/made-with-lisp.svg
+       alt="Made with Lisp logo"></a>
+<p>It scales nicely and could be used in site&#39;s footer. For example, look at 
+ our&#39;s footer.
+<p>
+ There is also [other SVG version](https://github.com/azzamsa/lisp-logo) of this 
+ logo by Azzam S.A <ul class="pager"> 
+
+</ul> </div>
+ </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="coleslaw-logo" href="https://github.com/kingcons/coleslaw"> <img width="100" height="25" src="/img/logo_small.jpg" alt="Coleslaw logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
