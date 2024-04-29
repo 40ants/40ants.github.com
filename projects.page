@@ -2,7 +2,10 @@
 url: projects.html
 title: Our projects
 format: spinneret
+created-at: 2021-01-21
 ;;;;;
+
+(ql:quickload '("dexador"))
 
 (:p "Here are some projects we are making or helping to develop.")
 

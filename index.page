@@ -1,0 +1,11 @@
+;;;;;
+title: 40Ants – holistic IT agency
+format: spinneret
+created-at: 2024-04-29
+;;;;;
+
+(:p "🐜 40Ants is a holistic IT agency. We believe that everything is connected, there are no unimportant details or random coincidences. Posts about our projects and ideas will appear in this channel.")
+
+(:p "❤️ We make small tools designed to make people's lives easier in many areas, but who knows, maybe something more will grow from this. One idea gives rise to another, which clings to a third, the right people are found and interesting things happen!" )
+
+(:p "ƛ We use different technologies for our projects, but the main one is Lisp. We rely on the Common Lisp programming language, as it is extremely flexible and allows you to quickly conduct experiments and test hypotheses.")

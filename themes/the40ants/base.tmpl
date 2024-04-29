@@ -1,11 +1,11 @@
-{namespace coleslaw.theme.the40ants}
+{namespace staticl.theme.the40ants}
 
 {template base}
 <!DOCTYPE html>{\n}
-<html lang="{$config.lang}">
+<html lang="{$site.lang}">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset={$config.charset}">
-    {if $content.title}<title>{$config.title} - {$content.title}</title>{else}<title>{$config.title}</title>{/if}
+    <meta http-equiv="Content-Type" content="text/html; charset={$site.charset}">
+    {if $content.title}<title>{$site.title} - {$content.title}</title>{else}<title>{$site.title}</title>{/if}
     {if $content.description}<meta name="description" content="{$content.description}"/>{/if}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,12 +56,12 @@
             <div class="navbar">
               <div class="navbar-inner">
                 <a class="brand" href="/">
-                   <img class="logo" src="/img/logo.svg" title="{$config.title}" />
+                   <img class="logo" src="/img/logo.svg" title="{$site.title}" />
                 </a>
                 <ul class="nav">
-                  {foreach $link in $config.sitenav}
+                  {foreach $link in $site.navigation.items}
                   <li>
-                    <a href="{$link.url}">{$link.name}</a>
+                    <a href="{$link.url}">{$link.title}</a>
                   </li>
                   {/foreach}
                 </ul>

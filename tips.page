@@ -1,7 +1,8 @@
 ;;;;;
 url: tips.html
 title: Common Lisp Tips&Tricks
-format: rst
+format: md
+created-at: 2018-11-26
 ;;;;;
 
 Here is a collection of small tips for Lisp newcomers.
@@ -11,9 +12,9 @@ Wanted to recompile all places where Lisp macro was expanded?
 
 Here is how to do it:
 
-* On a macro name, hit ``C-c C-w m <ENTER>`` (this calls function ``slime-who-macroexpands``)
+* On a macro name, hit `C-c C-w m <ENTER>` (this calls function `slime-who-macroexpands`).
 * Then Emacs will show a buffer with all places where this macro was expanded.
-* Now, hit ``C-c C-k`` to recompile all of them at once!
+* Now, hit `C-c C-k` to recompile all of them at once!
 
 
-.. note:: If using SLY hit ``C-c C-w RET`` instead.
+If using SLY hit `C-c C-w RET` instead.

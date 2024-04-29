@@ -2,8 +2,8 @@
 title: Pushing your pulls faster!
 description: A post about a web service helping your to track all activities on the GitHub. It allows to boost you opensource contribution efficiency.
 tags: github, startup, idea
-date: 2019-04-30 23:00
-format: rst
+created-at: 2019-04-30 23:00
+format: md
 ;;;;;
 
 Today I’m going to share an idea I’ve been nurturing for a long time, my friends. It came into my mind many years ago. It’s core message has to do with development of a service, which would aggregate and conveniently display all communications related to your favorite GitHub projects. This service will be very helpful for users having many own GitHub projects. It’ll also help GitHub users with numerous pulls and tickets for third party projects.
@@ -14,13 +14,13 @@ Yet, communication around a ticket or a pull often gets less intense and can be 
 
 For that matter, there are special pages on GitHub, of course. E. g. see web pages with pull lists on https://github.com/pulls and web pages with ticket lists on https://github.com/issues. Yet, these lists are not user-friendly, as they don’t give you a slightest idea about which ticket requires your reaction and which does not. That’s what I’m going to fix.
 
-My project is called `12Forks`_. It will provide an experimental interface for ticket and pull processing. All the tickets to be responded to, pulls that require merge conflict fix, and situations calling for a maintainer who is unwilling to react promptly for some reason will be summarized on a single page. Future integration with a variety of messengers (e. g. Slack or Telegram) is also considered. The point is to boost communication and task completion with
+My project is called [12Forks][12Forks]. It will provide an experimental interface for ticket and pull processing. All the tickets to be responded to, pulls that require merge conflict fix, and situations calling for a maintainer who is unwilling to react promptly for some reason will be summarized on a single page. Future integration with a variety of messengers (e. g. Slack or Telegram) is also considered. The point is to boost communication and task completion with
 open source projects.
 
 I already use MVP (minimal viable product) of this tool, which operates in console mode for the time being.
 It helped to halve overflow consisting of 103 pulls and tickets. I closed some of them because of their age. In other cases, a library maintainer has responded to feedback and merged pulls:
 
-.. image:: https://i.ibb.co/2P9sYng/12forks-illustration.png
+![](https://i.ibb.co/2P9sYng/12forks-illustration.png)
 
 I’m sure that such tool will quicken change acceptance process. Any open source projects participant is likely to find it helpful.
 
@@ -31,4 +31,4 @@ If you want to be one of its early adopters, please, provide your email address.
 
 Any concepts to be realized in this product? Speak up. You're more than welcome. Put them down in your comments to the post. Or send them to ideas@12forks.com.
 
-.. _12Forks: http://12forks.com
+[12Forks]: http://12forks.com
