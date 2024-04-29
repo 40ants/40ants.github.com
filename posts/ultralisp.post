@@ -14,6 +14,8 @@ to other common lispers.
 Just pretend that you've made a brand new library and want to show it to
 the world. Now you have two options.
 
+<!--more-->
+
 1. Include it into the Quicklisp and probably wait for 1 month before
    announcing the library on the Reddit or StackOverflow.
    

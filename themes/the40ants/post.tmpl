@@ -7,7 +7,7 @@
   {if $content.tags}
   <p>
       Tagged as {foreach $tag in $content.tags}
-        <a href="{$tag.url}">{$tag.name}</a>{nil}
+        {if $tag.url}<a href="{$tag.url}">{$tag.name}</a>{else}<b>{$tag.name}</b>{/if}{nil}
           {if not isLast($tag)},{sp}{/if}
       {/foreach}
   </p>

@@ -19,6 +19,7 @@
       :pipeline (list (load-content)
                       (filter (:path "ru/")
                               (prev-next-links)
+                              (tags-index :target-path #P"ru/tag/")
                               (paginated-index :target-path #P"ru/posts/"
                                                :page-title-fn (lambda (num)
                                                                 (fmt "Страница ~A" num)))
@@ -26,6 +27,7 @@
                               (atom :target-path #P"ru/posts/atom.xml"))
                       (filter (:path "ru/" :invert t)
                               (prev-next-links)
+                              (tags-index :target-path #P"tag/")
                               (paginated-index :target-path #P"posts/")
                               (rss :target-path #P"posts/rss.xml")
                               (atom :target-path #P"posts/atom.xml"))

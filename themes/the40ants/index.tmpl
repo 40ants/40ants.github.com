@@ -7,6 +7,7 @@
     <h1><a href="{$obj.url}">{$obj.title}</a></h1>
     <p class="date-posted">posted on {$obj.created_at | date}</p>
     {$obj.excerpt |noAutoescape}
+    {if $obj.has_more}<p><a href="{$obj.url}">Read more...</a></p>{/if}
   </div>
 {/foreach}
 <div id="relative-nav">
