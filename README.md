@@ -2,6 +2,8 @@
 
 ### Introduction ###
 
+TODO: Update to use Staticl in these instructions.
+
 This repository contains the source of the https://40ants.com site.
 
 How to build a site:
