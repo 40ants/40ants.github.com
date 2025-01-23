@@ -1,0 +1,74 @@
+{
+  "message_id": 54,
+  "from": {
+    "id": 76226374,
+    "is_bot": false,
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt",
+    "username": "svetlyak40wt",
+    "language_code": "en",
+    "is_premium": true
+  },
+  "date": 1737658399,
+  "chat": {
+    "id": 76226374,
+    "type": "private",
+    "username": "svetlyak40wt",
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt"
+  },
+  "forward_origin": {
+    "type": "channel",
+    "date": 1709622202,
+    "chat": {
+      "id": -1002102092834,
+      "type": "channel",
+      "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+      "username": "the40ants"
+    },
+    "message_id": 10
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAxkBAAMzZ5KNfF0ghI0Yv21UYsZDsnXsYwEAAnHbMRvknzFLvxlasW56fY8BAAMCAANzAAM2BA",
+      "file_unique_id": "AQADcdsxG-SfMUt4",
+      "file_size": 2474,
+      "width": 90,
+      "height": 90
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAMzZ5KNfF0ghI0Yv21UYsZDsnXsYwEAAnHbMRvknzFLvxlasW56fY8BAAMCAANtAAM2BA",
+      "file_unique_id": "AQADcdsxG-SfMUty",
+      "file_size": 38088,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAMzZ5KNfF0ghI0Yv21UYsZDsnXsYwEAAnHbMRvknzFLvxlasW56fY8BAAMCAAN4AAM2BA",
+      "file_unique_id": "AQADcdsxG-SfMUt9",
+      "file_size": 159424,
+      "width": 800,
+      "height": 800
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAMzZ5KNfF0ghI0Yv21UYsZDsnXsYwEAAnHbMRvknzFLvxlasW56fY8BAAMCAAN5AAM2BA",
+      "file_unique_id": "AQADcdsxG-SfMUt-",
+      "file_size": 173237,
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "caption": "Привет, друзья! Сегодня я хочу поделиться с вами интересной идеей, которая пришла мне в голову недавно. Я сейчас вникаю в то, как продвигать свои проекты, а через них и Common Lisp. Ну, знаете, SEO там всякий, маркетинг. И вот что я придумал!\n\nЯ задумал репостить посты из нашего Telegram канала прямо в статический блог на сайте https://40ants.com. Зачем? Дело в том, что поисковые системы, такие как Google, обожают свежий и уникальный контент. А в Telegram канал будут постоянно появляться интересные и полезные заметки. Это поможет сделать сайт более популярным, а вместе с ним и мои OpenSource проекты, чья документация тоже доступна на сайте.\n\nОднако, чтобы сделать это процесс автоматическим и эффективным, я решил создать специального Telegram бота. Этот бот будет автоматически репостить новые посты из нашего канала прямо на наш блог. Таким образом, мы сможем не только расширить аудиторию нашего блога, но и повысить его SEO показатели.\n\nДля себя то я точно такого бота сделаю, подумал я. И вот тут родилась идея сделать из этого бота микро-продукт. Научить ботика репостить в популярные платформы, может научить подтягивать комментарии к постам.\n\nЭта идея может быть особенно полезной для тех, кто уже имеет активный и популярный Telegram канал. Репостинг контента из канала на блог позволит удержать посетителей на сайте дольше, а также привлечь новых читателей, которые могут не быть подписчиками канала.\n\nЧто вы думаете об этой идее? Буду рад услышать ваши мысли и предложения!\n\n#ideas",
+  "caption_entities": [
+    {
+      "offset": 330,
+      "length": 18,
+      "type": "url"
+    },
+    {
+      "offset": 1494,
+      "length": 6,
+      "type": "hashtag"
+    }
+  ]
+}
