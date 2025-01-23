@@ -9,4 +9,4 @@
 ("staticl" .
  (:class qlot/source/github:source-github
   :initargs (:repos "40ants/staticl" :ref nil :branch nil :tag nil)
-  :version "github-82857684f6618a0b2dfcbc246ea326fcf4d4303e"))
+  :version "github-2ef2d6316838035d4e4c8247542dbe09c47e71e2"))
