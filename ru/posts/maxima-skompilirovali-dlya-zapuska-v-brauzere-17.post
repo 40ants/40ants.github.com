@@ -1,0 +1,27 @@
+;;;;;
+title: Maxima скомпилировали для запуска в браузере!
+tags: common, news
+created-at: 2025-01-29
+format: md
+tg-chat-id: -1002102092834
+tg-message-id: 17
+;;;;;
+
+
+
+Maxima скомпилировали для запуска в браузере!
+
+[Maxima](https://maxima.sourceforge.io/) это программа для работы с математическими выражениями. Примечательно то, что эта система написана на Common Lisp.
+
+И вот недавно на Reddit появилось [сообщение](https://www.reddit.com/r/Common_Lisp/comments/1ic56tu/ecl_runs_maxima_in_a_browser_ecldevel/), что Maxima удалось скомпилировать в WebAssembley так что теперь её можно запустить прямо в браузере.
+
+Я записал для вас небольшую гифку с демкой, а кому интересно, тот может сам потыкать в пример развернутый на сайте:
+
+[http://maxima-on-wasm.pages.dev/](http://maxima-on-wasm.pages.dev/)
+
+Что в этой истории примечательного? То что компиляция в [WebAssembly](https://ru.wikipedia.org/wiki/WebAssembly) расширяет возможности использования Common Lisp. Я пока не погружался в детали того как это работает, но судя по тому, что в данном проекте использовался ECL (Embeddable Common Lisp), могу предположить, что Maxima транслировали в C, а затем уже собрали в WebAssembly.
+
+
+
+
+**Обсудить пост в [Telegram канале](https://t.me/c/2102092834/17).**
