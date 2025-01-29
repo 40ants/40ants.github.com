@@ -7,7 +7,8 @@ tg-chat-id: -1002102092834
 tg-message-id: 17
 ;;;;;
 
-![](images/17.mp4)
+
+<video src="images/17.mp4"></video>
 
 Maxima скомпилировали для запуска в браузере!
 
