@@ -1,0 +1,81 @@
+{
+  "message_id": 18,
+  "sender_chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "date": 1738357243,
+  "chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADEmedOfsggZBrBWXNmfdo27D8V9RHAAJs6zEbZ3npSPjDIecf1t5-AQADAgADcwADNgQ",
+      "file_unique_id": "AQADbOsxG2d56Uh4",
+      "file_size": 1129,
+      "width": 90,
+      "height": 56
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADEmedOfsggZBrBWXNmfdo27D8V9RHAAJs6zEbZ3npSPjDIecf1t5-AQADAgADbQADNgQ",
+      "file_unique_id": "AQADbOsxG2d56Uhy",
+      "file_size": 20596,
+      "width": 320,
+      "height": 200
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADEmedOfsggZBrBWXNmfdo27D8V9RHAAJs6zEbZ3npSPjDIecf1t5-AQADAgADeAADNgQ",
+      "file_unique_id": "AQADbOsxG2d56Uh9",
+      "file_size": 104237,
+      "width": 800,
+      "height": 500
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADEmedOfsggZBrBWXNmfdo27D8V9RHAAJs6zEbZ3npSPjDIecf1t5-AQADAgADeQADNgQ",
+      "file_unique_id": "AQADbOsxG2d56Uh-",
+      "file_size": 154166,
+      "width": 1280,
+      "height": 800
+    }
+  ],
+  "caption": "Красота для LispWorks\n\nКогда я впервые увидел LispWorks IDE, она показалась мне довольно непривычной и допотопной что ли. Там нет многих привычных вещей из Emacs. Но оказывается, если приложить усилия, то можно сделать из этого IDE конфетку. Но вероятно надо быть прямо очень мотивированным к тому, чтобы писать код именно в интерфейсе LispWorks, а не подключившись к нему из Emacs.\n\nНедавно на Reddit анонсировали библиотеку расширений для LispWorks - lw-plugins. Она добавляет сайдбар с деревом папок, кастомные иконки, фолдинг докстрингов и многое другое. На скриншоте к моему посту демо некоторых фич.\n\nЯ добавил этот проект в \"lispworks\" дист на Ultralisp.org и теперь расширения можно установить легко и просто с помощью Quicklisp.\n\nПриятно, когда люди вкладывают душу в подобные проекты.\n\n#commonlisp #lispworks #news",
+  "caption_entities": [
+    {
+      "offset": 402,
+      "length": 12,
+      "type": "text_link",
+      "url": "https://www.reddit.com/r/Common_Lisp/comments/1id0bc8/lispworks_plugins_by_april_may/"
+    },
+    {
+      "offset": 632,
+      "length": 9,
+      "type": "text_link",
+      "url": "https://ultralisp.org/dists/lispworks"
+    },
+    {
+      "offset": 651,
+      "length": 13,
+      "type": "url"
+    },
+    {
+      "offset": 796,
+      "length": 11,
+      "type": "hashtag"
+    },
+    {
+      "offset": 808,
+      "length": 10,
+      "type": "hashtag"
+    },
+    {
+      "offset": 819,
+      "length": 5,
+      "type": "hashtag"
+    }
+  ]
+}
