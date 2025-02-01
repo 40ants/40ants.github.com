@@ -64,7 +64,115 @@
 
 <p>Для того, чтобы превратить мой прототип в полноценный продукт, предстоит ещё много работы, а пока что буду оценивать его полезность на своем канале. Кстати, если у кого-то есть идеи, как посчитать переходы с сайта в Telegram канал, пишите в комментариях, буду рад любым советам.</p>
 <strong>Обсудить пост в <a href="https://t.me/c/2102092834/16" >Telegram канале</a>.</strong>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/pochemu-gc-sbcl-mozhet-14/">Почему GC SBCL может не освобождать память?</a></h1> <p class="date-posted">posted on 2025-01-18</p> <strong>Обсудить пост в <a href="https://t.me/c/2102092834/14" >Telegram канале</a>.</strong>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/pochemu-gc-sbcl-mozhet-14/">Почему GC SBCL может не освобождать память?</a></h1> <p class="date-posted">posted on 2025-01-18</p> <p>Последнее время я работаю над новой версией фреймфорка для создания Telegram ботов. Этот фреймворк использует библиотеку реализующую акторы. И нем обнаружился досадный баг, который я намеревался исправить. Однако в процессе исправления оказалось, что оно может повлиять на производительность. Хорошо что у автора отыскался benchmark с помощью которого можно проверить скорость работы актора.</p>
+
+<p>К моему удивлению этому бенчмарку не хватало 4G памяти для хоть сколько-нибудь длительной работы. Более того, если бенчмарк запустить ненадолго, то оказывалось, что после его работы процесс &quot;толстел&quot; на 2.5G и не отпускал эту память до тех пор, пока не сделаешь вручную <code>(sb-ext:gc :full t)</code>.</p>
+
+<p>Это поведение показалось крайне странным. Как вообще можно использовать это язык в production, если он не отпускает память!?</p>
+
+<p>Так я оказался втянут в исследование того, почему garbage collector SBCL не очищает кучу мусора оставшуюся после теста.</p>
+
+<p>Прошло три дня.</p>
+
+<p>После некоторых исследований у меня появилась гипотеза, почему GC не очищает память.</p>
+
+<p>Дело в том, что в бенчмарке N потоков генерят сообщения к одному актору. Если актор не успевает разгребать сообщения, то те накапливаются в очереди. Тест заканчивается, когда все сообщения в очереди обработаны.</p>
+
+<p>Когда в очереди много сообщений и срабатывает GC, то он видит, что на эти сообщения есть ссылки, и не может их подчистить, а потому перекладывает эти объекты в более старшее поколение. И чем дольше разгребается очередь в процессе генерации объектов, тем больше таких объектов оказывается в старших поколениях garbage collector.</p>
+
+<p>Когда тест заканчивается, то ссылок на сообщения уже нет, но из-за того, что GC поместил их в старшие поколения, при регулярных запусках он до этих объектов не добирается и они так и остаются висеть в памяти. А вот <code>(gc :full t)</code> их подбирает и подчищает.</p>
+
+<p>Как я это понял? Хотелось бы ответить: &quot;Очень просто!&quot;, но нет 🙁</p>
+
+<p>Сначала я решил поисследовать природу объектов, остающихся висеть в памяти после бенчмарка и написал вот такую функциюЖ</p>
+
+<pre><code>  (let ((count 0))
+    (sb-vm:map-allocated-objects (lambda (obj type size)
+                                   (declare (ignore obj type size))
+                                   (incf count))
+                                 :dynamic)
+    (let ((random-idx (random count))
+          (found-obj nil)
+          (current-idx 0))
+      (sb-vm:map-allocated-objects (lambda (obj type size)
+                                     (declare (ignore type size))
+                                     (when (= current-idx random-idx)
+                                       (setf found-obj
+                                             (trivial-garbage:make-weak-pointer obj)))
+                                     (incf current-idx))
+                                   :dynamic)
+      (values found-obj
+              random-idx
+              count))))
+
+</code></pre>
+
+<p>она достает из памяти случайны объект и возвращает weak указатель на него. Почему weak указатель? Чтобы не возникло лишней ссылки
+на объект.</p>
+
+<p>Выяснилось, что значительная часть объектов, это сообщения из очереди актора:</p>
+
+<pre><code>                    NIL NIL)&gt;
+
+</code></pre>
+
+<p>Далее я попытался выяснить а не держит ли кто ссылки на эти объекты. Для этого в SBCL есть функция поиска корней:</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/14" >Telegram канале</a>.</strong>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/cl-user-sb-ext-15/">```CL-USER&gt; (sb-ext:search-roots (loop repeat 3 collect (get-random-dynamic-object))                               :print :verbose) Path to &quot;MODILETTERDA&quot;:  6       70031144DF [   2] SB-IMPL::*ALL-PACKAGES*  5       700518C41F [ 146] a (COMMON-LISP:SIMPLE-VECTOR 513)  5       7005281513 [   8] #&lt;PACKAGE &quot;CL-UNICODE&quot;&gt;  5       70053D8533 [   2] a SB-IMPL::SYMBOL-TABLE  5       70054FB6F7 [   1] a cons = (# .</a></h1> <p class="date-posted">posted on 2025-01-18</p> <pre><code>                              :print :verbose)
+Path to "MODILETTERDA":
+ 6       70031144DF [   2] SB-IMPL::*ALL-PACKAGES*
+ 5       700518C41F [ 146] a (COMMON-LISP:SIMPLE-VECTOR 513)
+ 5       7005281513 [   8] #&lt;PACKAGE "CL-UNICODE"&gt;
+ 5       70053D8533 [   2] a SB-IMPL::SYMBOL-TABLE
+ 5       70054FB6F7 [   1] a cons = (# . #)
+ 5       70056F16EF [  34] a (COMMON-LISP:SIMPLE-VECTOR 307)
+ 5       7005919B9F [   2] CL-UNICODE::*NAMES-TO-CODE-POINTS*
+ 5       7005B1CBC3 [   6] #&lt;HASH-TABLE :TEST EQUALP :COUNT 33698 {7005B1CBC3}&gt;
+ 5       700D21000F [38446] a (COMMON-LISP:SIMPLE-VECTOR 83559)
+; No values
+
+;; Попробуем проверить действительно ли такой ключ есть в словаре:
+CL-USER&gt; (gethash "MODILETTERDA" CL-UNICODE::*NAMES-TO-CODE-POINTS*)
+71199
+</code></pre>
+
+<p>Это лишь пример. Но по объектам созданным в результате бенчмарка, <code>search-roots</code> ничего не выдавал, что говорило о том, что эти объекты &quot;висят в воздухе&quot; и GC вполне мог бы их удалить.</p>
+
+<p>Потом я дополнительно проверил свою гипотезу того, что память не освобождается из-за того, что очередь забивается слишком большим количеством объектов. Для этого поменял код отправляющий сообщения в акторы так, чтобы каждые 10000-20000 сообщений случался <code>(sleep 0.1)</code>. И это помогло - GC стал подчищать сообщения своевременно, они перестали накапливаться в старших поколениях GC.</p>
+
+<p>Но что более удивительно, так это то, что замедление в генерации сообщений привело к увеличению пропускной способности актора. Без sleep он обрабатывал примерно 777 тыс. сообщений в секунду, а со sleep стал успевать обработать 821 тыс..</p>
+
+<p>Вероятно, ускорение связано с тем, что при более медленной генерации мусора, тот не успевает накапливаться в памяти и GC тратит меньше времени на сборку.</p>
+
+<p>Без слипа:</p>
+
+<pre><code>Times: 16000000
+Evaluation took:
+  20.572 seconds of real time
+  58.627387 seconds of total run time (23.984544 user, 34.642843 system)
+  [ Real times consist of 4.297 seconds GC time, and 16.275 seconds non-GC time. ]
+  [ Run times consist of 3.778 seconds GC time, and 54.850 seconds non-GC time. ]
+  284.98% CPU
+  208 forms interpreted
+  3,068,032,944 bytes consed
+</code></pre>
+
+<p>С задержкой генерации сообщений:</p>
+
+<pre><code>Evaluation took:
+  19.483 seconds of real time
+  24.618729 seconds of total run time (17.348749 user, 7.269980 system)
+  [ Real times consist of 0.044 seconds GC time, and 19.439 seconds non-GC time. ]
+  [ Run times consist of 0.044 seconds GC time, and 24.575 seconds non-GC time. ]
+  126.36% CPU
+  208 forms interpreted
+  3,065,746,080 bytes consed
+</code></pre>
+
+<p>Из этих данных видно, что хотя non-GC время и увеличилось на несколько секунд, GC время сократилось на пару порядков.</p>
+
+<p>Замедление порой приводит к ускорению. Такие дела!</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/15" >Telegram канале</a>.</strong>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/matrix-badges/">Matrix Badger для GitHub</a></h1> <p class="date-posted">posted on 2024-04-05</p> <p>Сегодня расскажу ещё про один мой проект, который так и не превратился в продукт. Правда в отличие от 12forks.com, этот проект жив до сих пор. Проект связан с GitHub и полезен тем, кто развивает фреймворк или библиотеку, предназначенную для разных платформ, языков программирования или операционных систем.</p>
  <p><a href="/ru/posts/matrix-badges/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/12forks/">Помощник для Opensource разработчиков</a></h1> <p class="date-posted">posted on 2024-03-21</p> <p>Сегодня хочу рассказать про один из своих прошлых проектов. Когда-то у меня появилась идея, как упростить себе обработку большого числа пулл-реквестов и issue в своих opensource проектах. И тогда я сделал сайт 12forks.com (сейчас уже недоступен, как выглядела главная страница можно глянуть <a href="https://web.archive.org/web/20211124152220/https://12forks.com/" >через WebArchive</a>).</p>
  <p><a href="/ru/posts/12forks/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/hrzero/">Результаты хакатона ЛЦТ 2023</a></h1> <p class="date-posted">posted on 2024-03-09</p> <p>В <a href="https://www.youtube.com/watch?v=Zpn86AQRVN8" >последнем видео</a> на YouTube канале я рассказываю о проекте HrZero, который мы с одним товарищем делали на хакатоне Лидеры Цифровой Трансформации осенью 2023. Задача была создать сервис онбординга сотрудников, но мы, как всегда постарались сделать больше, чем от нас требовалось. В результате, в нашем сервисе онбординга появилась мини-игра, позволяющая новому сотруднику запомнить своих коллег. Эта идея нам так понравилась, что решили сделать из неё отдельный проект. Так появился https://mememo.ru.</p>
@@ -74,5 +182,4 @@
  <p><a href="/ru/posts/telegram-reposter/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/skazorama/">Сайт со сказками</a></h1> <p class="date-posted">posted on 2024-02-26</p> <p>Продолжая тему моих неудачных проектов, хочу рассказать ещё об одном сайте – Skazorama.ru.</p>
 
 <p>Идея этого проекта была в том, чтобы сделать бесконечную ленту сказок, которые можно почитать детям. При чём, открывая сайт на телефоне, родитель видел новые сказки, которые ещё не читал своему ребёнку. Если сказка не понравилась, то её можно было просто промотать, и вслед за ней подгружалась следующая. При этом сервис воспринимал такую промотку как &quot;dislike&quot; и в будущем я рассчитывал прикрутить ML, чтобы рекомендовать именно те сказки, которые с большей вероятностью понравятся ребёнку.</p>
- <p><a href="/ru/posts/skazorama/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/allmychanges/">AllMyChanges.com</a></h1> <p class="date-posted">posted on 2024-02-23</p> <p>Мне всю жизнь нравится что-то придумывать и конструировать. Просто не могу сидеть без дела. Поэтому я постоянно пишу какие-то небольшие проектики помимо основной работы. Но долгое время я не понимал, что чтобы проект &quot;полетел&quot;, нужно вкладывать хотя бы половину времени в его продвижение - каст-дев, маркетинг, SEO. Сегодня, и в нескольких следующих постах хочу рассказать вам про мои неудачные проекты.</p>
- <p><a href="/ru/posts/allmychanges/">Read more...</a></p> </div> <div id="relative-nav"> <ul class="pager">   </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
+ <p><a href="/ru/posts/skazorama/">Read more...</a></p> </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-2/">Previous</a></li>  </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
