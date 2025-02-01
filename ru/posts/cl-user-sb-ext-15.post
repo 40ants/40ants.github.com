@@ -1,0 +1,79 @@
+;;;;;
+title: ```CL-USER> (sb-ext:search-roots (loop repeat 3 collect (get-random-dynamic-object))                               :print :verbose) Path to "MODILETTERDA":  6       70031144DF [   2] SB-IMPL::*ALL-PACKAGES*  5       700518C41F [ 146] a (COMMON-LISP:SIMPLE-VECTOR 513)  5       7005281513 [   8] #<PACKAGE "CL-UNICODE">  5       70053D8533 [   2] a SB-IMPL::SYMBOL-TABLE  5       70054FB6F7 [   1] a cons = (# .
+tags: 
+created-at: 2025-01-18
+format: md
+tg-chat-id: -1002102092834
+tg-message-id: 15
+;;;;;
+
+
+
+
+```CL-USER> (sb-ext:search-roots (loop repeat 3 collect (get-random-dynamic-object))
+                              :print :verbose)
+Path to "MODILETTERDA":
+ 6       70031144DF [   2] SB-IMPL::*ALL-PACKAGES*
+ 5       700518C41F [ 146] a (COMMON-LISP:SIMPLE-VECTOR 513)
+ 5       7005281513 [   8] #<PACKAGE "CL-UNICODE">
+ 5       70053D8533 [   2] a SB-IMPL::SYMBOL-TABLE
+ 5       70054FB6F7 [   1] a cons = (# . #)
+ 5       70056F16EF [  34] a (COMMON-LISP:SIMPLE-VECTOR 307)
+ 5       7005919B9F [   2] CL-UNICODE::*NAMES-TO-CODE-POINTS*
+ 5       7005B1CBC3 [   6] #<HASH-TABLE :TEST EQUALP :COUNT 33698 {7005B1CBC3}>
+ 5       700D21000F [38446] a (COMMON-LISP:SIMPLE-VECTOR 83559)
+; No values
+
+;; Попробуем проверить действительно ли такой ключ есть в словаре:
+CL-USER> (gethash "MODILETTERDA" CL-UNICODE::*NAMES-TO-CODE-POINTS*)
+71199
+
+```
+
+
+Это лишь пример. Но по объектам созданным в результате бенчмарка, `search-roots` ничего не выдавал, что говорило о том, что эти объекты "висят в воздухе" и GC вполне мог бы их удалить.
+
+Потом я дополнительно проверил свою гипотезу того, что память не освобождается из-за того, что очередь забивается слишком большим количеством объектов. Для этого поменял код отправляющий сообщения в акторы так, чтобы каждые 10000-20000 сообщений случался `(sleep 0.1)`. И это помогло - GC стал подчищать сообщения своевременно, они перестали накапливаться в старших поколениях GC.
+
+Но что более удивительно, так это то, что замедление в генерации сообщений привело к увеличению пропускной способности актора. Без sleep он обрабатывал примерно 777 тыс. сообщений в секунду, а со sleep стал успевать обработать 821 тыс..
+
+Вероятно, ускорение связано с тем, что при более медленной генерации мусора, тот не успевает накапливаться в памяти и GC тратит меньше времени на сборку.
+
+Без слипа:
+
+```
+Times: 16000000
+Evaluation took:
+  20.572 seconds of real time
+  58.627387 seconds of total run time (23.984544 user, 34.642843 system)
+  [ Real times consist of 4.297 seconds GC time, and 16.275 seconds non-GC time. ]
+  [ Run times consist of 3.778 seconds GC time, and 54.850 seconds non-GC time. ]
+  284.98% CPU
+  208 forms interpreted
+  3,068,032,944 bytes consed
+
+```
+
+
+С задержкой генерации сообщений:
+
+```
+Evaluation took:
+  19.483 seconds of real time
+  24.618729 seconds of total run time (17.348749 user, 7.269980 system)
+  [ Real times consist of 0.044 seconds GC time, and 19.439 seconds non-GC time. ]
+  [ Run times consist of 0.044 seconds GC time, and 24.575 seconds non-GC time. ]
+  126.36% CPU
+  208 forms interpreted
+  3,065,746,080 bytes consed
+
+```
+
+
+Из этих данных видно, что хотя non-GC время и увеличилось на несколько секунд, GC время сократилось на пару порядков.
+
+Замедление порой приводит к ускорению. Такие дела!
+
+
+
+**Обсудить пост в [Telegram канале](https://t.me/c/2102092834/15).**

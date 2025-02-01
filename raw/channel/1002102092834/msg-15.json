@@ -1,0 +1,64 @@
+{
+  "message_id": 59,
+  "from": {
+    "id": 76226374,
+    "is_bot": false,
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt",
+    "username": "svetlyak40wt",
+    "language_code": "en",
+    "is_premium": true
+  },
+  "date": 1738415997,
+  "chat": {
+    "id": 76226374,
+    "type": "private",
+    "username": "svetlyak40wt",
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt"
+  },
+  "forward_origin": {
+    "type": "channel",
+    "date": 1737192361,
+    "chat": {
+      "id": -1002102092834,
+      "type": "channel",
+      "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+      "username": "the40ants"
+    },
+    "message_id": 15
+  },
+  "text": "CL-USER> (sb-ext:search-roots (loop repeat 3 collect (get-random-dynamic-object))\n                              :print :verbose)\nPath to \"MODILETTERDA\":\n 6       70031144DF [   2] SB-IMPL::*ALL-PACKAGES*\n 5       700518C41F [ 146] a (COMMON-LISP:SIMPLE-VECTOR 513)\n 5       7005281513 [   8] #<PACKAGE \"CL-UNICODE\">\n 5       70053D8533 [   2] a SB-IMPL::SYMBOL-TABLE\n 5       70054FB6F7 [   1] a cons = (# . #)\n 5       70056F16EF [  34] a (COMMON-LISP:SIMPLE-VECTOR 307)\n 5       7005919B9F [   2] CL-UNICODE::*NAMES-TO-CODE-POINTS*\n 5       7005B1CBC3 [   6] #<HASH-TABLE :TEST EQUALP :COUNT 33698 {7005B1CBC3}>\n 5       700D21000F [38446] a (COMMON-LISP:SIMPLE-VECTOR 83559)\n; No values\n\n;; Попробуем проверить действительно ли такой ключ есть в словаре:\nCL-USER> (gethash \"MODILETTERDA\" CL-UNICODE::*NAMES-TO-CODE-POINTS*)\n71199\n\n\nЭто лишь пример. Но по объектам созданным в результате бенчмарка, search-roots ничего не выдавал, что говорило о том, что эти объекты \"висят в воздухе\" и GC вполне мог бы их удалить.\n\nПотом я дополнительно проверил свою гипотезу того, что память не освобождается из-за того, что очередь забивается слишком большим количеством объектов. Для этого поменял код отправляющий сообщения в акторы так, чтобы каждые 10000-20000 сообщений случался (sleep 0.1). И это помогло - GC стал подчищать сообщения своевременно, они перестали накапливаться в старших поколениях GC.\n\nНо что более удивительно, так это то, что замедление в генерации сообщений привело к увеличению пропускной способности актора. Без sleep он обрабатывал примерно 777 тыс. сообщений в секунду, а со sleep стал успевать обработать 821 тыс..\n\nВероятно, ускорение связано с тем, что при более медленной генерации мусора, тот не успевает накапливаться в памяти и GC тратит меньше времени на сборку.\n\nБез слипа:\n\n\nTimes: 16000000\nEvaluation took:\n  20.572 seconds of real time\n  58.627387 seconds of total run time (23.984544 user, 34.642843 system)\n  [ Real times consist of 4.297 seconds GC time, and 16.275 seconds non-GC time. ]\n  [ Run times consist of 3.778 seconds GC time, and 54.850 seconds non-GC time. ]\n  284.98% CPU\n  208 forms interpreted\n  3,068,032,944 bytes consed\n\n\nС задержкой генерации сообщений:\n\n\nEvaluation took:\n  19.483 seconds of real time\n  24.618729 seconds of total run time (17.348749 user, 7.269980 system)\n  [ Real times consist of 0.044 seconds GC time, and 19.439 seconds non-GC time. ]\n  [ Run times consist of 0.044 seconds GC time, and 24.575 seconds non-GC time. ]\n  126.36% CPU\n  208 forms interpreted\n  3,065,746,080 bytes consed\n\n\nИз этих данных видно, что хотя non-GC время и увеличилось на несколько секунд, GC время сократилось на пару порядков.\n\nЗамедление порой приводит к ускорению. Такие дела!",
+  "entities": [
+    {
+      "offset": 0,
+      "length": 833,
+      "type": "pre"
+    },
+    {
+      "offset": 901,
+      "length": 12,
+      "type": "code"
+    },
+    {
+      "offset": 1243,
+      "length": 11,
+      "type": "phone_number"
+    },
+    {
+      "offset": 1274,
+      "length": 11,
+      "type": "code"
+    },
+    {
+      "offset": 1804,
+      "length": 369,
+      "type": "pre"
+    },
+    {
+      "offset": 2209,
+      "length": 352,
+      "type": "pre"
+    }
+  ]
+}
