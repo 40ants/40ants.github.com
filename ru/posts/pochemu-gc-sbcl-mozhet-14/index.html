@@ -81,7 +81,62 @@
 </code></pre>
 
 <p>Далее я попытался выяснить а не держит ли кто ссылки на эти объекты. Для этого в SBCL есть функция поиска корней:</p>
-<strong>Обсудить пост в <a href="https://t.me/c/2102092834/14" >Telegram канале</a>.</strong>
+
+<pre><code>                              :print :verbose)
+Path to "MODILETTERDA":
+ 6       70031144DF [   2] SB-IMPL::*ALL-PACKAGES*
+ 5       700518C41F [ 146] a (COMMON-LISP:SIMPLE-VECTOR 513)
+ 5       7005281513 [   8] #&lt;PACKAGE "CL-UNICODE"&gt;
+ 5       70053D8533 [   2] a SB-IMPL::SYMBOL-TABLE
+ 5       70054FB6F7 [   1] a cons = (# . #)
+ 5       70056F16EF [  34] a (COMMON-LISP:SIMPLE-VECTOR 307)
+ 5       7005919B9F [   2] CL-UNICODE::*NAMES-TO-CODE-POINTS*
+ 5       7005B1CBC3 [   6] #&lt;HASH-TABLE :TEST EQUALP :COUNT 33698 {7005B1CBC3}&gt;
+ 5       700D21000F [38446] a (COMMON-LISP:SIMPLE-VECTOR 83559)
+; No values
+
+;; Попробуем проверить действительно ли такой ключ есть в словаре:
+CL-USER&gt; (gethash "MODILETTERDA" CL-UNICODE::*NAMES-TO-CODE-POINTS*)
+71199
+</code></pre>
+
+<p>Это лишь пример. Но по объектам созданным в результате бенчмарка, <code>search-roots</code> ничего не выдавал, что говорило о том, что эти объекты &quot;висят в воздухе&quot; и GC вполне мог бы их удалить.</p>
+
+<p>Потом я дополнительно проверил свою гипотезу того, что память не освобождается из-за того, что очередь забивается слишком большим количеством объектов. Для этого поменял код отправляющий сообщения в акторы так, чтобы каждые 10000-20000 сообщений случался <code>(sleep 0.1)</code>. И это помогло - GC стал подчищать сообщения своевременно, они перестали накапливаться в старших поколениях GC.</p>
+
+<p>Но что более удивительно, так это то, что замедление в генерации сообщений привело к увеличению пропускной способности актора. Без sleep он обрабатывал примерно 777 тыс. сообщений в секунду, а со sleep стал успевать обработать 821 тыс..</p>
+
+<p>Вероятно, ускорение связано с тем, что при более медленной генерации мусора, тот не успевает накапливаться в памяти и GC тратит меньше времени на сборку.</p>
+
+<p>Без слипа:</p>
+
+<pre><code>Times: 16000000
+Evaluation took:
+  20.572 seconds of real time
+  58.627387 seconds of total run time (23.984544 user, 34.642843 system)
+  [ Real times consist of 4.297 seconds GC time, and 16.275 seconds non-GC time. ]
+  [ Run times consist of 3.778 seconds GC time, and 54.850 seconds non-GC time. ]
+  284.98% CPU
+  208 forms interpreted
+  3,068,032,944 bytes consed
+</code></pre>
+
+<p>С задержкой генерации сообщений:</p>
+
+<pre><code>Evaluation took:
+  19.483 seconds of real time
+  24.618729 seconds of total run time (17.348749 user, 7.269980 system)
+  [ Real times consist of 0.044 seconds GC time, and 19.439 seconds non-GC time. ]
+  [ Run times consist of 0.044 seconds GC time, and 24.575 seconds non-GC time. ]
+  126.36% CPU
+  208 forms interpreted
+  3,065,746,080 bytes consed
+</code></pre>
+
+<p>Из этих данных видно, что хотя non-GC время и увеличилось на несколько секунд, GC время сократилось на пару порядков.</p>
+
+<p>Замедление порой приводит к ускорению. Такие дела!</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/15" >Telegram канале</a>.</strong>
  <ul class="pager"> <li class="previous"><a href="/ru/posts/prototip-static-site-bot-16/">&larr; Previous</a></li>
 <li class="next"><a href="/ru/posts/maxima-skompilirovali-dlya-zapuska-v-brauzere-17/">Next &rarr;</a></li>
 </ul> </div>
