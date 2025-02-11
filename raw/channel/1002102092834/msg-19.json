@@ -1,0 +1,55 @@
+{
+  "message_id": 19,
+  "sender_chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "date": 1739286296,
+  "chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADE2erZxiyFMqri4UCFNxfv3IN4CktAAIF6jEba2dhSfwh1aJeSHiBAQADAgADcwADNgQ",
+      "file_unique_id": "AQADBeoxG2tnYUl4",
+      "file_size": 948,
+      "width": 90,
+      "height": 53
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADE2erZxiyFMqri4UCFNxfv3IN4CktAAIF6jEba2dhSfwh1aJeSHiBAQADAgADbQADNgQ",
+      "file_unique_id": "AQADBeoxG2tnYUly",
+      "file_size": 15605,
+      "width": 320,
+      "height": 188
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADE2erZxiyFMqri4UCFNxfv3IN4CktAAIF6jEba2dhSfwh1aJeSHiBAQADAgADeAADNgQ",
+      "file_unique_id": "AQADBeoxG2tnYUl9",
+      "file_size": 58991,
+      "width": 800,
+      "height": 471
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADE2erZxiyFMqri4UCFNxfv3IN4CktAAIF6jEba2dhSfwh1aJeSHiBAQADAgADeQADNgQ",
+      "file_unique_id": "AQADBeoxG2tnYUl-",
+      "file_size": 59392,
+      "width": 1084,
+      "height": 638
+    }
+  ],
+  "caption": "Как включать протухшие workflow на GitHub Actions?\n\nЯ не знаю, может это со мной что не так, но иногда мне приходят в голову идеи, реализация которых возможно никому на свете кроме меня и не нужна. Вот одна из таких идей.\n\nУ меня довольно много проектов на GitHub и у большинства из них есть workflow, которые регулярно запускают тесты на GitHub Actions. Зачем регулярно, а не только на пулл реквест? Потому что окружающий мир меняется - выходят новые версии SBCL, библиотеки-зависимости меняются, так что даже если мой код остается неизменным, в какой-то момент он может перестать работать и чем раньше я об этом узнаю, тем проще будет починить проблему. Вот для этого раз в неделю мои тесты и запускаются.\n\nЕсть только одна проблема - если в проекте больше месяца нет коммитов, GitHub автоматически отключает workflow и тесты перестают запускаться. И даже после того, как в проекте появляется PR, надо идти и вручную включать workflow. Это бесит.\n\nИ вот я подумал, было бы классно сделать сервис, который бы автоматически включал отключившиеся workflow. Как вам такая идея?",
+  "caption_entities": [
+    {
+      "offset": 230,
+      "length": 23,
+      "type": "text_link",
+      "url": "https://github.com/40ants"
+    }
+  ]
+}
