@@ -1,0 +1,99 @@
+{
+  "message_id": 60,
+  "from": {
+    "id": 76226374,
+    "is_bot": false,
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt",
+    "username": "svetlyak40wt",
+    "language_code": "en",
+    "is_premium": true
+  },
+  "date": 1739392986,
+  "chat": {
+    "id": 76226374,
+    "type": "private",
+    "username": "svetlyak40wt",
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt"
+  },
+  "forward_origin": {
+    "type": "channel",
+    "date": 1708496240,
+    "chat": {
+      "id": -1002102092834,
+      "type": "channel",
+      "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+      "username": "the40ants"
+    },
+    "message_id": 5
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAxkBAAM8Z60H2ubNT2hYDWii8v1h2VsaCSQAAt_YMRuwSLFKSrotyNQBX3YBAAMCAANzAAM2BA",
+      "file_unique_id": "AQAD39gxG7BIsUp4",
+      "file_size": 1663,
+      "width": 90,
+      "height": 90
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM8Z60H2ubNT2hYDWii8v1h2VsaCSQAAt_YMRuwSLFKSrotyNQBX3YBAAMCAANtAAM2BA",
+      "file_unique_id": "AQAD39gxG7BIsUpy",
+      "file_size": 19426,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM8Z60H2ubNT2hYDWii8v1h2VsaCSQAAt_YMRuwSLFKSrotyNQBX3YBAAMCAAN4AAM2BA",
+      "file_unique_id": "AQAD39gxG7BIsUp9",
+      "file_size": 83744,
+      "width": 800,
+      "height": 800
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM8Z60H2ubNT2hYDWii8v1h2VsaCSQAAt_YMRuwSLFKSrotyNQBX3YBAAMCAAN5AAM2BA",
+      "file_unique_id": "AQAD39gxG7BIsUp-",
+      "file_size": 90553,
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "caption": "\uD83D\uDC1C 40Ants – холистическое IT агенство. Мы верим в то, что всё связанно, нет несущественных деталей или случайных совпадений. В этом канале будут появляться посты про наши проекты и идеи.\n\n❤️ Мы делаем небольшие инструменты, призванные упростить людям жизнь во многих сферах, но кто знает, может из этого вырастет что-то большее. Одна идея порождает другую, та цепляется за третью, находятся нужные люди и творятся интересные вещи!\n\n\uD83D\uDCDD Вот список проектов над которыми мы работаем:\n\n- https://40ants.com/projects.html - куча OpenSource библиотек, в основном для языка программирования Common Lisp.\n- https://ultralisp.org/ - хостинг библиотек для всего Common Lisp сообщества.\n- https://cloud-analyzer.ru/ - анализатор использования места на Яндекс Диске.\n- https://mememo.ru/ - игра позволяющая хорошо запомнить людей в лицо.\n- https://www.youtube.com/@40Ants - образовательный YouTube канал про IT и Common Lisp.\n\n\uD83D\uDC8C Вопросы и предложения по сотрудничеству направляйте создателю - @svetlyak40wt\n\n\uD83D\uDC4D https://t.me/the40ants",
+  "caption_entities": [
+    {
+      "offset": 484,
+      "length": 32,
+      "type": "url"
+    },
+    {
+      "offset": 599,
+      "length": 22,
+      "type": "url"
+    },
+    {
+      "offset": 678,
+      "length": 26,
+      "type": "url"
+    },
+    {
+      "offset": 757,
+      "length": 18,
+      "type": "url"
+    },
+    {
+      "offset": 828,
+      "length": 31,
+      "type": "url"
+    },
+    {
+      "offset": 982,
+      "length": 13,
+      "type": "mention"
+    },
+    {
+      "offset": 1000,
+      "length": 22,
+      "type": "url"
+    }
+  ]
+}
