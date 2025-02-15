@@ -1,0 +1,11 @@
+User-agent: *
+
+# For urls like /reblocks/search/?q=js
+Disallow: /*/search/
+
+# For urls like /weblocks/_sources/contributing.rst.txt
+Disallow: /*/_sources/
+
+Sitemap: https://40ants.com/sitemap.xml
+
+Clean-param: q&highlight
