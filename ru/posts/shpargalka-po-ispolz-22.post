@@ -1,5 +1,5 @@
 ;;;;;
-title: Шпаргалка по использованию Roswell и Qlot в Common Lisp проектах
+title: Шпаргалка по использованию [Roswell](https://github.com/roswell/roswell) и [Qlot](https://github.com/fukamachi/qlot) в Common Lisp проектах
 tags: commonlisp, tips
 created-at: 2025-02-16
 format: md
