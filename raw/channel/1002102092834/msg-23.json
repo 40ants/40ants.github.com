@@ -1,0 +1,96 @@
+{
+  "message_id": 23,
+  "sender_chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "date": 1739715480,
+  "chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADF2ex85hqfXzxOjRooiX_M120hzQYAAJz6jEbTH2RSdBAel4FXAqLAQADAgADcwADNgQ",
+      "file_unique_id": "AQADc-oxG0x9kUl4",
+      "file_size": 2345,
+      "width": 90,
+      "height": 90
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADF2ex85hqfXzxOjRooiX_M120hzQYAAJz6jEbTH2RSdBAel4FXAqLAQADAgADbQADNgQ",
+      "file_unique_id": "AQADc-oxG0x9kUly",
+      "file_size": 41010,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADF2ex85hqfXzxOjRooiX_M120hzQYAAJz6jEbTH2RSdBAel4FXAqLAQADAgADeAADNgQ",
+      "file_unique_id": "AQADc-oxG0x9kUl9",
+      "file_size": 84054,
+      "width": 600,
+      "height": 600
+    }
+  ],
+  "caption": "Мониторинг проектов в Yandex Cloud\n\nВ последнее время я стараюсь максимально стандартизировать инфраструктуру своих проектов. Особенно это касается трех вещей:\n\n- деплоя\n- мониторинга\n- логов\n\nВ части деплоя для пет-прожектов решил максимально все упростить - компилирую бинарник и запускаю под systemd. Скрипт сборки написан на Lisp и шарится между проектами. Если интересны подробности, пишите в комментах, сделаю про это отдельный пост.\n\nСейчас же хочу немного рассказать про мониторинг.\n\nДля мониторинга каждый проект имеет \"ручку\" /metrics, которая умеет отдавать данные в формате Prometheus. Раньше у меня была своя инсталляция Grafana, которая умеет забирать данные, но с недавних пор я решил что лучше буду использовать Yandex Cloud и его сервис Мониторинг. У Яндекса есть свой демон, которому в конфиге можно указать с каких урлов собирать метрики. Выглядит конфиг сервиса примерно так:\n\n\nroutes:\n  - input:\n      plugin: metrics_pull\n      config:\n        namespace: my-project\n        url: http://localhost:10114/metrics\n        # Даже без app метрик, с одного lisp процесса получается 70 метрик,\n        # чтобы было дешевле, шлём их только раз в минуту.\n        poll_period: 60s\n        format:\n          prometheus: {}\n    channel:\n      channel_ref:\n        name: cloud_monitoring\n\n\nКладёшь его в файлик типа /etc/yandex/unified_agent/conf.d/my-project.yml и дальше демон unified-agent сам собирает метрики и отправляет их в облако. Естественно, генерацию таких конфигов я тоже собираюсь автоматизировать.\n\nИнтерфейс облачного Мониторинга достаточно интуитивен. Там можно собрать дашборд сервиса и, что самое важное, сконфигурировать алерты - и когда с сервисом происходит что-то нехорошее, прилетит уведомление на почту или в Telegram.\n\nДля сбора метрик внутри процессов использую библиотеку prometheus.cl и несколько своих дополнений:\n\n- clack-prometheus – позволяет сконфигурировать /metrics эндпоинт\n- reblocks-prometheus – делает примерно то же самое для проектов использующих фреймворк Reblocks + экспортирует пару метрик, показывающих сколько сессий сервер держит в памяти и сколько страниц в этих сессиях.\n- https://github.com/40ants/prometheus-gc – собирает информацию о том сколько памяти в каком поколении garbage collector у SBCL\n\nСистемный подход к сбору метрик позволяет предоставлять надёжные сервисы клиентам. На мой взгляд это очень важно.\n\nПишите в комментах, если интересно узнать про подход к сбору логов или деплою сервисов.\n  \n#infrastructure",
+  "caption_entities": [
+    {
+      "offset": 536,
+      "length": 8,
+      "type": "bot_command"
+    },
+    {
+      "offset": 897,
+      "length": 399,
+      "type": "pre",
+      "language": "yaml"
+    },
+    {
+      "offset": 1324,
+      "length": 47,
+      "type": "code"
+    },
+    {
+      "offset": 1387,
+      "length": 13,
+      "type": "code"
+    },
+    {
+      "offset": 1808,
+      "length": 13,
+      "type": "text_link",
+      "url": "https://github.com/deadtrickster/prometheus.cl"
+    },
+    {
+      "offset": 1855,
+      "length": 16,
+      "type": "text_link",
+      "url": "https://github.com/40ants/clack-prometheus"
+    },
+    {
+      "offset": 1901,
+      "length": 8,
+      "type": "bot_command"
+    },
+    {
+      "offset": 1921,
+      "length": 19,
+      "type": "text_link",
+      "url": "https://github.com/40ants/reblocks-prometheus"
+    },
+    {
+      "offset": 2131,
+      "length": 39,
+      "type": "url"
+    },
+    {
+      "offset": 2464,
+      "length": 15,
+      "type": "hashtag"
+    }
+  ]
+}
