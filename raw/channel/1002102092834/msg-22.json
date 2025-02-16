@@ -13,7 +13,7 @@
     "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
     "username": "the40ants"
   },
-  "edit_date": 1739704535,
+  "edit_date": 1739705058,
   "photo": [
     {
       "file_id": "AgACAgIAAx0CfUtkIgADFmexx1M6kunCl_TvVnPwMUKHapCbAALd6DEbwL2QSUJ6kErxTSyZAQADAgADcwADNgQ",
@@ -44,44 +44,50 @@
       "height": 800
     }
   ],
-  "caption": "Шпаргалка по использованию Roswell и Qlot в Common Lisp проектах\n\nВчера в телеграм-чате, посвященном Сommon Lisp просили подсказать, какой подход лучше использовать для запуска лиспа. Мнения разделились. Кто-то рекомендовал использовать Roswell, кто-то наоборот - был против. Я же Roswell люблю по той причине, что он позволяет легко и просто устанавливать разные реализации Common Lisp и переключаться между ними. Это особенно удобно, когда у тебя куча проектов, и каждый может использовать свою версию CL.\n\nПо той же причине, кстати, я использую и Qlot. Эта утилитка позволяет создавать виртуальное окружение для каждого проекта, и не засорять пакетами систему. Кроме того, Qlot фиксирует версии библиотек в репозитории проекта, делая сборки воспроизводимыми.\n\nИтак, вот какими командами я обычно пользуюсь в Roswell:\n\n\n# Установка лиспа\nros install sbcl-bin\nros install sbcl-bin/2.5.1\n# Запуск Emacs или REPL\nros emacs\nros run\n# Создание command-line утилиты и сборка ее в бинарник\nros init some-script\nvim some-script.ros\nros build some-script.ros\n./some-script\n\n\nЕщё имеет смысл в конфиге подкрутить ограничение памяти, потому что по умолчанию оно всего 1G:\n\n\nros config set dynamic-space-size 4gb\n\n\nИ да. Обычно я использую не roswell сам по себе, а вместе с Qlot. Qlot позволяет ставить либы не глобально, а в директорию проекта. Как virtualenv в Python или node_modules у npm.\n\nТак, у каждого проекта свои зависимости, а поработав с каким-то можно без проблем снести директорию .qlot.\n\nКраткая инструкция по Qlot:\n\n\n# Подключаем cutting-edge репозиторий пакетов\necho 'dist ultralisp http://dist.ultralisp.org/' >> qlfile\n# Инициализируем:\nqlot install\n# Далее запускаем Емакс и хакаем лисп код\nCL_SOURCE_REGISTRY=`pwd`/ qlot exec ros emacs\nCL_SOURCE_REGISTRY=`pwd`/ qlot exec ros <любые другие команды, такие как ros build>\n\n# Когда надо обновить зависимости (qlot фиксирует версии в `qlfile.lock`), делаем:\n\nqlot update\n\n\nВот и всё, друзья!\n\n#commonlisp #tips",
+  "caption": "Шпаргалка по использованию Roswell и Qlot в Common Lisp проектах\n\nВчера в телеграм-чате LispForever, посвященном Сommon Lisp просили подсказать, какой подход лучше использовать для запуска лиспа. Мнения разделились. Кто-то рекомендовал использовать Roswell, кто-то наоборот - был против. Я же Roswell люблю по той причине, что он позволяет легко и просто устанавливать разные реализации Common Lisp и переключаться между ними. Это особенно удобно, когда у тебя куча проектов, и каждый может использовать свою версию CL.\n\nПо той же причине, кстати, я использую и Qlot. Эта утилитка позволяет создавать виртуальное окружение для каждого проекта, и не засорять пакетами систему. Кроме того, Qlot фиксирует версии библиотек в репозитории проекта, делая сборки воспроизводимыми.\n\nИтак, вот какими командами я обычно пользуюсь в Roswell:\n\n\n# Установка лиспа\nros install sbcl-bin\nros install sbcl-bin/2.5.1\n# Запуск Emacs или REPL\nros emacs\nros run\n# Создание command-line утилиты и сборка ее в бинарник\nros init some-script\nvim some-script.ros\nros build some-script.ros\n./some-script\n\n\nЕщё имеет смысл в конфиге подкрутить ограничение памяти, потому что по умолчанию оно всего 1G:\n\n\nros config set dynamic-space-size 4gb\n\n\nИ да. Обычно я использую не roswell сам по себе, а вместе с Qlot. Qlot позволяет ставить либы не глобально, а в директорию проекта. Как virtualenv в Python или node_modules у npm.\n\nТак, у каждого проекта свои зависимости, а поработав с каким-то можно без проблем снести директорию .qlot.\n\nКраткая инструкция по Qlot:\n\n\n# Подключаем cutting-edge репозиторий пакетов\necho 'dist ultralisp http://dist.ultralisp.org/' >> qlfile\n# Инициализируем:\nqlot install\n# Далее запускаем Емакс и хакаем лисп код\nCL_SOURCE_REGISTRY=`pwd`/ qlot exec ros emacs\nCL_SOURCE_REGISTRY=`pwd`/ qlot exec ros <любые другие команды, такие как ros build>\n\n# Когда надо обновить зависимости (qlot фиксирует версии в `qlfile.lock`), делаем:\n\nqlot update\n\n\nВот и всё, друзья!\n\n#commonlisp #tips",
   "caption_entities": [
     {
-      "offset": 237,
+      "offset": 74,
+      "length": 25,
+      "type": "text_link",
+      "url": "https://t.me/lisp_forever/48501"
+    },
+    {
+      "offset": 249,
       "length": 7,
       "type": "text_link",
       "url": "https://github.com/roswell/roswell"
     },
     {
-      "offset": 550,
+      "offset": 562,
       "length": 4,
       "type": "text_link",
       "url": "https://github.com/fukamachi/qlot"
     },
     {
-      "offset": 821,
+      "offset": 833,
       "length": 245,
       "type": "pre"
     },
     {
-      "offset": 1164,
+      "offset": 1176,
       "length": 39,
       "type": "pre",
       "language": "shell"
     },
     {
-      "offset": 1523,
+      "offset": 1535,
       "length": 406,
       "type": "pre",
       "language": "shell"
     },
     {
-      "offset": 1951,
+      "offset": 1963,
       "length": 11,
       "type": "hashtag"
     },
     {
-      "offset": 1963,
+      "offset": 1975,
       "length": 5,
       "type": "hashtag"
     }
