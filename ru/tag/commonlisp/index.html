@@ -52,4 +52,51 @@
 
 <p>Приятно, когда люди вкладывают душу в подобные проекты.</p>
 <strong>Обсудить пост в <a href="https://t.me/c/2102092834/18" >Telegram канале</a>.</strong>
-  </div> <div id="relative-nav"> <ul class="pager">   </ul> </div> <div class="row-fluid"> <p>This blog covers <a href="/ru/tag/holism/">holism</a>, <a href="/ru/tag/ideas/">ideas</a>, <a href="/ru/tag/projects/">projects</a>, <a href="/ru/tag/closed/">closed</a>, <a href="/ru/tag/seo/">seo</a>, <a href="/ru/tag/telegram/">telegram</a>, <a href="/ru/tag/bot/">bot</a>, <a href="/ru/tag/прототип/">прототип</a>, <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/news/">news</a>, <a href="/ru/tag/lispworks/">lispworks</a>, <a href="/ru/tag/hackathon/">hackathon</a> </p> </div>  </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/shpargalka-po-ispolz-22/">Шпаргалка по использованию Roswell и Qlot в Common Lisp проектах</a></h1> <p class="date-posted">posted on 2025-02-16</p> <p><img src="../../posts/images/22.jpg" alt="" /></p>
+
+<p>Вчера в телеграм-чате, посвященном Сommon Lisp просили подсказать, какой подход лучше использовать для запуска лиспа. Мнения разделились. Кто-то рекомендовал использовать Roswell, кто-то наоборот - был против. Я же Roswell люблю по той причине, что он позволяет легко и просто устанавливать разные реализации Common Lisp и переключаться между ними. Это особенно удобно, когда у тебя куча проектов, и каждый может использовать свою версию CL.</p>
+
+<p>По той же причине, кстати, я использую и Qlot. Эта утилитка позволяет создавать виртуальное окружение для каждого проекта, и не засорять пакетами систему. Кроме того, Qlot фиксирует версии библиотек в репозитории проекта, делая сборки воспроизводимыми.</p>
+
+<p>Итак, вот какими командами я обычно пользуюсь в Roswell:</p>
+
+<pre><code># Установка лиспа
+ros install sbcl-bin
+ros install sbcl-bin/2.5.1
+# Запуск Emacs или REPL
+ros emacs
+ros run
+# Создание command-line утилиты и сборка ее в бинарник
+ros init some-script
+vim some-script.ros
+ros build some-script.ros
+./some-script
+</code></pre>
+
+<p>Ещё имеет смысл в конфиге подкрутить ограничение памяти, потому что по умолчанию оно всего 1G:</p>
+
+<pre><code>ros config set dynamic-space-size 4gb
+</code></pre>
+
+<p>И да. Обычно я использую не roswell сам по себе, а вместе с Qlot. Qlot позволяет ставить либы не глобально, а в директорию проекта. Как virtualenv в Python или node_modules у npm.</p>
+
+<p>Так, у каждого проекта свои зависимости, а поработав с каким-то можно без проблем снести директорию .qlot.</p>
+
+<p>Краткая инструкция по Qlot:</p>
+
+<pre><code># Подключаем cutting-edge репозиторий пакетов
+echo 'dist ultralisp http://dist.ultralisp.org/' &gt;&gt; qlfile
+# Инициализируем:
+qlot install
+# Далее запускаем Емакс и хакаем лисп код
+CL_SOURCE_REGISTRY=`pwd`/ qlot exec ros emacs
+CL_SOURCE_REGISTRY=`pwd`/ qlot exec ros &lt;любые другие команды, такие как ros build&gt;
+
+# Когда надо обновить зависимости (qlot фиксирует версии в `qlfile.lock`), делаем:
+
+qlot update
+</code></pre>
+
+<p>Вот и всё, друзья!</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/22" >Telegram канале</a>.</strong>
+  </div> <div id="relative-nav"> <ul class="pager">   </ul> </div> <div class="row-fluid"> <p>This blog covers <a href="/ru/tag/holism/">holism</a>, <a href="/ru/tag/ideas/">ideas</a>, <a href="/ru/tag/projects/">projects</a>, <a href="/ru/tag/closed/">closed</a>, <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/tips/">tips</a>, <a href="/ru/tag/seo/">seo</a>, <a href="/ru/tag/telegram/">telegram</a>, <a href="/ru/tag/bot/">bot</a>, <a href="/ru/tag/прототип/">прототип</a>, <a href="/ru/tag/news/">news</a>, <a href="/ru/tag/lispworks/">lispworks</a>, <a href="/ru/tag/hackathon/">hackathon</a> </p> </div>  </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
