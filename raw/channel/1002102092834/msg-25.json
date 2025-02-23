@@ -1,0 +1,41 @@
+{
+  "message_id": 25,
+  "sender_chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "date": 1740274182,
+  "chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "forward_origin": {
+    "type": "user",
+    "date": 1740274052,
+    "sender_user": {
+      "id": 76226374,
+      "is_bot": false,
+      "first_name": "Alexander ƛrtemenko",
+      "last_name": "svetlyak40wt",
+      "username": "svetlyak40wt",
+      "language_code": "ru",
+      "is_premium": true
+    }
+  },
+  "text": "Go развиртуализироваться в Питере!\n\nПрямо сейчас я еду в Питер и примерно с 15:00 до 20:00 буду свободен.\n\nЯ уже договорился с Андрэ Гомесом (если кто не знает, это один из разработчиков браузера Nyxt), и с 15 часов мы будем вот в этом кафе Мама Рома:\n\nhttps://yandex.ru/maps/-/CHu6bT21\n\nТам и пицца вкусная и пиво/вино тоже есть.\n\nПриглашаю присоединиться всех желающих!",
+  "entities": [
+    {
+      "offset": 253,
+      "length": 33,
+      "type": "url"
+    }
+  ],
+  "link_preview_options": {
+    "url": "https://yandex.ru/maps/-/CHu6bT21",
+    "prefer_large_media": true
+  }
+}
