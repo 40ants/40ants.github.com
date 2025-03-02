@@ -1,0 +1,72 @@
+{
+  "message_id": 27,
+  "sender_chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "date": 1740901249,
+  "chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADG2fEC4HIRoP34-UVsP1bF2eOQPBQAAL37zEbWdwgSi-EuSZZ6b56AQADAgADcwADNgQ",
+      "file_unique_id": "AQAD9-8xG1ncIEp4",
+      "file_size": 948,
+      "width": 90,
+      "height": 62
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADG2fEC4HIRoP34-UVsP1bF2eOQPBQAAL37zEbWdwgSi-EuSZZ6b56AQADAgADbQADNgQ",
+      "file_unique_id": "AQAD9-8xG1ncIEpy",
+      "file_size": 14548,
+      "width": 320,
+      "height": 222
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADG2fEC4HIRoP34-UVsP1bF2eOQPBQAAL37zEbWdwgSi-EuSZZ6b56AQADAgADeAADNgQ",
+      "file_unique_id": "AQAD9-8xG1ncIEp9",
+      "file_size": 65708,
+      "width": 800,
+      "height": 554
+    },
+    {
+      "file_id": "AgACAgIAAx0CfUtkIgADG2fEC4HIRoP34-UVsP1bF2eOQPBQAAL37zEbWdwgSi-EuSZZ6b56AQADAgADeQADNgQ",
+      "file_unique_id": "AQAD9-8xG1ncIEp-",
+      "file_size": 85354,
+      "width": 1280,
+      "height": 887
+    }
+  ],
+  "caption": "Как учить неправильные глаголы с помощью нейросети?\n\nВ прошлом посте я писал про универ Зерокодер и то как их вебинар мне открыл глаза на использование нейросетей. Так вот на прошедшей неделе я прошел их интенсив по созданию чатботов на основе ИИ на одном из уроков которого увидел ещё один интересный кейс.\n\nОказывается, в некоторые нейронки встроен так называемый \"канвас\" - это такая песочница, где нейронка сразу может запустить код который создала. К примеру китайская нейросеть Qwen в таком режиме пишет код HTML странички и тут же рендерит его сбоку. При этом пишет не только HTML, но и CSS + JavaScript.\n\nНо это все преамбула, а было всё так:\n\nВ среду прихожу я домой, а жена с порога заявляет: \"Иди поучи неправильные глаголы с сыном, завтра у него контрольная.\"\n\nА я отвечаю: \"Cпокойно, сейчас мы научим нейросеть учить сына английскому!\"\n\nИ вот, открываем с ним Qwen, и через полчаса у нас готово веб-приложение, которое тестирует знание неправильных глаголов прям в интерфейсе нейросети!\n\nКонечно понадобилось несколько итераций, чтобы улучшить работу приложения. Например изначально оно содержало всего 5 глаголов, но я нашел в сети PDF со всеми неправильными глаголами английского языка и сетка за полминуты переписала код. Я даже решил опубликовать это приложение на GitHub, и теперь учить с ним глаголы может каждый. Вот, попробуйте сами!\n\nПри этом мы не написали ни строчки кода.\nА уж какой эффект это произвело на ребенка! Он тут же принялся пробовать с помощью Qwen делать игры наподобии Geometry Dash, Five Nights at Freddy и Minecraft :)\n\nКороче, нейронки рулят!\n\n#ai",
+  "caption_entities": [
+    {
+      "offset": 55,
+      "length": 13,
+      "type": "text_link",
+      "url": "https://t.me/the40ants/26"
+    },
+    {
+      "offset": 1268,
+      "length": 20,
+      "type": "text_link",
+      "url": "https://github.com/40ants/neuro-irregular-verbs"
+    },
+    {
+      "offset": 1338,
+      "length": 15,
+      "type": "text_link",
+      "url": "https://40ants.com/neuro-irregular-verbs"
+    },
+    {
+      "offset": 1585,
+      "length": 3,
+      "type": "hashtag"
+    }
+  ]
+}
