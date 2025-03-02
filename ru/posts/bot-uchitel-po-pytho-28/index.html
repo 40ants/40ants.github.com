@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang=""> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>40Ants - Бот-учитель по Python</title>  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" href="/favicon.ico" type="image/x-icon" /> <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" /> <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" /> <link rel="manifest" href="/manifest.json" /> <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" /> <link href="/css/custom.css" rel="stylesheet" media="screen" /> <link rel="alternate" href="/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/posts/atom.xml" type="application/atom+xml" /> <link rel="alternate" href="/ru/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/ru/posts/atom.xml" type="application/atom+xml" /> 
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(42462884, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/42462884" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL71WXK73K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FL71WXK73K');
+    </script>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <div class="row-fluid">
+<h1 class="page-header">Бот-учитель по Python</h1>
+ <p> Tagged as <a href="/ru/tag/ai/">ai</a>, <a href="/ru/tag/python/">python</a>, <a href="/ru/tag/bots/">bots</a> </p> <p class="date-posted"> Written on 2025-03-02 </p> <p><img src="../images/28.jpg" alt="" /></p>
+
+<p>В описании канала 40Ants сказано, что я верю в то, что в мире всё связано и не бывает случайностей. Или, как говорил О.Ж. Грант в фильме &quot;Автострада 60&quot;: &quot;Если что-то произошло, оно было неизбежно.&quot;</p>
+
+<p>Последнее время я интересуюсь темой автоматизации разных задач с помощью ботов. И вот, по какой-то &quot;случайности&quot; (случано ли?) мне удалось бесплатно залететь на интенсив по созданию ИИ ботов от университета Зерокодер. Интенсив прошел на прошлой неделе, а сегодня хочу с вами поделиться впечатлениями.</p>
+
+<p>Как работает ИИ бот.</p>
+
+<ul>
+<li>Вы пишете промпт - текст очерчивающий задачу бота и инструкции как он должен действовать.</li>
+<li>Опционально можете добавить какие-нибудь данные, например PDF с описанием компании, данные о контактах сотрудников, типовые вопросы и ответы.</li>
+<li>Далее бот на каждую реплику пользователя берет промпт, все данные + N последних записей из переписки с клиентом и отдает их нейронке.</li>
+<li>Ответ нейронки отправляется пользователю.</li>
+</ul>
+
+<p>Что меня удивило.</p>
+
+<ul>
+<li>Сам промпт для ИИ бота тоже можно сгенерировать с помощью нейронки, а потом лишь немного подредактировать. Пишешь нейронке: &quot;Напиши промпт для ИИ бота который будет делать то-то то-то&quot; и вуаля, у вас готовая &quot;рыба&quot;!</li>
+<li>Базу данных, например типовые вопросы пользователей на заданную тему и ответы на них - тоже можно сгенерировать нейронкой. Конечно по хорошему текст надо будет перепроверить.</li>
+</ul>
+
+<p>Что пока непонятно.</p>
+
+<p>Мы делали бота на конструкторе Suvvy () и там бот может иметь интеграции. Например он может заводить клиента в CRM или записывать его на прием, добавляя встречу в Google Calendar. Так вот я пока не очень понимаю, как бот решает, что клиент хочет записаться на прием. Возможно при активации интеграции Suvvy добавляет что-то в промпт?</p>
+
+<p>Бот который у меня получился в ходе интенсива:</p>
+
+<p>Я делал бота, который помогает изучать Python: <a href="https://t.me/guru_of_python_bot" >https://t.me/guru_of_python_bot</a>
+Можете тут с ним пообщаться (будет активен до 5 марта, дальше закончится пробный период в Suvvy).</p>
+
+<p>Проблемы с которыми можно столкнуться.</p>
+
+<p>Работа ИИ бота созданного на конструкторе стоит денег. К примеру, обработка каждого вопроса ученика моим ботом-учителем по Python стоит от 3 до 6 рублей. Если ученик задал 100 вопросов, то он обошелся вам в 600 рублей. Так что для бота который предоставляется бесплатно это не очень подходит. Другое дело, если вы создаете коммерческого бота, который к примеру обрабатывает заявки клиентов - отвечает на пару их вопросов и записывает на прием. Тут и количество вопросов в сессии скорее всего будет ограничено, и количество денег которые принесет клиент компании будет значительно превышать оплату за работу бота. Короче, надо внимательно считать.</p>
+
+<p>Так же в Savvy бот иногда может работать с ошибками и кажется там пока нет какого-то монитонига, есть только лог общения бота с клиентом.</p>
+
+<p>Что дальше.</p>
+
+<p>Тема ботов интересная, но понятно, что если делать на этом бизнес, то желательно поискать решение которое получится развернуть на своем сервере. Это позволит лучше контролировать его работу, возможно сделает дешевле обработку каждого сообщения и в случае если заказчик пожелает - позволит развернуть бота на его серверах.</p>
+
+<p>Self-hosted решений для создания AI ботов наверное много, но пока что я накопал только Python библиотечку Rasa. Судя по описанию, боты в ней могу определять намеряние пользователя и действовать соответственно. Буду пробовать.</p>
+
+<p>К чему это? Перед тем как создавать свою платформу для создания ботов, хочу исследовать как работают существующие решения.</p>
+
+<p>Если знаете ещё конструкторы которые допускают self-hosted режим, напишите пожалуйста про них в комментариях к посту?</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/28" >Telegram канале</a>.</strong>
+ <ul class="pager"> <li class="previous"><a href="/ru/posts/go-razvirtualizirova-25/">&larr; Previous</a></li>
+<li class="next"><a href="/ru/posts/allmychanges/">Next &rarr;</a></li>
+</ul> </div>
+ </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
