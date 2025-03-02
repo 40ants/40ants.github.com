@@ -13,6 +13,7 @@
     "title": "40 Ants – новости про проекты студии, IT, программирование и много ❤️ к Common Lisp",
     "username": "the40ants"
   },
+  "edit_date": 1740904368,
   "photo": [
     {
       "file_id": "AgACAgIAAx0CfUtkIgADHGfEF2yvbHvZXO7WYo0OPkmPMxH7AAJk7jEbbqsgSvCOJN6VkdGpAQADAgADcwADNgQ",
@@ -49,6 +50,24 @@
       "offset": 1830,
       "length": 31,
       "type": "url"
+    },
+    {
+      "offset": 1952,
+      "length": 5,
+      "type": "text_link",
+      "url": "https://suvvy.ai/ru?partner_id=67bde8ad2c8ff127de32ab19"
+    },
+    {
+      "offset": 2658,
+      "length": 5,
+      "type": "text_link",
+      "url": "https://suvvy.ai/ru?partner_id=67bde8ad2c8ff127de32ab19"
+    },
+    {
+      "offset": 3230,
+      "length": 4,
+      "type": "text_link",
+      "url": "https://rasa.com/docs/rasa/"
     },
     {
       "offset": 3594,
