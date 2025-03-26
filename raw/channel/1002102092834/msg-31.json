@@ -1,0 +1,85 @@
+{
+  "message_id": 63,
+  "from": {
+    "id": 76226374,
+    "is_bot": false,
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt",
+    "username": "svetlyak40wt",
+    "language_code": "ru",
+    "is_premium": true
+  },
+  "date": 1742988660,
+  "chat": {
+    "id": 76226374,
+    "type": "private",
+    "username": "svetlyak40wt",
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt"
+  },
+  "forward_origin": {
+    "type": "channel",
+    "date": 1741939126,
+    "chat": {
+      "id": -1002102092834,
+      "type": "channel",
+      "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+      "username": "the40ants"
+    },
+    "message_id": 31
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAxkBAAM_Z-PldJ2FMm6BIRXneJM6jf24-c4AAnHnMRsnC6BKSaJqQQ3Y8uIBAAMCAANzAAM2BA",
+      "file_unique_id": "AQADcecxGycLoEp4",
+      "file_size": 2367,
+      "width": 90,
+      "height": 90
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM_Z-PldJ2FMm6BIRXneJM6jf24-c4AAnHnMRsnC6BKSaJqQQ3Y8uIBAAMCAANtAAM2BA",
+      "file_unique_id": "AQADcecxGycLoEpy",
+      "file_size": 50026,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM_Z-PldJ2FMm6BIRXneJM6jf24-c4AAnHnMRsnC6BKSaJqQQ3Y8uIBAAMCAAN5AAM2BA",
+      "file_unique_id": "AQADcecxGycLoEp-",
+      "file_size": 225512,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM_Z-PldJ2FMm6BIRXneJM6jf24-c4AAnHnMRsnC6BKSaJqQQ3Y8uIBAAMCAAN4AAM2BA",
+      "file_unique_id": "AQADcecxGycLoEp9",
+      "file_size": 229473,
+      "width": 800,
+      "height": 800
+    }
+  ],
+  "caption": "Сжатый курс про использование нейросетей для программирования на Python\n\nТема не совсем про lisp, но я тут последнее время смотрю много вебинаров университета Zerocoder и сегодня они прислали рекламку нового миникурса про использование нейросетей для создания продвинутого Python бота, на который можно попасть бесплатно, если успеешь в первую 1000 откликнувшихся.\n\nУж не знаю насколько продвинутого бота они собираются делать, но на всякий случай записался – интересно посмотреть что выйдет.\n\nА вообще моя мечта – научиться обучать нейросетку писать сносный код на Common Lisp. Пока что по большей части неюзабельное что-то выходит – то с синтаксисом косяки, то нейронка выдумывает несуществующие библиотеки.\n\nДумаю на курсе как раз позадавать вопросы на тему дообучения нейронки на своих исходниках – так можно было бы обучить её на всех либах что есть в Quicklisp! Уверен, выйдет круто!\n\n#zerocoder #python #ai",
+  "caption_entities": [
+    {
+      "offset": 222,
+      "length": 24,
+      "type": "text_link",
+      "url": "https://zerocoder.ru/int-python?gcpc=4d3d5"
+    },
+    {
+      "offset": 891,
+      "length": 10,
+      "type": "hashtag"
+    },
+    {
+      "offset": 902,
+      "length": 7,
+      "type": "hashtag"
+    },
+    {
+      "offset": 910,
+      "length": 3,
+      "type": "hashtag"
+    }
+  ]
+}
