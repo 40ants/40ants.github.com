@@ -1,0 +1,86 @@
+{
+  "message_id": 66,
+  "from": {
+    "id": 76226374,
+    "is_bot": false,
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt",
+    "username": "svetlyak40wt",
+    "language_code": "en",
+    "is_premium": true
+  },
+  "date": 1742989678,
+  "chat": {
+    "id": 76226374,
+    "type": "private",
+    "username": "svetlyak40wt",
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt"
+  },
+  "forward_origin": {
+    "type": "channel",
+    "date": 1742801729,
+    "chat": {
+      "id": -1002102092834,
+      "type": "channel",
+      "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+      "username": "the40ants"
+    },
+    "message_id": 35
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAxkBAANCZ-Ppbp-u1xYulpfWFT6srCBFbCgAAp_tMRu83glLGELd-nUHEqABAAMCAANzAAM2BA",
+      "file_unique_id": "AQADn-0xG7zeCUt4",
+      "file_size": 2410,
+      "width": 90,
+      "height": 90
+    },
+    {
+      "file_id": "AgACAgIAAxkBAANCZ-Ppbp-u1xYulpfWFT6srCBFbCgAAp_tMRu83glLGELd-nUHEqABAAMCAANtAAM2BA",
+      "file_unique_id": "AQADn-0xG7zeCUty",
+      "file_size": 46777,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "file_id": "AgACAgIAAxkBAANCZ-Ppbp-u1xYulpfWFT6srCBFbCgAAp_tMRu83glLGELd-nUHEqABAAMCAAN4AAM2BA",
+      "file_unique_id": "AQADn-0xG7zeCUt9",
+      "file_size": 234494,
+      "width": 800,
+      "height": 800
+    },
+    {
+      "file_id": "AgACAgIAAxkBAANCZ-Ppbp-u1xYulpfWFT6srCBFbCgAAp_tMRu83glLGELd-nUHEqABAAMCAAN5AAM2BA",
+      "file_unique_id": "AQADn-0xG7zeCUt-",
+      "file_size": 240385,
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "caption": "Несколько слов о Zettelkasten и том как я веду заметки\n\nСегодня один из коллег во внутренней соцсети упомянул зеттелькастен и описал то свой способ ведения заметок в Sublime Text. У него довольно системный подход к тому, как заметки должны быть структурированы.\n\nКогда-то я тоже пытался структурировать заметки, но в итоге перешел на “кучу” – заметки без структуры, с одними лишь заголовками и связями между ними.\n\nПри этом некоторые заметки – просто на какую-то определенную тему, а некоторые все же имеют “структуру” и относятся к целям и планам по методике 12 Недельного Года. Есть цели на год и планы на неделю. План на неделю – в одном файле где есть подразделы на каждый день. И в этих днях уже идет работа с тикетами и тд.\n\nКасаемо отображения связей между заметками в виде графа – не вижу в этом большого смысла. Обычно достаточно возможности посмотреть списки входящих/исходящих ссылок. Важнее хороший поиск по заметкам и удобный способ создания кросс-ссылок.\n\nВсё это я конечно же веду в Emacs и его замечательном режиме Org Mode. Из-за этого плагина не могу теперь слезть с Emacs на LEM.\n\nP.S. – Кстати и этот пост изначально был написан как одна из заметок в моей \"куче\" :)\n\n#notes #emacs",
+  "caption_entities": [
+    {
+      "offset": 560,
+      "length": 18,
+      "type": "text_link",
+      "url": "https://12-weeks.ru/"
+    },
+    {
+      "offset": 1094,
+      "length": 3,
+      "type": "text_link",
+      "url": "https://lem-project.github.io/"
+    },
+    {
+      "offset": 1187,
+      "length": 6,
+      "type": "hashtag"
+    },
+    {
+      "offset": 1194,
+      "length": 6,
+      "type": "hashtag"
+    }
+  ]
+}
