@@ -1,0 +1,86 @@
+{
+  "message_id": 62,
+  "from": {
+    "id": 76226374,
+    "is_bot": false,
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt",
+    "username": "svetlyak40wt",
+    "language_code": "en",
+    "is_premium": true
+  },
+  "date": 1742984602,
+  "chat": {
+    "id": 76226374,
+    "type": "private",
+    "username": "svetlyak40wt",
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt"
+  },
+  "forward_origin": {
+    "type": "channel",
+    "date": 1741706364,
+    "chat": {
+      "id": -1002102092834,
+      "type": "channel",
+      "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+      "username": "the40ants"
+    },
+    "message_id": 30
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAxkBAAM-Z-PVmvkbEammymOlt5tDBKDsyi4AAqjnMRsmeoBKkPfaINvcV_MBAAMCAANzAAM2BA",
+      "file_unique_id": "AQADqOcxGyZ6gEp4",
+      "file_size": 1283,
+      "width": 90,
+      "height": 73
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM-Z-PVmvkbEammymOlt5tDBKDsyi4AAqjnMRsmeoBKkPfaINvcV_MBAAMCAANtAAM2BA",
+      "file_unique_id": "AQADqOcxGyZ6gEpy",
+      "file_size": 17390,
+      "width": 320,
+      "height": 258
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM-Z-PVmvkbEammymOlt5tDBKDsyi4AAqjnMRsmeoBKkPfaINvcV_MBAAMCAAN4AAM2BA",
+      "file_unique_id": "AQADqOcxGyZ6gEp9",
+      "file_size": 65623,
+      "width": 800,
+      "height": 644
+    },
+    {
+      "file_id": "AgACAgIAAxkBAAM-Z-PVmvkbEammymOlt5tDBKDsyi4AAqjnMRsmeoBKkPfaINvcV_MBAAMCAAN5AAM2BA",
+      "file_unique_id": "AQADqOcxGyZ6gEp-",
+      "file_size": 83060,
+      "width": 1280,
+      "height": 1031
+    }
+  ],
+  "caption": "Как играючи изучить SQL?\n\nСегодня случайно наткнулся на проект, в котором предлагается изучать SQL в виде игры в детектива. Проект называется SQL Noir.\n\n\uD83D\uDD75️ В каждом уроке тебе предлагается расследовать преступление, кражу убийство и тд. Дается некоторая вводная и предварительное направление поисков. А сами поиски предлагается делать исследуя данные в базе данных с помощью запросов. Запросы можно прямо на сайте делать и тут же видеть результат. В базе отдельные таблички с описанием разных мест, персонажей, улик и так далее.\n\nПервые уроки довольно тривиальные. Да и всего в проекте пока только 4 урока. Однако к добавлению новых криминальных драм приглашаются все желающие. У ребят на GitHub довольно подробно описано, как добавить новый детективный сценарий в эту игру.\n\nДумаю такое может быть интересно в первую очередь полным новичкам, и быть может даже детям. В школах SQL уже преподают?\n\n#sql #learning",
+  "caption_entities": [
+    {
+      "offset": 142,
+      "length": 8,
+      "type": "text_link",
+      "url": "https://www.sqlnoir.com/"
+    },
+    {
+      "offset": 706,
+      "length": 16,
+      "type": "text_link",
+      "url": "https://github.com/hristo2612/SQLNoir/blob/main/CONTRIBUTING.md"
+    },
+    {
+      "offset": 898,
+      "length": 4,
+      "type": "hashtag"
+    },
+    {
+      "offset": 903,
+      "length": 9,
+      "type": "hashtag"
+    }
+  ]
+}

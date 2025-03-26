@@ -1,0 +1,17 @@
+{
+  "message_id": 29,
+  "sender_chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "date": 1741009348,
+  "chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "new_chat_title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp"
+}
