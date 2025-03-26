@@ -1,0 +1,96 @@
+{
+  "message_id": 65,
+  "from": {
+    "id": 76226374,
+    "is_bot": false,
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt",
+    "username": "svetlyak40wt",
+    "language_code": "en",
+    "is_premium": true
+  },
+  "date": 1742989663,
+  "chat": {
+    "id": 76226374,
+    "type": "private",
+    "username": "svetlyak40wt",
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt"
+  },
+  "forward_origin": {
+    "type": "channel",
+    "date": 1742334284,
+    "chat": {
+      "id": -1002102092834,
+      "type": "channel",
+      "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+      "username": "the40ants"
+    },
+    "message_id": 33
+  },
+  "photo": [
+    {
+      "file_id": "AgACAgIAAxkBAANBZ-PpXz2fuA0u8qglz4aRp8-7wgoAAk3vMRv7bNFKibV2xFw-Y24BAAMCAANzAAM2BA",
+      "file_unique_id": "AQADTe8xG_ts0Up4",
+      "file_size": 1435,
+      "width": 90,
+      "height": 90
+    },
+    {
+      "file_id": "AgACAgIAAxkBAANBZ-PpXz2fuA0u8qglz4aRp8-7wgoAAk3vMRv7bNFKibV2xFw-Y24BAAMCAANtAAM2BA",
+      "file_unique_id": "AQADTe8xG_ts0Upy",
+      "file_size": 15284,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "file_id": "AgACAgIAAxkBAANBZ-PpXz2fuA0u8qglz4aRp8-7wgoAAk3vMRv7bNFKibV2xFw-Y24BAAMCAAN5AAM2BA",
+      "file_unique_id": "AQADTe8xG_ts0Up-",
+      "file_size": 47350,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file_id": "AgACAgIAAxkBAANBZ-PpXz2fuA0u8qglz4aRp8-7wgoAAk3vMRv7bNFKibV2xFw-Y24BAAMCAAN4AAM2BA",
+      "file_unique_id": "AQADTe8xG_ts0Up9",
+      "file_size": 53836,
+      "width": 800,
+      "height": 800
+    }
+  ],
+  "caption": "Чем может быть полезен Yandex Workflow?\n\nКак рассказывал недавно, в последнее время смотрю разные вебинары от университета Зерокодер. И вот в одном из них показывали как бот работает в связке нескольких конструкторов:\n\n- Puzzlebot – в нем задавались разные команды бота\n- При определенной команде управление передавалось в Make.com, где был описан workflow по которому вызывался OpenAI с определенными промптами и бот таким образом обрабатывал произвольный текст от пользователя, отвечая текстом, сгенерированным с помощью ИИ.\n\nПо факту, в этом воркфлоу были блоки которые умеют обращаться по API в OpenAI, Puzzlebot (а может и напрямую в телеграм, тут я не до конца понял) + какие-то условные ветвления.\n\nА сегодня, совершенно случайно, я узнал, что у Яндекса тоже есть lowcode инструмент для описания последовательности действий. И по странному совпадению (в закрепленном посте кстате сказано, что я не верю в совпадения, есть только связи между всем и вся!) - именно сегодня был вебинар про эту часть Яндекс Облака/\n\nНазвывается она Yandex Workflow. В целом, выглядит годно, но пока мало интеграций, а те что есть ориентированны на другие сервисы, которые есть в Яндекс Облаке.\n\nХорошая новость в том, что можно дописывать блоки workflow в виде CloudFunctions – это кусочки кода которые будут запускаться по событию.\n\nЕщё из интересного – есть поддержка блоков которые обращаются к YandexGPT. А так же интеграция с базой данных YDB.\n\nТо есть, на этой штуке вполне можно собирать части бота которым нужно сработать в определенном сценарии, сложить куда-то или передать дальше.\n\nВ рамках вебинара показывали, как собрать воркфлоу, которая создает уменьшенные версии картинок, для загружаемых в хранилище фотографий.\n\nКому интересно, можете посмотреть вебинар в записи на YouTube.\n\n#bots #yandex #cloud",
+  "caption_entities": [
+    {
+      "offset": 140,
+      "length": 14,
+      "type": "text_link",
+      "url": "https://zerocoder.ru/prompt-engineer-with-ai-course?gcpc=4d3d5"
+    },
+    {
+      "offset": 323,
+      "length": 8,
+      "type": "url"
+    },
+    {
+      "offset": 1741,
+      "length": 27,
+      "type": "text_link",
+      "url": "https://www.youtube.com/live/pdH6cHRzJtc"
+    },
+    {
+      "offset": 1782,
+      "length": 5,
+      "type": "hashtag"
+    },
+    {
+      "offset": 1788,
+      "length": 7,
+      "type": "hashtag"
+    },
+    {
+      "offset": 1796,
+      "length": 6,
+      "type": "hashtag"
+    }
+  ]
+}
