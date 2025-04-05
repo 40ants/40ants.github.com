@@ -1,0 +1,61 @@
+{
+  "message_id": 36,
+  "sender_chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "date": 1743890504,
+  "chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "video": {
+    "file_id": "BAACAgIAAx0CfUtkIgADJGfxqEjM7yG4zw-BTdRyYxmfpoUBAAJGeAACcM2IS3U3qynI81N0NgQ",
+    "file_unique_id": "AgADRngAAnDNiEs",
+    "width": 1028,
+    "height": 632,
+    "duration": 81,
+    "thumbnail": {
+      "file_id": "AAMCAgADHQJ9S2QiAAMkZ_GoSMzvIbjPD4FN1HJjGZ-mhQEAAkZ4AAJwzYhLdTerKcjzU3QBAAdtAAM2BA",
+      "file_unique_id": "AQADRngAAnDNiEty",
+      "width": 320,
+      "height": 197,
+      "file_size": 12196
+    },
+    "file_name": "roo-code-writing-40ants-routes.mp4",
+    "mime_type": "video/mp4",
+    "file_size": 4330989
+  },
+  "caption": "Нейронка уже пишет на Common Lisp лучше стажера\n\nСейчас за час, не написав ни строчки кода сделал такую библиотеку:\n\nhttps://github.com/40ants/routes/pull/1/files\n\nтам и тесты есть с документацией.\n\nМногое конечно еще предстоит поправить, но получилось неплохо.\n\nИспользовал VSCode + Roo Code плагин + Claude 3.7 от Anthropic.\n\nОно даже тесты само умеет запускать в терминале, смотреть что падает и чинить. Сначала пробовала запускать через голый SBCL, но адаптировалась, когда я подсказал использовать для запуска qlot exec ros run.\n\nЕдинственный момент, который огорчает  – в течении этого часа я чувствовал себя, как прораб миллиарда обезьян, пишущих Войну и Мир. И не получил ни капли от того количества эндорфина, котрый обычно получаю, программируя на Common Lisp.\n\nЗавтра вчитаюсь внимательно в то что получилось, и буду этот код рефакторить с помощью нейронки.\n\n#lisp #ai #codeassistant",
+  "caption_entities": [
+    {
+      "offset": 117,
+      "length": 45,
+      "type": "url"
+    },
+    {
+      "offset": 515,
+      "length": 17,
+      "type": "code"
+    },
+    {
+      "offset": 870,
+      "length": 5,
+      "type": "hashtag"
+    },
+    {
+      "offset": 876,
+      "length": 3,
+      "type": "hashtag"
+    },
+    {
+      "offset": 880,
+      "length": 14,
+      "type": "hashtag"
+    }
+  ]
+}

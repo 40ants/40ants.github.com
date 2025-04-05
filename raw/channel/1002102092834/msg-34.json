@@ -1,0 +1,45 @@
+{
+  "message_id": 67,
+  "from": {
+    "id": 76226374,
+    "is_bot": false,
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt",
+    "username": "svetlyak40wt",
+    "language_code": "en",
+    "is_premium": true
+  },
+  "date": 1742998711,
+  "chat": {
+    "id": 76226374,
+    "type": "private",
+    "username": "svetlyak40wt",
+    "first_name": "Alexander ƛrtemenko",
+    "last_name": "svetlyak40wt"
+  },
+  "forward_origin": {
+    "type": "channel",
+    "date": 1742485609,
+    "chat": {
+      "id": -1002102092834,
+      "type": "channel",
+      "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+      "username": "the40ants"
+    },
+    "message_id": 34
+  },
+  "video_note": {
+    "file_id": "DQACAgIAAxkBAANDZ-QMt4bdQVKzxZQQXqjPSBnRqjQAAqptAALa-OBKUKZZInmm_ak2BA",
+    "file_unique_id": "AgADqm0AAtr44Eo",
+    "length": 384,
+    "duration": 22,
+    "thumbnail": {
+      "file_id": "AAMCAgADGQEAA0Nn5Ay3ht1BUrPFlBBeqM9IGdGqNAACqm0AAtr44EpQplkieab9qQEAB20AAzYE",
+      "file_unique_id": "AQADqm0AAtr44Epy",
+      "width": 320,
+      "height": 320,
+      "file_size": 12478
+    },
+    "file_size": 2908553
+  }
+}
