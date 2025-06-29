@@ -5,9 +5,11 @@ created-at: 2025-06-29
 format: md
 tg-chat-id: -1002102092834
 tg-message-id: 43
+edited: true
 ;;;;;
 
 
+<iframe width="720" height="405" src="https://rutube.ru/play/embed/bb528c40959039f37f7f53383ed8ac32/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 
 Привет, друзья! Сегодня хочу дать небольшой апдейт по тому, как продвигаются дела с MCP-фреймворком для того, чтобы можно было писать [MCP-сервера на Common Lisp](https://40ants.com/mcp/).
