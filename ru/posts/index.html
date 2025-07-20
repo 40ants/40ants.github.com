@@ -26,7 +26,23 @@
 
       gtag('config', 'G-FL71WXK73K');
     </script>
-      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 1</h1> <div class="row-fluid"> <h1><a href="/ru/posts/kak-prodvigayutsya-del-43/">Как продвигаются дела с MCP фреймфорком для Common Lisp</a></h1> <p class="date-posted">posted on 2025-06-29</p> <p><iframe width="720" height="405" src="https://rutube.ru/play/embed/bb528c40959039f37f7f53383ed8ac32/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 1</h1> <div class="row-fluid"> <h1><a href="/ru/posts/vse-vyhodnye-ya-provo-44/">Все выходные я провозился с созданием своего собственного Code Assistant. Очень интересно было разобраться в том, как вообще все это работает. К сожалению, статей именно про устройство кодовых ассистантов не так уж много.</a></h1> <p class="date-posted">posted on 2025-07-20</p> <p><video src="images/44.mp4"></video></p>
+
+<p>В основном попадаются восторженные статьи про то, как круто работает вайб-кодинг, как с его помощью написали первый Hello World и тому подобное говно. Но мне повезло найти одну очень интересную статью, где автор <a href="https://blog.sshh.io/p/how-cursor-ai-ide-works" >анализирует работу IDE Cursor</a> и устройство его промпта.</p>
+
+<p>Я начал писать своего кода-ассистента, ориентируясь на исходники проекта Aider, но посматриваю и на другие проекты с открытым кодом, типа RooCode, Cline и прочих.</p>
+
+<p>Сегодня случился замечательный момент — мой ассистент смог отредактировать файл. Он самостоятельно нашел место для правки, составил патч, наложил его с помощью инструментов и внес изменения. На демо прикрепленном к этому посту, видно, что сначала ассистент попытался найти упоминание функции по кодовой базе, затем прочитал часть найденного файла с помощью инструмента read_file, а затем сгенерировал и наложил на него патч.</p>
+
+<p>Я изучил, как устроено редактирование файлов в Aider и Cursor. Там правки происходят через вызовы к LLM — формируется небольшой патч в кастомном формате, где указаны старые и новые исходники, затем эти инструкции скармливаются более быстрой LLM, которая уже и меняет исходник.</p>
+
+<p>Я пошел другим путем — для редактирования использую CLI команду patch, научив LLM формировать правильный diff. Пока работает неидеально: иногда дифф получается некорректным, и команда патч ломается. Но если показать LLM ошибку, она делает следующую попытку с исправленным патчем. Обычно ко второй-третьей попытке всё получается.</p>
+
+<p>Я планирую дальше развивать код-ассистент. Теперь нужно добавить цикл проверки изменений через тестирование.</p>
+
+<p>Особенно интересно работать с таким проектом в Common Lisp — можно быстро экспериментировать: смотреть внутренний стейт, править функции, добавлять новые инструменты и сразу тестировать изменения. Такой режим работы очень удобен. Даже для интерфейса я пока использую CL REPL, но планирую добавить веб-интерфейс и может быть консольный, как у Aider. Пока, это площадка для экспериментов!</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/44" >Telegram канале</a>.</strong>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/kak-prodvigayutsya-del-43/">Как продвигаются дела с MCP фреймфорком для Common Lisp</a></h1> <p class="date-posted">posted on 2025-06-29</p> <p><iframe width="720" height="405" src="https://rutube.ru/play/embed/bb528c40959039f37f7f53383ed8ac32/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
 
 <p>Привет, друзья! Сегодня хочу дать небольшой апдейт по тому, как продвигаются дела с MCP-фреймворком для того, чтобы можно было писать <a href="https://40ants.com/mcp/" >MCP-сервера на Common Lisp</a>.</p>
 
@@ -195,19 +211,4 @@
 
 <p>Кому интересно, можете <a href="https://www.youtube.com/live/pdH6cHRzJtc" >посмотреть вебинар в записи</a> на YouTube.</p>
 <strong>Обсудить пост в <a href="https://t.me/c/2102092834/33" >Telegram канале</a>.</strong>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/ya-ochen-lyublyu-uchits-32/">Я очень люблю учиться. Каждый день нахожу что-то новое!</a></h1> <p class="date-posted">posted on 2025-03-14</p> <p><img src="images/32.jpg" alt="" /></p>
-
-<p>Чему научился на этой неделе?</p>
-
-<p>Посмотрел парочку уроков по SEO - понял как и зачем собирать слова для семантического ядра и как их потом кластеризовать.</p>
-
-<p>Узнал про такую базу как <a href="https://supabase.com/" >Supabase</a>. Это opensource аналог Airbase, но на базе PostgreSQL и со всеми плюшками реляционных БД + API над ним так что в базу можно ходить прямо из вебклиента или из мобильного приложения.
-На базе этой штуки сделан проект SQLNoir, про который я <a href="https://t.me/the40ants/30" >недавно писал</a> в канале.</p>
-
-<p>А ещё, на этой неделе начался <a href="https://zerocoder.ru/chatbot-developer?gcpc=4d3d5" >курс обучения разработке чатботов</a> от Zerocoder, но уроки первой недели не очень для меня интересны, потому что там дают базу тем, кто вообще не в курсе что такое боты, как они работают и прочее. Надеюсь, что дальше будет что-то поинтереснее, про AI, маркетинг телеграмм ботов, продвижение и тд. Буду держать вас в курсе и давать в канал еженедельные апдейты.</p>
-
-<p>Кстати, ещё в тему ботов и заказной разработки вообще, сегодня закочил слушать аудио-книгу <a href="https://books.yandex.ru/audiobooks/XS1AOSSa" >Отчаянные аккаунт-менеджеры</a> Бориса Шпрута. Она не про IT, но про взаимодействие с клиентами. Почему я вдруг начал изучать эту тему? Да потому что для того, чтобы продвигать Common Lisp в массы, надо создавать продукты и рабочие места. А для того, чтобы создавать рабочие места, нужно основать бригаду, гильдию, компанию наконец, которая бы занималась созданием софта на CL. А для кампании важны заказчики. Книга как раз про то, как общаться с заказчиками чтобы сотрудничество были взаимовыгодным. Книга классная, рекомендую!</p>
-
-<p>А у вас чего новенького? Давайте обсудим в комментариях!</p>
-<strong>Обсудить пост в <a href="https://t.me/c/2102092834/32" >Telegram канале</a>.</strong>
   </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-2/">Previous</a></li>  </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
