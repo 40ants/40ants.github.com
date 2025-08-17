@@ -1,0 +1,93 @@
+{
+  "message_id": 45,
+  "sender_chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "date": 1755454558,
+  "chat": {
+    "id": -1002102092834,
+    "type": "channel",
+    "title": "40 Ants – новости про проекты, IT, программирование и много ❤️ к Common Lisp",
+    "username": "the40ants"
+  },
+  "video": {
+    "file_id": "BAACAgIAAx0CfUtkIgADLWiiHF4DvrN7j1zpNZM2QjTrr7TNAAJOggAC9L4QSbeCiTTHwej0NgQ",
+    "file_unique_id": "AgADToIAAvS-EEk",
+    "width": 476,
+    "height": 542,
+    "duration": 32,
+    "thumbnail": {
+      "file_id": "AAMCAgADHQJ9S2QiAAMtaKIcXgO-s3uPXOk1kzZCNOuvtM0AAk6CAAL0vhBJt4KJNMfB6PQBAAdtAAM2BA",
+      "file_unique_id": "AQADToIAAvS-EEly",
+      "width": 281,
+      "height": 320,
+      "file_size": 17239
+    },
+    "file_name": "fluent-demo-full.mp4",
+    "mime_type": "video/mp4",
+    "file_size": 404481
+  },
+  "caption": "Современный i18n с Fluent\n\nПериодически я просматриваю новые библиотеки, которые добавляются в репозиторий https://ultralisp.org. Недавно мне попалась Common Lisp библиотека для интернационализации программ на Common Lisp. Она называется Fluent.\n\nЯ начал разбираться, как она работает, и оказалось, что Fluent — это стандарт, подход к интернационализации, предложенный несколько лет назад компанией Mozilla. С тех пор для этого формата переводов создали библиотеки для разных языков программирования. Теперь такая библиотека появилась и для Common Lisp.\n\nЧем Fluent отличается от давно известного всем gettext и ему подобных? Формат Fluent предлагает более гибкий подход к формированию переводов. Под каждый язык и его грамматические особенности можно сделать свой шаблон. Fluent чем-то напоминает язык шаблонов Mustache.\n\nДля примера покажу, как это выглядит на Common Lisp. Сначала нужно создать директорию для хранения переводов. Для примера сделаем поддержку английского и русского языков.\n\nДля английского перевода создадим файл /tmp/i18n/en-US/app.ftl с таким содержимым:\n\n\napples-and-leafs = { $apple-count ->\n    [one] {$apple-count} apple\n   *[many] {$apple-count} apples\n} and { $leaf-count ->\n    [one] {$leaf-count} leaf.\n   *[many] {$leaf-count} leafs.\n}\n\n\nАналогичный файл /tmp/i18n/ru-RU/app.ftl создадим для русского языка:\n\n\napples-and-leafs = { $apple-count ->\n    [one] {$apple-count} яблоко\n    [few] {$apple-count} яблока\n   *[many] {$apple-count} яблок\n} и { $leaf-count ->\n    [one] {$leaf-count} лист.\n    [few] {$leaf-count} листа.\n   *[many] {$leaf-count} листов.\n}\n\n\nОбратите внимание, что в русском языке три формы множественного числа, а в английском только две. Благодаря гибкости формата Fluent, можно описать в файле целое предложение, даже если оно зависит от нескольких чисел.\n\nКогда директория с переводами готова, мы можем загрузить эти переводы и получить текст на нужном языке. В Common Lisp это выглядит так:\n\n\nCL-USER> (let ((ctx (fluent:fluent (fluent:read-all-localisations #P\"/tmp/i18n/\")\n                                   :locale :ru-ru)))\n           (fluent:resolve ctx \"apples-and-leafs\" :apple-count 21 :leaf-count 33))\n\"21 яблоко и 33 листа.\"\n\nCL-USER> (let ((ctx (fluent:fluent (fluent:read-all-localisations #P\"/tmp/i18n/\")\n                                   :locale :en-us)))\n           (fluent:resolve ctx \"apples-and-leafs\" :apple-count 21 :leaf-count 33))\n\"21 apples and 33 leafs.\"\n\n\nПо-моему, довольно гибкое решение.\n\nЕсли мне когда-нибудь понадобится делать приложение с переводами, я обязательно буду использовать Fluent. А был ли у вас опыт создания мультиязычных приложений? Если да, расскажите комментариях, какой подход к хранению переводов использовали?\n\n#i18n #commonlisp #poftheday",
+  "caption_entities": [
+    {
+      "offset": 107,
+      "length": 21,
+      "type": "url"
+    },
+    {
+      "offset": 238,
+      "length": 6,
+      "type": "text_link",
+      "url": "https://github.com/fosskers/fluent"
+    },
+    {
+      "offset": 303,
+      "length": 6,
+      "type": "text_link",
+      "url": "https://projectfluent.org/"
+    },
+    {
+      "offset": 1034,
+      "length": 23,
+      "type": "code"
+    },
+    {
+      "offset": 1079,
+      "length": 189,
+      "type": "pre"
+    },
+    {
+      "offset": 1287,
+      "length": 23,
+      "type": "code"
+    },
+    {
+      "offset": 1341,
+      "length": 251,
+      "type": "pre"
+    },
+    {
+      "offset": 1949,
+      "length": 488,
+      "type": "pre"
+    },
+    {
+      "offset": 2719,
+      "length": 5,
+      "type": "hashtag"
+    },
+    {
+      "offset": 2725,
+      "length": 11,
+      "type": "hashtag"
+    },
+    {
+      "offset": 2737,
+      "length": 10,
+      "type": "hashtag"
+    }
+  ]
+}
