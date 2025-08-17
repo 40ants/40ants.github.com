@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang=""> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>40Ants - Posts with tag &quot;poftheday&quot;</title>  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" href="/favicon.ico" type="image/x-icon" /> <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" /> <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" /> <link rel="manifest" href="/manifest.json" /> <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" /> <link href="/css/custom.css" rel="stylesheet" media="screen" /> <link rel="alternate" href="/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/posts/atom.xml" type="application/atom+xml" /> <link rel="alternate" href="/ru/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/ru/posts/atom.xml" type="application/atom+xml" /> 
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(42462884, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/42462884" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL71WXK73K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FL71WXK73K');
+    </script>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Posts with tag &quot;poftheday&quot;</h1> <div class="row-fluid"> <h1><a href="/ru/posts/sovremennyj-i18n-s-f-45/">Современный i18n с Fluent</a></h1> <p class="date-posted">posted on 2025-08-17</p> <p><video src="../../posts/images/45.mp4"></video></p>
+
+<p>Периодически я просматриваю новые библиотеки, которые добавляются в репозиторий <a href="https://ultralisp.org" >https://ultralisp.org</a>. Недавно мне попалась Common Lisp библиотека для интернационализации программ на Common Lisp. Она называется <a href="https://github.com/fosskers/fluent" >Fluent</a>.</p>
+
+<p>Я начал разбираться, как она работает, и оказалось, что <a href="https://projectfluent.org/" >Fluent</a> — это стандарт, подход к интернационализации, предложенный несколько лет назад компанией Mozilla. С тех пор для этого формата переводов создали библиотеки для разных языков программирования. Теперь такая библиотека появилась и для Common Lisp.</p>
+
+<p>Чем Fluent отличается от давно известного всем gettext и ему подобных? Формат Fluent предлагает более гибкий подход к формированию переводов. Под каждый язык и его грамматические особенности можно сделать свой шаблон. Fluent чем-то напоминает язык шаблонов Mustache.</p>
+
+<p>Для примера покажу, как это выглядит на Common Lisp. Сначала нужно создать директорию для хранения переводов. Для примера сделаем поддержку английского и русского языков.</p>
+
+<p>Для английского перевода создадим файл <code>/tmp/i18n/en-US/app.ftl</code> с таким содержимым:</p>
+
+<pre><code>apples-and-leafs = { $apple-count -&gt;
+    [one] {$apple-count} apple
+   *[many] {$apple-count} apples
+} and { $leaf-count -&gt;
+    [one] {$leaf-count} leaf.
+   *[many] {$leaf-count} leafs.
+}
+</code></pre>
+
+<p>Аналогичный файл <code>/tmp/i18n/ru-RU/app.ftl</code> создадим для русского языка:</p>
+
+<pre><code>apples-and-leafs = { $apple-count -&gt;
+    [one] {$apple-count} яблоко
+    [few] {$apple-count} яблока
+   *[many] {$apple-count} яблок
+} и { $leaf-count -&gt;
+    [one] {$leaf-count} лист.
+    [few] {$leaf-count} листа.
+   *[many] {$leaf-count} листов.
+}
+</code></pre>
+
+<p>Обратите внимание, что в русском языке три формы множественного числа, а в английском только две. Благодаря гибкости формата Fluent, можно описать в файле целое предложение, даже если оно зависит от нескольких чисел.</p>
+
+<p>Когда директория с переводами готова, мы можем загрузить эти переводы и получить текст на нужном языке. В Common Lisp это выглядит так:</p>
+
+<pre><code>CL-USER&gt; (let ((ctx (fluent:fluent (fluent:read-all-localisations #P"/tmp/i18n/")
+                                   :locale :ru-ru)))
+           (fluent:resolve ctx "apples-and-leafs" :apple-count 21 :leaf-count 33))
+"21 яблоко и 33 листа."
+
+CL-USER&gt; (let ((ctx (fluent:fluent (fluent:read-all-localisations #P"/tmp/i18n/")
+                                   :locale :en-us)))
+           (fluent:resolve ctx "apples-and-leafs" :apple-count 21 :leaf-count 33))
+"21 apples and 33 leafs."
+</code></pre>
+
+<p>По-моему, довольно гибкое решение.</p>
+
+<p>Если мне когда-нибудь понадобится делать приложение с переводами, я обязательно буду использовать Fluent. А был ли у вас опыт создания мультиязычных приложений? Если да, расскажите комментариях, какой подход к хранению переводов использовали?</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/45" >Telegram канале</a>.</strong>
+  </div> <div id="relative-nav"> <ul class="pager">   </ul> </div> <div class="row-fluid"> <p>This blog covers <a href="/ru/tag/learning/">learning</a>, <a href="/ru/tag/ai/">ai</a>, <a href="/ru/tag/automation/">automation</a>, <a href="/ru/tag/voice/">voice</a>, <a href="/ru/tag/holism/">holism</a>, <a href="/ru/tag/ideas/">ideas</a>, <a href="/ru/tag/zerocoder/">zerocoder</a>, <a href="/ru/tag/python/">python</a>, <a href="/ru/tag/codeassistant/">codeassistant</a>, <a href="/ru/tag/aider/">aider</a>, <a href="/ru/tag/cursor/">cursor</a>, <a href="/ru/tag/llm/">llm</a>, <a href="/ru/tag/project/">project</a>, <a href="/ru/tag/i18n/">i18n</a>, <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/poftheday/">poftheday</a>, <a href="/ru/tag/projects/">projects</a>, <a href="/ru/tag/closed/">closed</a>, <a href="/ru/tag/tips/">tips</a>, <a href="/ru/tag/seo/">seo</a>, <a href="/ru/tag/telegram/">telegram</a>, <a href="/ru/tag/bot/">bot</a>, <a href="/ru/tag/прототип/">прототип</a>, <a href="/ru/tag/smarthome/">smarthome</a>, <a href="/ru/tag/yandexcloud/">yandexcloud</a>, <a href="/ru/tag/logging/">logging</a>, <a href="/ru/tag/software/">software</a>, <a href="/ru/tag/thoughts/">thoughts</a>, <a href="/ru/tag/salebot/">salebot</a>, <a href="/ru/tag/bots/">bots</a>, <a href="/ru/tag/notes/">notes</a>, <a href="/ru/tag/emacs/">emacs</a>, <a href="/ru/tag/lisp/">lisp</a>, <a href="/ru/tag/infrastructure/">infrastructure</a>, <a href="/ru/tag/news/">news</a>, <a href="/ru/tag/lispworks/">lispworks</a>, <a href="/ru/tag/mcp/">mcp</a>, <a href="/ru/tag/hackathon/">hackathon</a>, <a href="/ru/tag/programming/">programming</a>, <a href="/ru/tag/sql/">sql</a>, <a href="/ru/tag/yandex/">yandex</a>, <a href="/ru/tag/cloud/">cloud</a> </p> </div>  </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
