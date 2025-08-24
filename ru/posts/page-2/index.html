@@ -26,7 +26,21 @@
 
       gtag('config', 'G-FL71WXK73K');
     </script>
-      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 2</h1> <div class="row-fluid"> <h1><a href="/ru/posts/chem-mozhet-byt-polez-33/">Чем может быть полезен Yandex Workflow?</a></h1> <p class="date-posted">posted on 2025-03-18</p> <p><img src="../images/33.jpg" alt="" /></p>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 2</h1> <div class="row-fluid"> <h1><a href="/ru/posts/neskolko-slov-o-zet-35/">Несколько слов о Zettelkasten и том как я веду заметки</a></h1> <p class="date-posted">posted on 2025-03-24</p> <p><img src="../images/35.jpg" alt="" /></p>
+
+<p>Сегодня один из коллег во внутренней соцсети упомянул зеттелькастен и описал то свой способ ведения заметок в Sublime Text. У него довольно системный подход к тому, как заметки должны быть структурированы.</p>
+
+<p>Когда-то я тоже пытался структурировать заметки, но в итоге перешел на “кучу” – заметки без структуры, с одними лишь заголовками и связями между ними.</p>
+
+<p>При этом некоторые заметки – просто на какую-то определенную тему, а некоторые все же имеют “структуру” и относятся к целям и планам по методике <a href="https://12-weeks.ru/" >12 Недельного Года</a>. Есть цели на год и планы на неделю. План на неделю – в одном файле где есть подразделы на каждый день. И в этих днях уже идет работа с тикетами и тд.</p>
+
+<p>Касаемо отображения связей между заметками в виде графа – не вижу в этом большого смысла. Обычно достаточно возможности посмотреть списки входящих/исходящих ссылок. Важнее хороший поиск по заметкам и удобный способ создания кросс-ссылок.</p>
+
+<p>Всё это я конечно же веду в Emacs и его замечательном режиме Org Mode. Из-за этого плагина не могу теперь слезть с Emacs на <a href="https://lem-project.github.io/" >LEM</a>.</p>
+
+<p>P.S. – Кстати и этот пост изначально был написан как одна из заметок в моей &quot;куче&quot; :)</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/35" >Telegram канале</a>.</strong>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/chem-mozhet-byt-polez-33/">Чем может быть полезен Yandex Workflow?</a></h1> <p class="date-posted">posted on 2025-03-18</p> <p><img src="../images/33.jpg" alt="" /></p>
 
 <p>Как рассказывал недавно, в последнее время смотрю разные вебинары от университета Зерокодер. И вот <a href="https://zerocoder.ru/prompt-engineer-with-ai-course?gcpc=4d3d5" >в одном из них</a> показывали как бот работает в связке нескольких конструкторов:</p>
 
@@ -194,51 +208,4 @@
 
 <p>Но что из этого вышло, вы узнаете в следующем посте :)</p>
 <strong>Обсудить пост в <a href="https://t.me/c/2102092834/24" >Telegram канале</a>.</strong>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/shpargalka-po-ispolz-22/">Шпаргалка по использованию Roswell и Qlot в Common Lisp проектах</a></h1> <p class="date-posted">posted on 2025-02-16</p> <p><img src="../images/22.jpg" alt="" /></p>
-
-<p>Вчера в <a href="https://t.me/lisp_forever/48501" >телеграм-чате LispForever</a>, посвященном Сommon Lisp просили подсказать, какой подход лучше использовать для запуска лиспа. Мнения разделились. Кто-то рекомендовал использовать <a href="https://github.com/roswell/roswell" >Roswell</a>, кто-то наоборот - был против. Я же Roswell люблю по той причине, что он позволяет легко и просто устанавливать разные реализации Common Lisp и переключаться между ними. Это особенно удобно, когда у тебя куча проектов, и каждый может использовать свою версию CL.</p>
-
-<p>По той же причине, кстати, я использую и <a href="https://github.com/fukamachi/qlot" >Qlot</a>. Эта утилитка позволяет создавать виртуальное окружение для каждого проекта, и не засорять пакетами систему. Кроме того, Qlot фиксирует версии библиотек в репозитории проекта, делая сборки воспроизводимыми.</p>
-
-<p>Итак, вот какими командами я обычно пользуюсь в Roswell:</p>
-
-<pre><code># Установка лиспа
-ros install sbcl-bin
-ros install sbcl-bin/2.5.1
-# Запуск Emacs или REPL
-ros emacs
-ros run
-# Создание command-line утилиты и сборка ее в бинарник
-ros init some-script
-vim some-script.ros
-ros build some-script.ros
-./some-script
-</code></pre>
-
-<p>Ещё имеет смысл в конфиге подкрутить ограничение памяти, потому что по умолчанию оно всего 1G:</p>
-
-<pre><code>ros config set dynamic-space-size 4gb
-</code></pre>
-
-<p>И да. Обычно я использую не roswell сам по себе, а вместе с Qlot. Qlot позволяет ставить либы не глобально, а в директорию проекта. Как virtualenv в Python или node_modules у npm.</p>
-
-<p>Так, у каждого проекта свои зависимости, а поработав с каким-то можно без проблем снести директорию .qlot.</p>
-
-<p>Краткая инструкция по Qlot:</p>
-
-<pre><code># Подключаем cutting-edge репозиторий пакетов
-echo 'dist ultralisp http://dist.ultralisp.org/' &gt;&gt; qlfile
-# Инициализируем:
-qlot install
-# Далее запускаем Емакс и хакаем лисп код
-CL_SOURCE_REGISTRY=`pwd`/ qlot exec ros emacs
-CL_SOURCE_REGISTRY=`pwd`/ qlot exec ros &lt;любые другие команды, такие как ros build&gt;
-
-# Когда надо обновить зависимости (qlot фиксирует версии в `qlfile.lock`), делаем:
-
-qlot update
-</code></pre>
-
-<p>Вот и всё, друзья!</p>
-<strong>Обсудить пост в <a href="https://t.me/c/2102092834/22" >Telegram канале</a>.</strong>
   </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-3/">Previous</a></li>  </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>

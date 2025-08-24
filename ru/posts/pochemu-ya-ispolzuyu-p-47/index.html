@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang=""> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>40Ants - Почему я использую package-inferred ASDF стиль в своих библиотеках</title>  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" href="/favicon.ico" type="image/x-icon" /> <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" /> <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" /> <link rel="manifest" href="/manifest.json" /> <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" /> <link href="/css/custom.css" rel="stylesheet" media="screen" /> <link rel="alternate" href="/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/posts/atom.xml" type="application/atom+xml" /> <link rel="alternate" href="/ru/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/ru/posts/atom.xml" type="application/atom+xml" /> 
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(42462884, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/42462884" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL71WXK73K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FL71WXK73K');
+    </script>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <div class="row-fluid">
+<h1 class="page-header">Почему я использую package-inferred ASDF стиль в своих библиотеках</h1>
+ <p> Tagged as <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/programming/">programming</a> </p> <p class="date-posted"> Written on 2025-08-24 </p> <p>C package-inferred ASDF, тебе не надо задумываться о том, какие зависимости есть между твоими файлами. Точнее задумываеться конечно надо, но исключается ситуация, когда ты прописал их в неправильном порядке.</p>
+
+<p>Например, если ты добавляешь в один из файлов использование символа, который определен в другом файле как функция, то нужно поменять местами эти модули в описании ASDF системы. </p>
+
+<p>Тут важно не забыть сделать это вручную, потому что иначе компилятор не сможет оптимизировать код. Ведь он не будет знать, что этому символу соответствует функция.</p>
+
+<p>В случае же с в package-inferred system, все зависимости между компонентами системы прописываются явно в каждом файле. За счёт этого легко отследить какие символы из какого файла проимпортированы, а загрузчик библиотеки загружает файлы в правильном порядке согласно импортам в <code>DEFPACKAGE</code>.</p>
+
+<p>Но даже в случае с package-inferred system зависимости надо прописывать в каждый файл и это можно забыть сдеалать. В таком случае, при загрузке библиотеки с нуля может возникнуть ошибка в духе &quot;такой-то пакет не найден&quot;. Чтобы предотвратить случаи, когда для какого-то из используемых символов я забыл прописать <code>IMPORT-FROM</code>, я сделал <a href="https://40ants.com/linter/" >линтер</a>, который проверяет (в том числе <a href="https://40ants.com/ci/#x-2840ANTS-CI-DOCS-2FINDEX-3A-3A-40LINTER-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29" >и в PR</a>), что:</p>
+
+<p>• Ни одна из зависимостей не забыта
+• Нет неиспользуемых импортов</p>
+
+<p>Это позволяет поддерживать ASDF систему в здоровом состоянии. </p>
+
+<p>Конечно, для небольшой системы, состоящей из одного файла, использование старого способа описания ASDF системы не вызывает проблем. Однако со временем системы склонны разрастаться.</p>
+
+<p>Когда система становится большой, рефакторить ее и переделывать из old-school ASDF систем в package-inferred system может быть довольно проблематично.</p>
+
+<p>Также, то что package-inferred ASDF система требует явного описания и указания пространства имён, в которое помещаются символы. Это помогает пользователям библиотек лучше понимать, к какой области относится определённый символ.</p>
+
+<p>Конечно, то же самое можно сделать, определив несколько пакетов и описав их в системе в старом стиле. Однако это потребует дополнительных усилий, так как нет чётких правил о том, в каком пакете должны находиться символы из определённого файла.</p>
+
+<p>Как я вижу, тут коммон-лисперы разделяются на два лагеря. Одни - любят и используют package-inferred, другие - ненавидят. А к какому лагерю относишься ты?</p>
+<strong>Обсудить пост в <a href="https://t.me/c/2102092834/47" >Telegram канале</a>.</strong>
+ <ul class="pager"> <li class="previous"><a href="/ru/posts/pochemu-ya-lomayu-obrat-41/">&larr; Previous</a></li>
+<li class="next"><a href="/ru/posts/pochemu-gc-sbcl-mozhet-14/">Next &rarr;</a></li>
+</ul> </div>
+ </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
