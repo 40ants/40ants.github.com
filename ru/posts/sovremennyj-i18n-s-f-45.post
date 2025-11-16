@@ -8,7 +8,7 @@ tg-message-id: 45
 ;;;;;
 
 
-<video src="images/45.mp4"></video>
+<video src="images/45.mp4"  controls style="width: 100%"></video>
 
 Периодически я просматриваю новые библиотеки, которые добавляются в репозиторий [https://ultralisp.org](https://ultralisp.org). Недавно мне попалась Common Lisp библиотека для интернационализации программ на Common Lisp. Она называется [Fluent](https://github.com/fosskers/fluent).
 

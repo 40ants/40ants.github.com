@@ -8,7 +8,7 @@ tg-message-id: 17
 ;;;;;
 
 
-<video src="images/17.mp4"></video>
+<video src="images/17.mp4" controls style="width: 100%"></video>
 
 Maxima скомпилировали для запуска в браузере!
 

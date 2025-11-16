@@ -8,7 +8,7 @@ tg-message-id: 36
 ;;;;;
 
 
-<video src="images/36.mp4"></video>
+<video src="images/36.mp4" controls style="width: 100%"></video>
 
 Сейчас за час, не написав ни строчки кода сделал такую библиотеку:
 
