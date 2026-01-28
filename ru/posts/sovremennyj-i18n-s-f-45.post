@@ -1,0 +1,76 @@
+;;;;;
+title: Современный i18n с Fluent
+tags: i18n, commonlisp, poftheday
+created-at: 2025-08-17
+format: md
+tg-chat-id: -1002102092834
+tg-message-id: 45
+;;;;;
+
+
+<video src="images/45.mp4"  controls style="width: 100%"></video>
+
+Периодически я просматриваю новые библиотеки, которые добавляются в репозиторий [https://ultralisp.org](https://ultralisp.org). Недавно мне попалась Common Lisp библиотека для интернационализации программ на Common Lisp. Она называется [Fluent](https://github.com/fosskers/fluent).
+
+Я начал разбираться, как она работает, и оказалось, что [Fluent](https://projectfluent.org/) — это стандарт, подход к интернационализации, предложенный несколько лет назад компанией Mozilla. С тех пор для этого формата переводов создали библиотеки для разных языков программирования. Теперь такая библиотека появилась и для Common Lisp.
+
+Чем Fluent отличается от давно известного всем gettext и ему подобных? Формат Fluent предлагает более гибкий подход к формированию переводов. Под каждый язык и его грамматические особенности можно сделать свой шаблон. Fluent чем-то напоминает язык шаблонов Mustache.
+
+Для примера покажу, как это выглядит на Common Lisp. Сначала нужно создать директорию для хранения переводов. Для примера сделаем поддержку английского и русского языков.
+
+Для английского перевода создадим файл `/tmp/i18n/en-US/app.ftl` с таким содержимым:
+
+```
+apples-and-leafs = { $apple-count ->
+    [one] {$apple-count} apple
+   *[many] {$apple-count} apples
+} and { $leaf-count ->
+    [one] {$leaf-count} leaf.
+   *[many] {$leaf-count} leafs.
+}
+
+```
+
+
+Аналогичный файл `/tmp/i18n/ru-RU/app.ftl` создадим для русского языка:
+
+```
+apples-and-leafs = { $apple-count ->
+    [one] {$apple-count} яблоко
+    [few] {$apple-count} яблока
+   *[many] {$apple-count} яблок
+} и { $leaf-count ->
+    [one] {$leaf-count} лист.
+    [few] {$leaf-count} листа.
+   *[many] {$leaf-count} листов.
+}
+
+```
+
+
+Обратите внимание, что в русском языке три формы множественного числа, а в английском только две. Благодаря гибкости формата Fluent, можно описать в файле целое предложение, даже если оно зависит от нескольких чисел.
+
+Когда директория с переводами готова, мы можем загрузить эти переводы и получить текст на нужном языке. В Common Lisp это выглядит так:
+
+```
+CL-USER> (let ((ctx (fluent:fluent (fluent:read-all-localisations #P"/tmp/i18n/")
+                                   :locale :ru-ru)))
+           (fluent:resolve ctx "apples-and-leafs" :apple-count 21 :leaf-count 33))
+"21 яблоко и 33 листа."
+
+CL-USER> (let ((ctx (fluent:fluent (fluent:read-all-localisations #P"/tmp/i18n/")
+                                   :locale :en-us)))
+           (fluent:resolve ctx "apples-and-leafs" :apple-count 21 :leaf-count 33))
+"21 apples and 33 leafs."
+
+```
+
+
+По-моему, довольно гибкое решение.
+
+Если мне когда-нибудь понадобится делать приложение с переводами, я обязательно буду использовать Fluent. А был ли у вас опыт создания мультиязычных приложений? Если да, расскажите комментариях, какой подход к хранению переводов использовали?
+
+
+
+
+**Обсудить пост в [Telegram канале](https://t.me/c/2102092834/45).**
