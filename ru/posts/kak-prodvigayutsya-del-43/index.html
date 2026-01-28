@@ -28,13 +28,13 @@
     </script>
       </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <div class="row-fluid">
 <h1 class="page-header">Как продвигаются дела с MCP фреймфорком для Common Lisp</h1>
- <p> Tagged as <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/mcp/">mcp</a>, <a href="/ru/tag/programming/">programming</a> </p> <p class="date-posted"> Written on 2025-06-29 </p> <p><iframe width="720" height="405" src="https://rutube.ru/play/embed/bb528c40959039f37f7f53383ed8ac32/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
+ <p> Tagged as <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/mcp/">mcp</a>, <a href="/ru/tag/programming/">programming</a> </p> <p class="date-posted"> Written on 2025-06-29 </p> <p><img src="../images/43.jpeg" alt="" /></p>
 
 <p>Привет, друзья! Сегодня хочу дать небольшой апдейт по тому, как продвигаются дела с MCP-фреймворком для того, чтобы можно было писать <a href="https://40ants.com/mcp/" >MCP-сервера на Common Lisp</a>.</p>
 
 <p>На этих выходных я закончил реализацию протокола с Streamable-HTTP. Для чего это нужно было? Почему нельзя было обойтись просто поддержкой STDIN/STDOUT протокола? Streamable-HTTP позволяет создавать MCP-сервера, к которым смогут подключаться клиенты удаленно. То есть этот MCP-сервер может быть развернут где-то в облаке.</p>
 
-<p>Одна из моих ближайших целей - сделать MCP-сервер для сайта <a href="https://ultralisp.org" >https://ultralisp.org</a>. Идея пока такая, что Ultralisp будет предоставлять MCP-сервер для поиска Common Lisp библиотек, а также для поиска функций, макросов и прочего, что внутри этих библиотек есть. </p>
+<p>Одна из моих ближайших целей - сделать MCP-сервер для сайта <a href="https://ultralisp.org." >https://ultralisp.org.</a> Идея пока такая, что Ultralisp будет предоставлять MCP-сервер для поиска Common Lisp библиотек, а также для поиска функций, макросов и прочего, что внутри этих библиотек есть. </p>
 
 <p>То есть этот MCP-сервер будет давать код-ассистенту доступ к док-стрингам всех Lisp библиотек. И тогда код-ассистент сможет находить нужные ему библиотеки и функции внутри этих библиотек, даже если эти библиотеки еще не установлены в его окружении. И далее с помощью других инструментов код-ассистент сможет эти библиотеки поставить и воспользоваться теми функциями, что он нашел.</p>
 
@@ -45,7 +45,8 @@
 <p>В видео, которое закреплено в этом посте, я как раз показываю, для чего используются такие пуши с сервера. Там демонстрируется, как при изменении инструментов внутри Common Lisp образа уведомления автоматически доставляются в IDE, и оно мгновенно узнает о том, что поменялось описание инструмента или, например, добавился новый инструмент.</p>
 
 <p>Выглядит все это довольно круто, теперь можно с помощью моего фреймворка интерактивно разрабатывать MCP-сервера и тут же их тестировать в IDE.</p>
-<strong>Обсудить пост в <a href="https://t.me/c/2102092834/43" >Telegram канале</a>.</strong>
+
+<h1>commonlisp #mcp #programming</h1>
  <ul class="pager"> <li class="previous"><a href="/ru/posts/kak-prohodil-polufin-55/">&larr; Previous</a></li>
 <li class="next"><a href="/ru/posts/kak-nejroseti-stroit-24/">Next &rarr;</a></li>
 </ul> </div>
