@@ -8,8 +8,8 @@ tg-message-id: 17
 tg-backlink: https://t.me/the40ants/17
 ;;;;;
 
-![](images/17.jpeg)
 
+<video src="images/17.mp4" controls style="width: 100%"></video>
 
 [Maxima](https://maxima.sourceforge.io/) это программа для работы с математическими выражениями. Примечательно то, что эта система написана на Common Lisp.
 
