@@ -64,10 +64,10 @@ tg-backlink: https://t.me/the40ants/14
 
 ```
 
-#<weak pointer: (#<ACTOR path: /user/actor-365, cell: #<ACTOR actor-365, running: NIL, state: NIL, message-box: #<MESSAGE-BOX/BT mesgb-366, processed messages: 8000001, max-queue-size: 0, queue: #<QUEUE-UNBOUNDED {70050E0113}>>>>
                     NIL NIL)>
 
 ```
 
 Далее я попытался выяснить а не держит ли кто ссылки на эти объекты. Для этого в SBCL есть функция поиска корней:
+
 

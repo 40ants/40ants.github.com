@@ -21,5 +21,5 @@ tg-backlink: https://t.me/the40ants/17
 
 Что в этой истории примечательного? То что компиляция в [WebAssembly](https://ru.wikipedia.org/wiki/WebAssembly) расширяет возможности использования Common Lisp. Я пока не погружался в детали того как это работает, но судя по тому, что в данном проекте использовался ECL (Embeddable Common Lisp), могу предположить, что Maxima транслировали в C, а затем уже собрали в WebAssembly.
 
-#commonlisp #news
+
 
