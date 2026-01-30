@@ -8,8 +8,8 @@ tg-message-id: 50
 tg-backlink: https://t.me/the40ants/50
 ;;;;;
 
+![](images/50.jpeg)
 
-<video src="images/50.mp4" controls style="width: 100%"></video>
 
 Как я писал в [предыдущей заметке](https://40ants.com/ru/posts/pervyj-etap-hakatona-49/), первая моя попытка провести робота через две комнаты из первого задания хакатона МТС True Tech была неудачной. Робот ехал медленно и сбивался с пути. Но в какой-то момент один из участников подсказал мне в чате, что нужно действовать иначе.
 
@@ -66,5 +66,5 @@ tg-backlink: https://t.me/the40ants/50
 - [Часть 3](https://40ants.com/ru/posts/begushij-v-labirinte-51/)
 - [Часть 4](https://40ants.com/ru/posts/kak-prohodil-polufin-55/)
 
-
+#hackathon #mtstruetech #commonlisp #robotics
 

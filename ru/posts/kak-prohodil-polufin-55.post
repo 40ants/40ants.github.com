@@ -8,8 +8,8 @@ tg-message-id: 55
 tg-backlink: https://t.me/the40ants/55
 ;;;;;
 
+![](images/55.jpeg)
 
-<video src="images/55.mp4" controls style="width: 100%"></video>
 
 Итак, рассказываю, как проходил полуфинал MTS TrueTech в 2025 году. Полуфинал заключался в том, что нам нужно было написать софт, который бы управлял реальным роботом так, чтобы робот мог пройти лабиринт из одного угла в противоположный. При этом структуру лабиринта, по которому будут запускать робота, мы не знали.
 
@@ -46,5 +46,5 @@ tg-backlink: https://t.me/the40ants/55
 - [Часть 3](https://40ants.com/ru/posts/begushij-v-labirinte-51/)
 - Часть 4 (вы здесь)
 
-
+#hackathon #mtstruetech #commonlisp #robotics
 
