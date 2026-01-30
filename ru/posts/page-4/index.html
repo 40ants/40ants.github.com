@@ -35,8 +35,6 @@
 <p>Есть только одна проблема - если в проекте больше месяца нет коммитов, GitHub автоматически отключает workflow и тесты перестают запускаться. И даже после того, как в проекте появляется PR, надо идти и вручную включать workflow. Это бесит.</p>
 
 <p>И вот я подумал, было бы классно сделать сервис, который бы автоматически включал отключившиеся workflow. Как вам такая идея?</p>
-
-<h1>ideas</h1>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/krasota-dlya-lispwork-18/">Красота для LispWorks</a></h1> <p class="date-posted">posted on 2025-01-31</p> <p><img src="../images/18.jpeg" alt="" /></p>
 
 <p>Когда я впервые увидел LispWorks IDE, она показалась мне довольно непривычной и допотопной что ли. Там нет многих привычных вещей из Emacs. Но оказывается, если приложить усилия, то можно сделать из этого IDE конфетку. Но вероятно надо быть прямо очень мотивированным к тому, чтобы писать код именно в интерфейсе LispWorks, а не подключившись к нему из Emacs.</p>
@@ -46,8 +44,6 @@
 <p>Я добавил этот проект в &quot;<a href="https://ultralisp.org/dists/lispworks" >lispworks</a>&quot; дист на Ultralisp.org и теперь расширения можно установить легко и просто с помощью Quicklisp.</p>
 
 <p>Приятно, когда люди вкладывают душу в подобные проекты.</p>
-
-<h1>commonlisp #lispworks #news</h1>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/maxima-skompiliroval-17/">Maxima скомпилировали для запуска в браузере!</a></h1> <p class="date-posted">posted on 2025-01-29</p> <p><img src="../images/17.jpeg" alt="" /></p>
 
 <p><a href="https://maxima.sourceforge.io/" >Maxima</a> это программа для работы с математическими выражениями. Примечательно то, что эта система написана на Common Lisp.</p>
@@ -59,8 +55,6 @@
 <p><a href="http://maxima-on-wasm.pages.dev/" >http://maxima-on-wasm.pages.dev/</a></p>
 
 <p>Что в этой истории примечательного? То что компиляция в <a href="https://ru.wikipedia.org/wiki/WebAssembly" >WebAssembly</a> расширяет возможности использования Common Lisp. Я пока не погружался в детали того как это работает, но судя по тому, что в данном проекте использовался ECL (Embeddable Common Lisp), могу предположить, что Maxima транслировали в C, а затем уже собрали в WebAssembly.</p>
-
-<h1>commonlisp #news</h1>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/prototip-static-site-16/">Прототип Static Site Bot</a></h1> <p class="date-posted">posted on 2025-01-28</p> <p><img src="../images/16.jpeg" alt="" /></p>
 
 <p>Возможно некоторые из вас помнят, как почти год назад я писал про идею сервиса, который умеет транслировать контент из телеграм канала в статический вебсайт. Если не помните, то вот ссылка: <a href="https://40ants.com/ru/posts/telegram-reposter/" >https://40ants.com/ru/posts/telegram-reposter/</a></p>
@@ -70,8 +64,6 @@
 <p>И вот, не прошло и года, как я нашел время и собрал прототип. Пока что он работает только для этого канала и транслирует все посты в блог <a href="https://40ants.com/ru/posts/" >https://40ants.com/ru/posts/</a></p>
 
 <p>Для того, чтобы превратить мой прототип в полноценный продукт, предстоит ещё много работы, а пока что буду оценивать его полезность на своем канале. Кстати, если у кого-то есть идеи, как посчитать переходы с сайта в Telegram канал, пишите в комментариях, буду рад любым советам.</p>
-
-<h1>прототип</h1>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/pochemu-gc-sbcl-mozhet-14/">Почему GC SBCL может не освобождать память?</a></h1> <p class="date-posted">posted on 2025-01-18</p> <p>Последнее время я работаю над новой версией фреймфорка для создания Telegram ботов. Этот фреймворк использует библиотеку реализующую акторы. И нем обнаружился досадный баг, который я намеревался исправить. Однако в процессе исправления оказалось, что оно может повлиять на производительность. Хорошо что у автора отыскался benchmark с помощью которого можно проверить скорость работы актора.</p>
 
 <p>К моему удивлению этому бенчмарку не хватало 4G памяти для хоть сколько-нибудь длительной работы. Более того, если бенчмарк запустить ненадолго, то оказывалось, что после его работы процесс &quot;толстел&quot; на 2.5G и не отпускал эту память до тех пор, пока не сделаешь вручную <code>(sb-ext:gc :full t)</code>.</p>
@@ -198,8 +190,6 @@ Evaluation took:
 <p>Я так и не придумал, как монетизировать этот небольшой проект. Но он много ресурсов не требует и времени не отнимает, а польза от него есть - сам в каждом своём проекте его использую.</p>
 
 <p>Вообще мне кажется что сложно сделать так, чтобы разработчики платили за подобные продукты. У нас же как, если кто-то за что-то хочет с нас копеечку - сразу возникает мысль: &quot;Я же могу сделать сам и даже лучше!&quot; :)))</p>
-
-<h1>project</h1>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/12forks/">Помощник для Opensource разработчиков</a></h1> <p class="date-posted">posted on 2024-03-21</p> <p>Сегодня хочу рассказать про один из своих прошлых проектов. Когда-то у меня появилась идея, как упростить себе обработку большого числа пулл-реквестов и issue в своих opensource проектах. И тогда я сделал сайт 12forks.com (сейчас уже недоступен, как выглядела главная страница можно глянуть <a href="https://web.archive.org/web/20211124152220/https://12forks.com/" >через WebArchive</a>).</p>
  <p><a href="/ru/posts/12forks/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/pomoshnik-po-rabote-s-12/">Помощник по работе с opensource проектами</a></h1> <p class="date-posted">posted on 2024-03-21</p> <p><img src="../images/12.jpeg" alt="" /></p>
 
@@ -214,6 +204,4 @@ Evaluation took:
 <p>Недавно у меня появился коллега, который когда-то поработал в Google. Он рассказывал что там во внутренней системе code review есть такое понятие, как <a href="https://www.gerritcodereview.com/design-docs/attention-set-solution-1-workflow.html" >attention set</a>, принцип работы которой похож на то что я делал в 12Forks.com.</p>
 
 <p>Как думаете, стоит ли возродить этот проект?</p>
-
-<h1>project</h1>
   </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-3/">Previous</a></li> <li class="next"><a href="/ru/posts/page-5/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
