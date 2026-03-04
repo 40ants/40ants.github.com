@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang=""> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>40Ants - Как небольшой косяк LLM мне спать не давал</title>  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" href="/favicon.ico" type="image/x-icon" /> <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" /> <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" /> <link rel="manifest" href="/manifest.json" /> <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" /> <link href="/css/custom.css" rel="stylesheet" media="screen" /> <link rel="alternate" href="/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/posts/atom.xml" type="application/atom+xml" /> <link rel="alternate" href="/ru/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/ru/posts/atom.xml" type="application/atom+xml" /> 
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(42462884, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/42462884" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL71WXK73K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FL71WXK73K');
+    </script>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <div class="row-fluid">
+<h1 class="page-header">Как небольшой косяк LLM мне спать не давал</h1>
+ <p> Tagged as <a href="/ru/tag/lisp/">lisp</a>, <a href="/ru/tag/llm/">llm</a>, <a href="/ru/tag/problems/">problems</a> </p> <p class="date-posted"> Written on 2026-02-25 </p> <p><img src="../images/57.jpeg" alt="" /></p>
+
+<p>На днях ввечеру буквально пару часов времени потерял на пустом месте, пытаясь отдебажить кейс, в котором у меня определение функции не появлялось в пакете после перекомпиляции приложения.</p>
+
+<ul>
+<li>Глазами вижу в файле определение функции. Оно есть.</li>
+<li>Компилирую её с помощью Ctlr-C Ctrl-C – она в пакете появляется.</li>
+<li>Перезапускаю REPL, делаю (asdf:load-system ... ) - функции в пакете нет. Как так???</li>
+</ul>
+
+<p>При этом при загрузке модуля с помощью <code>asdf:load-system</code> компилятор выдает только одно предупреждение о том, что функция не определена, но она где-то используется.</p>
+
+<p>В конце концов нашел проблему – иллюстрация на картинке выше. И эта проблема была принесена LLM.</p>
+
+<p>В чем же было дело? Дело в том, что, внося очередные изменения, LLM у одного определения функции убрала закрывающую скобку, а у другого определения функции добавила лишнюю закрывающую скобку. В итоге весь код, который был между первым и вторым определением функции, оказался внутри тела первой функции.</p>
+
+<p>Если коротко проиллюстрировать это, можно сделать это таким кодом:</p>
+
+<pre><code>
+(defun foo ()
+  (loop repeat 3
+        do (format t "Iterating"))
+  
+(defun blah ()
+  (format t "Blah called"))
+
+(defun bar ()
+  (blah)))
+</code></pre>
+
+<p>На первый взгляд тут все ок. Проблема еще состоит в том, что настоящий LISPR скобки не считает. Мы судим о структуре кода по отступам, и здесь на первый взгляд все хорошо.</p>
+
+<p>Проблема в глаза не бросается, потому что LLM не заботится о том, чтобы сохранять отступы так, как это делает нормальный LISP редактор.</p>
+
+<p>Если отформатировать этот код в соответствии с правилами форматирования LISP, проблема станет очевидна. Вот во что он превратится:</p>
+
+<pre><code>
+(defun foo ()
+  (loop repeat 3
+        do (format t "Iterating"))
+  
+  (defun blah ()
+    (format t "Blah called"))
+  
+  (defun bar ()
+    (blah)))
+</code></pre>
+
+<p>Внезапно сразу оказывается, что определения функций <code>blah</code> и <code>bar</code> попали внутрь определения функции <code>foo</code>. И компилятору Common Lisp это нормально. Никаких ошибок он не выдаёт. Такие дела :(</p>
+ <ul class="pager"> <li class="previous"><a href="/ru/posts/kak-nejroseti-stroit-24/">&larr; Previous</a></li>
+<li class="next"><a href="/ru/posts/kak-igrayuchi-izuchit-30/">Next &rarr;</a></li>
+</ul> </div>
+ </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
