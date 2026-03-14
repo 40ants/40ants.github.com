@@ -26,7 +26,55 @@
 
       gtag('config', 'G-FL71WXK73K');
     </script>
-      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 4</h1> <div class="row-fluid"> <h1><a href="/ru/posts/shpargalka-po-ispolz-22/">Шпаргалка по использованию Roswell и Qlot в Common Lisp проектах</a></h1> <p class="date-posted">posted on 2025-02-16</p> <p><img src="../images/22.jpeg" alt="" /></p>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 4</h1> <div class="row-fluid"> <h1><a href="/ru/posts/monitoring-proektov-23/">Мониторинг проектов в Yandex Cloud</a></h1> <p class="date-posted">posted on 2025-02-16</p> <p><img src="../images/23.jpeg" alt="" /></p>
+
+<p>В последнее время я стараюсь максимально стандартизировать инфраструктуру своих проектов. Особенно это касается трех вещей:</p>
+
+<ul>
+<li>деплоя</li>
+<li>мониторинга</li>
+<li>логов</li>
+</ul>
+
+<p>В части деплоя для пет-прожектов решил максимально все упростить - компилирую бинарник и запускаю под systemd. Скрипт сборки написан на Lisp и шарится между проектами. Если интересны подробности, пишите в комментах, сделаю про это отдельный пост.</p>
+
+<p>Сейчас же хочу немного рассказать про мониторинг.</p>
+
+<p>Для мониторинга каждый проект имеет &quot;ручку&quot; /metrics, которая умеет отдавать данные в формате Prometheus. Раньше у меня была своя инсталляция Grafana, которая умеет забирать данные, но с недавних пор я решил что лучше буду использовать Yandex Cloud и его сервис Мониторинг. У Яндекса есть свой демон, которому в конфиге можно указать с каких урлов собирать метрики. Выглядит конфиг сервиса примерно так:</p>
+
+<pre><code>
+routes:
+  - input:
+      plugin: metrics_pull
+      config:
+        namespace: my-project
+        url: [http://localhost:10114/metrics](http://localhost:10114/metrics)
+        # Даже без app метрик, с одного lisp процесса получается 70 метрик,
+        # чтобы было дешевле, шлём их только раз в минуту.
+        poll_period: 60s
+        format:
+          prometheus: {}
+    channel:
+      channel_ref:
+        name: cloud_monitoring
+</code></pre>
+
+<p>Кладёшь его в файлик типа <code>/etc/yandex/unified_agent/conf.d/my-project.yml</code> и дальше демон <code>unified-agent</code> сам собирает метрики и отправляет их в облако. Естественно, генерацию таких конфигов я тоже собираюсь автоматизировать.</p>
+
+<p>Интерфейс облачного Мониторинга достаточно интуитивен. Там можно собрать дашборд сервиса и, что самое важное, сконфигурировать алерты - и когда с сервисом происходит что-то нехорошее, прилетит уведомление на почту или в Telegram.</p>
+
+<p>Для сбора метрик внутри процессов использую библиотеку <a href="https://github.com/deadtrickster/prometheus.cl" >prometheus.cl</a> и несколько своих дополнений:</p>
+
+<ul>
+<li><a href="https://github.com/40ants/clack-prometheus" >clack-prometheus</a> – позволяет сконфигурировать /metrics эндпоинт</li>
+<li><a href="https://github.com/40ants/reblocks-prometheus" >reblocks-prometheus</a> – делает примерно то же самое для проектов использующих фреймворк Reblocks + экспортирует пару метрик, показывающих сколько сессий сервер держит в памяти и сколько страниц в этих сессиях.</li>
+<li><a href="https://github.com/40ants/prometheus-gc" >https://github.com/40ants/prometheus-gc</a> – собирает информацию о том сколько памяти в каком поколении garbage collector у SBCL</li>
+</ul>
+
+<p>Системный подход к сбору метрик позволяет предоставлять надёжные сервисы клиентам. На мой взгляд это очень важно.</p>
+
+<p>Пишите в комментах, если интересно узнать про подход к сбору логов или деплою сервисов.</p>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/shpargalka-po-ispolz-22/">Шпаргалка по использованию Roswell и Qlot в Common Lisp проектах</a></h1> <p class="date-posted">posted on 2025-02-16</p> <p><img src="../images/22.jpeg" alt="" /></p>
 
 <p>Вчера в <a href="https://t.me/lisp_forever/48501" >телеграм-чате LispForever</a>, посвященном Сommon Lisp просили подсказать, какой подход лучше использовать для запуска лиспа. Мнения разделились. Кто-то рекомендовал использовать <a href="https://github.com/roswell/roswell" >Roswell</a>, кто-то наоборот - был против. Я же Roswell люблю по той причине, что он позволяет легко и просто устанавливать разные реализации Common Lisp и переключаться между ними. Это особенно удобно, когда у тебя куча проектов, и каждый может использовать свою версию CL.</p>
 
@@ -265,5 +313,4 @@ Evaluation took:
 <p>Из этих данных видно, что хотя non-GC время и увеличилось на несколько секунд, GC время сократилось на пару порядков.</p>
 
 <p>Замедление порой приводит к ускорению. Такие дела!</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/matrix-badges/">Matrix Badger для GitHub</a></h1> <p class="date-posted">posted on 2024-04-05</p> <p>Сегодня расскажу ещё про один мой проект, который так и не превратился в продукт. Правда в отличие от 12forks.com, этот проект жив до сих пор. Проект связан с GitHub и полезен тем, кто развивает фреймворк или библиотеку, предназначенную для разных платформ, языков программирования или операционных систем.</p>
- <p><a href="/ru/posts/matrix-badges/">Read more...</a></p> </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-3/">Previous</a></li> <li class="next"><a href="/ru/posts/page-5/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
+  </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-3/">Previous</a></li> <li class="next"><a href="/ru/posts/page-5/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
