@@ -122,6 +122,43 @@
                                    (log:info "Going to next iteration")
                                    (act:tell act:*self* :next-iteration))))))))
 </code></pre>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/iteraciya-kotoruyu-mozh-71/">Итерация которую можно прервать</a></h1> <p class="date-posted">posted on 2026-05-16</p> <p><video src="../../posts/images/71.mp4" controls style="width: 100%"></video></p>
+
+<p>Итерация которую можно прервать. С акторами не всё так просто.</p>
+
+<p>Вот вам небольшая демка того, как в системе акторов можно реализовать итерацию таким образом, чтобы её можно было безопасно прервать. Я собираюсь использовать этот подход для того, чтобы организовать работу с код-ассистентом и тулами, которые он запускает. Это нужно сделать так, чтобы код-ассистента можно было прервать в любой момент и сделать это безопасно.</p>
+
+<p>В этом демо используется фреймворк Sento, реализующий актеры для Common Lisp.</p>
+
+<p>Вот полный код примера:</p>
+
+<pre><code>
+(defun make-interruptable-actor-loop-example ()
+  (ac:actor-of *sys*
+               :destroy (lambda (&rest args)
+                          ;; По сообщению :stop актор будет полностью
+                          ;; остановлен и его нельзя будет запустить ещё раз
+                          (log:info "Destroy called with ARGS = ~A" args))
+               :receive (let ((stopped nil))
+                          (lambda (message)
+                            (log:info "Processing" message)
+                            (case message
+                              ;; Но с помощью :break итерацию можно приостановить,
+                              ;; а потом продолжить заново с помощью :run.
+                              (:break
+                                 (log:info "Stopping")
+                                 (setf stopped t))
+                              (:run
+                                 (log:info "Running")
+                                 (setf stopped nil)
+                                 (act:tell act:*self* :next-iteration))
+                              (t
+                                 (unless stopped
+                                   (log:info "Sleeping")
+                                   (sleep 3)
+                                   (log:info "Going to next iteration")
+                                   (act:tell act:*self* :next-iteration))))))))
+</code></pre>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/kak-voennye-mogut-is-63/">Как военные могут использовать LLM?</a></h1> <p class="date-posted">posted on 2026-03-04</p> <p><img src="../../posts/images/63.jpeg" alt="" /></p>
 
 <p>По мотивам предыдущего поста про готовность OpenAI убивать людей за пределами США мне стало интересно в каких областях можно применять современный ИИ в войне. Вот с десяток идей который без проблем сгенерила наша отечественная Алиса.</p>
