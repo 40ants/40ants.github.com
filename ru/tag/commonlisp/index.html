@@ -163,6 +163,41 @@
   </div><div class="row-fluid"> <h1><a href="/ru/posts/zachem-mne-clos-obuek-69/">Зачем мне CLOS объекты как состояние акторов в Sento?</a></h1> <p class="date-posted">posted on 2026-05-11</p> <p><video src="../../posts/images/69.mp4" controls style="width: 100%"></video></p>
 
 <p>На этой небольшой демке хочу показать, как я собираюсь использовать CLOS-объекты как состояние акторов в моем кодовом ассистенте Кодабрус. Для реализации акторов я использую библиотеку Sento, а CLOS-объекты в качестве состояния мне нужны для того, чтобы это состояние можно было сериализовать на диск и потом продолжить работу системы с того же места, на котором остановился пользователь.</p>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/iteraciya-kotoruyu-mozh-70/">Итерация которую можно прервать</a></h1> <p class="date-posted">posted on 2026-05-16</p> <p>Итерация которую можно прервать. С акторами не всё так просто.</p>
+
+<p>Вот вам небольшая демка того, как в системе акторов можно реализовать итерацию таким образом, чтобы её можно было безопасно прервать. Я собираюсь использовать этот подход для того, чтобы организовать работу с код-ассистентом и тулами, которые он запускает. Это нужно сделать так, чтобы код-ассистента можно было прервать в любой момент и сделать это безопасно.</p>
+
+<p>В этом демо используется фреймворк Sento, реализующий актеры для Common Lisp.</p>
+
+<p>Вот полный код примера:</p>
+
+<pre><code>
+(defun make-interruptable-actor-loop-example ()
+  (ac:actor-of *sys*
+               :destroy (lambda (&rest args)
+                          ;; По сообщению :stop актор будет полностью
+                          ;; остановлен и его нельзя будет запустить ещё раз
+                          (log:info "Destroy called with ARGS = ~A" args))
+               :receive (let ((stopped nil))
+                          (lambda (message)
+                            (log:info "Processing" message)
+                            (case message
+                              ;; Но с помощью :break итерацию можно приостановить,
+                              ;; а потом продолжить заново с помощью :run.
+                              (:break
+                                 (log:info "Stopping")
+                                 (setf stopped t))
+                              (:run
+                                 (log:info "Running")
+                                 (setf stopped nil)
+                                 (act:tell act:*self* :next-iteration))
+                              (t
+                                 (unless stopped
+                                   (log:info "Sleeping")
+                                   (sleep 3)
+                                   (log:info "Going to next iteration")
+                                   (act:tell act:*self* :next-iteration))))))))
+</code></pre>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/kak-prodvigayutsya-del-43/">Как продвигаются дела с MCP фреймфорком для Common Lisp</a></h1> <p class="date-posted">posted on 2025-06-29</p> <p><img src="../../posts/images/43.jpeg" alt="" /></p>
 
 <p>Привет, друзья! Сегодня хочу дать небольшой апдейт по тому, как продвигаются дела с MCP-фреймворком для того, чтобы можно было писать <a href="https://40ants.com/mcp/" >MCP-сервера на Common Lisp</a>.</p>
