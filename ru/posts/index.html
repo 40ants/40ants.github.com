@@ -26,7 +26,14 @@
 
       gtag('config', 'G-FL71WXK73K');
     </script>
-      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 1</h1> <div class="row-fluid"> <h1><a href="/ru/posts/iteraciya-kotoruyu-mozh-71/">Итерация которую можно прервать</a></h1> <p class="date-posted">posted on 2026-05-16</p> <p><video src="images/71.mp4" controls style="width: 100%"></video></p>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 1</h1> <div class="row-fluid"> <h1><a href="/ru/posts/sobirayus-ispolzova-72/">Собираюсь использовать в Codabrus визуализацию работы AI ассистента</a></h1> <p class="date-posted">posted on 2026-05-28</p> <p>Хочу сделать в своем AI-ассистенте Codabrus визуализацию того, как работает AI-ассистент. Традиционные кодовые ассистенты показывают интерфейс в виде чата. Я же хочу сделать некую диаграмму, которая каждое сообщение от ассистента и от пользователя будет показывать в виде отдельного блока. Вызовы тулов будут ответвлениями, а также, наверное, будет прикольно подобным же образом визуализировать запуски сабагентов.</p>
+
+<p>Так можно будет проанализировать, насколько много работы сделал кодовый ассистент, что происходило в процессе - всё это будет более наглядно.</p>
+
+<p>Пока что в виде заглушки сделал такой простенькую штуку - подключил JavaScript библиотеку <a href="https://github.com/antvis/x6" >X6</a> от Alibaba для отрисовки диаграмм. Плюс подключил туда <a href="https://github.com/40ants/clack-sse" >CLACK-SSE</a> для того, чтобы можно было новые элементы добавлять, пуша их с сервера. Таким образом, когда что-то происходит во время работы кодового ассистента, я смогу обновлять диаграмму в веб-интерфейсе.</p>
+
+<p>Вот такая пока идея. Наверное, в выходные доберусь до того, чтобы связать этот интерфейс с реальным ассистентом.</p>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/iteraciya-kotoruyu-mozh-71/">Итерация которую можно прервать</a></h1> <p class="date-posted">posted on 2026-05-16</p> <p><video src="images/71.mp4" controls style="width: 100%"></video></p>
 
 <p>Итерация которую можно прервать. С акторами не всё так просто.</p>
 
@@ -299,11 +306,4 @@ LLM сканируют сети на аномалии, выявляют попы
 <p>Довольно много всего, но почти везде у LLM лишь вспомогательная роль – координация или обработка информации.</p>
 
 <p>В любом случае, надеюсь, вояки не читают мой блог, а то ещё возьмут что-нибудь из этого на вооружение :(</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/vsya-eta-istoriya-s-op-62/">Вся эта история с OpenAI происходит на американском континенте?</a></h1> <p class="date-posted">posted on 2026-03-04</p> <p><img src="images/62.jpeg" alt="" /></p>
-
-<p>Кто-нибудь в курсе, что это за шумиха и почему даже некоторые известные личности отказываются от подписок OpenAI?</p>
-
-<p>Например, автор книг про Lisp и AI Mark Watson написал <a href="https://marklwatson.substack.com/p/i-removed-my-openai-account-notes" >отдельный пост о том, что удаляет свой профиль OpenAI</a>. Более того, он удаляет все упоминания об использовании их API из своих книг и будет публиковать обновленные версии, в которых не будет ничего про OpenAI.</p>
-
-<p>Что вообще происходит? </p>
   </div> <div id="relative-nav"> <ul class="pager">  <li class="next"><a href="/ru/posts/page-2/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
