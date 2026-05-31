@@ -26,7 +26,14 @@
 
       gtag('config', 'G-FL71WXK73K');
     </script>
-      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Posts with tag &quot;codeassistant&quot;</h1> <div class="row-fluid"> <h1><a href="/ru/posts/nejronka-uzhe-pishet-n-36/">Нейронка уже пишет на Common Lisp лучше стажера</a></h1> <p class="date-posted">posted on 2025-04-05</p> <p><video src="../../posts/images/36.mp4" controls style="width: 100%"></video></p>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Posts with tag &quot;codeassistant&quot;</h1> <div class="row-fluid"> <h1><a href="/ru/posts/kak-rabotaet-ai-assi-73/">Как работает AI ассистент</a></h1> <p class="date-posted">posted on 2026-05-31</p> <p>В прошлом посте я писал о том, что хочу в качестве эксперимента сделать визуализацию работы своего кодового ассистента <a href="https://github.com/codabrus/codabrus" >Codabrus</a>.</p>
+
+<p>И вот настали долгожданные выходные, и я объединил код фронта с бэком. Получилось как на демке.</p>
+
+<p>Сообщения от пользователя отображаются синенькими блоками, ответы LLM - зелеными, а вызовы тулов - оранжевым. На блоки можно кликать чтобы видеть больше информации. Если блоки вызова тулов размещаются друг под другом - значит они выполняются параллельно. Использование акторной системы позволяет легко параллелить выполнение любой логики и у меня за выполнение каждого тула отвечает отдельный актор.</p>
+
+<p>Тул у агента пока один - вызов bash команды. Для экспериментов этого достаточно, но для реальной работы надо будет добавить редактирование и прочее. А так же хочу в интерфейс добавить отдельное окно со стримингом размышлений агента - чтобы было видно чем он занят прямо сейчас.</p>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/nejronka-uzhe-pishet-n-36/">Нейронка уже пишет на Common Lisp лучше стажера</a></h1> <p class="date-posted">posted on 2025-04-05</p> <p><video src="../../posts/images/36.mp4" controls style="width: 100%"></video></p>
 
 <p>Сейчас за час, не написав ни строчки кода сделал такую библиотеку:</p>
 
