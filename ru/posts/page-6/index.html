@@ -26,7 +26,62 @@
 
       gtag('config', 'G-FL71WXK73K');
     </script>
-      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 6</h1> <div class="row-fluid"> <h1><a href="/ru/posts/cl-user-sb-ext-sea-15/">CL-USER&gt; (sb-ext:search-roots (loop repeat 3 collect...</a></h1> <p class="date-posted">posted on 2025-01-18</p> <pre><code>CL-USER&gt; (sb-ext:search-roots (loop repeat 3 collect (get-random-dynamic-object))
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 6</h1> <div class="row-fluid"> <h1><a href="/ru/posts/pochemu-gc-sbcl-mozhet-14/">Почему GC SBCL может не освобождать память?</a></h1> <p class="date-posted">posted on 2025-01-18</p> <p>Последнее время я работаю над новой версией фреймфорка для создания Telegram ботов. Этот фреймворк использует библиотеку реализующую акторы. И нем обнаружился досадный баг, который я намеревался исправить. Однако в процессе исправления оказалось, что оно может повлиять на производительность. Хорошо что у автора отыскался benchmark с помощью которого можно проверить скорость работы актора.</p>
+
+<p>К моему удивлению этому бенчмарку не хватало 4G памяти для хоть сколько-нибудь длительной работы. Более того, если бенчмарк запустить ненадолго, то оказывалось, что после его работы процесс &quot;толстел&quot; на 2.5G и не отпускал эту память до тех пор, пока не сделаешь вручную <code>(sb-ext:gc :full t)</code>.</p>
+
+<p>Это поведение показалось крайне странным. Как вообще можно использовать это язык в production, если он не отпускает память!?</p>
+
+<p>Так я оказался втянут в исследование того, почему garbage collector SBCL не очищает кучу мусора оставшуюся после теста.</p>
+
+<p>Прошло три дня.</p>
+
+<p>После некоторых исследований у меня появилась гипотеза, почему GC не очищает память.</p>
+
+<p>Дело в том, что в бенчмарке N потоков генерят сообщения к одному актору. Если актор не успевает разгребать сообщения, то те накапливаются в очереди. Тест заканчивается, когда все сообщения в очереди обработаны.</p>
+
+<p>Когда в очереди много сообщений и срабатывает GC, то он видит, что на эти сообщения есть ссылки, и не может их подчистить, а потому перекладывает эти объекты в более старшее поколение. И чем дольше разгребается очередь в процессе генерации объектов, тем больше таких объектов оказывается в старших поколениях garbage collector.</p>
+
+<p>Когда тест заканчивается, то ссылок на сообщения уже нет, но из-за того, что GC поместил их в старшие поколения, при регулярных запусках он до этих объектов не добирается и они так и остаются висеть в памяти. А вот <code>(gc :full t)</code> их подбирает и подчищает.</p>
+
+<p>Как я это понял? Хотелось бы ответить: &quot;Очень просто!&quot;, но нет 🙁</p>
+
+<p>Сначала я решил поисследовать природу объектов, остающихся висеть в памяти после бенчмарка и написал вот такую функциюЖ</p>
+
+<pre><code>
+(defun get-random-dynamic-object ()
+  (let ((count 0))
+    (sb-vm:map-allocated-objects (lambda (obj type size)
+                                   (declare (ignore obj type size))
+                                   (incf count))
+                                 :dynamic)
+    (let ((random-idx (random count))
+          (found-obj nil)
+          (current-idx 0))
+      (sb-vm:map-allocated-objects (lambda (obj type size)
+                                     (declare (ignore type size))
+                                     (when (= current-idx random-idx)
+                                       (setf found-obj
+                                             (trivial-garbage:make-weak-pointer obj)))
+                                     (incf current-idx))
+                                   :dynamic)
+      (values found-obj
+              random-idx
+              count))))
+</code></pre>
+
+<p>она достает из памяти случайны объект и возвращает weak указатель на него. Почему weak указатель? Чтобы не возникло лишней ссылки
+на объект.</p>
+
+<p>Выяснилось, что значительная часть объектов, это сообщения из очереди актора:</p>
+
+<pre><code>
+#&lt;weak pointer: (#&lt;ACTOR path: /user/actor-365, cell: #&lt;ACTOR actor-365, running: NIL, state: NIL, message-box: #&lt;MESSAGE-BOX/BT mesgb-366, processed messages: 8000001, max-queue-size: 0, queue: #&lt;QUEUE-UNBOUNDED {70050E0113}&gt;&gt;&gt;&gt;
+                    NIL NIL)&gt;
+</code></pre>
+
+<p>Далее я попытался выяснить а не держит ли кто ссылки на эти объекты. Для этого в SBCL есть функция поиска корней:</p>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/cl-user-sb-ext-sea-15/">CL-USER&gt; (sb-ext:search-roots (loop repeat 3 collect...</a></h1> <p class="date-posted">posted on 2025-01-18</p> <pre><code>CL-USER&gt; (sb-ext:search-roots (loop repeat 3 collect (get-random-dynamic-object))
                               :print :verbose)
 Path to "MODILETTERDA":
  6       70031144DF [   2] SB-IMPL::*ALL-PACKAGES*
@@ -135,21 +190,4 @@ Evaluation took:
   </div><div class="row-fluid"> <h1><a href="/ru/posts/skazorama/">Сайт со сказками</a></h1> <p class="date-posted">posted on 2024-02-26</p> <p>Продолжая тему моих неудачных проектов, хочу рассказать ещё об одном сайте – Skazorama.ru.</p>
 
 <p>Идея этого проекта была в том, чтобы сделать бесконечную ленту сказок, которые можно почитать детям. При чём, открывая сайт на телефоне, родитель видел новые сказки, которые ещё не читал своему ребёнку. Если сказка не понравилась, то её можно было просто промотать, и вслед за ней подгружалась следующая. При этом сервис воспринимал такую промотку как &quot;dislike&quot; и в будущем я рассчитывал прикрутить ML, чтобы рекомендовать именно те сказки, которые с большей вероятностью понравятся ребёнку.</p>
- <p><a href="/ru/posts/skazorama/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/prodolzhaya-temu-moih-9/">Продолжая тему моих неудачных проектов, хочу рассказать ещё об одном...</a></h1> <p class="date-posted">posted on 2024-02-25</p> <p><img src="../images/9.jpeg" alt="" /></p>
-
-<p>Продолжая тему моих неудачных проектов, хочу рассказать ещё об одном сайте – Skazorama.ru.</p>
-
-<p>Идея этого проекта была в том, чтобы сделать бесконечную ленту сказок, которые можно почитать детям. При чём, открывая сайт на телефоне, родитель видел новые сказки, которые ещё не читал своему ребёнку. Если сказка не понравилась, то её можно было просто промотать, и вслед за ней подгружалась следующая. При этом сервис воспринимал такую промотку как &quot;dislike&quot; и в будущем я рассчитывал прикрутить ML, чтобы рекомендовать именно те сказки, которые с большей вероятностью понравятся ребёнку.</p>
-
-<p>Этот проект я сделал и запустил в 2017 или 2018 году, когда мои дети ещё были в том возрасте, когда каждый вечер они хотят чтобы папа почитал им сказку. На тот момент я особо не думал о маркетинге или монетизации - просто сделал проект для себя. Возможно при определённых усилиях его можно было бы раскрутить, но проект так и не выстрели, а со временем даже мне перестал быть полезен. Так что сейчас этот сайт закрыт. Посмотреть на него можно лишь через web archive:</p>
-
-<p><a href="https://web.archive.org/web/20190625225248/http://skazorama.ru/" >https://web.archive.org/web/20190625225248/http://skazorama.ru/</a></p>
-
-<p>Но в вебархиве, разумеется, не работает подкгрузка новых сказок - ведь там нет бэкенда.</p>
-
-<p>Этот проект был целиком написан на Common Lisp и даже поиск реализован с помощью движка Montezuma, чем-то похожего на Lucene (штука делающая всю грязную работу внутри Elastic Search). А ещё, у проекта был Telegram бот, через который тоже можно было искать сказки. Бот был написан с помощью библиотечки cl-telegram-bot, которую я развиваю и по сей день.</p>
-
-<p>Как видите, Сказорама ещё раз доказывает, что проекты которые делаются лишь для удовлетворения потребностей одного только создателя обречены. Надо сразу думать о монитизации. Кастати, на эту тему мне сегодня попалась статейка на VC, которая так и называется &quot;Делаете стартап? — Сначала продай, а потом делайте! Можно иначе? Да, но продай сначала&quot;.</p>
-
-<p>А что вы думаете о подходе, когда с самого начала всё закручивается вокруг денег, а технологии вторичны?</p>
-  </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-5/">Previous</a></li> <li class="next"><a href="/ru/posts/page-7/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
+ <p><a href="/ru/posts/skazorama/">Read more...</a></p> </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-5/">Previous</a></li> <li class="next"><a href="/ru/posts/page-7/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
