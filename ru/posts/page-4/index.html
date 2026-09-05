@@ -26,7 +26,22 @@
 
       gtag('config', 'G-FL71WXK73K');
     </script>
-      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 4</h1> <div class="row-fluid"> <h1><a href="/ru/posts/pro-strukturnoe-logg-40/">Про структурное логгирование в Python и Yandex Cloud Function</a></h1> <p class="date-posted">posted on 2025-06-14</p> <p><img src="../images/40.jpeg" alt="" /></p>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 4</h1> <div class="row-fluid"> <h1><a href="/ru/posts/pochemu-ya-lomayu-obrat-41/">Почему я ломаю обратную совместимость</a></h1> <p class="date-posted">posted on 2025-06-15</p> <p><img src="../images/41.jpeg" alt="" /></p>
+
+<p>Сначала хотел сделать пост про то, почему я редко сохраняю обратную совместимость в своих open-source библиотеках. Вот недавно как раз сделал обновление библиотеки Reblocks, в которой поломал обратную совместимость, причем довольно серьезно.  </p>
+
+<p>Переделал одновременно и макрос, который отвечает за рендеринг в HTML, и еще более серьезно переделал роутинг — то есть часть, которая отвечает за преобразование URL и выбор того, какую страницу по этому URL показать.  </p>
+
+<p>Изначально идея поста была в том, чтобы сказать, что в большинстве случаев обратную совместимость может быть сохранить очень дорого. То есть, если вы хотите сохранить обратную совместимость при каких-то серьезных изменениях, то, скорее всего, ваш код будет обрастать довольно значительным количеством костылей. Костыли мы все не любим, поэтому я бы предпочел этих ситуаций избегать.  </p>
+
+<p>В итоге иногда с программным обеспечением проще отказаться от сохранения обратной совместимости. Но даже если вы так делаете, то лучше качественно описать те изменения, которые были сделаны, и предложить пути по миграции со старого кода на новый. Я обычно в своих проектах всегда веду change log, в котором подробно такие изменения описываю.  </p>
+
+<p>И вот недавно мне эта обратная несовместимость как раз-таки довольно больно стрельнула. Мне потребовалось обновлять сайт <a href="https://ultralisp.org," >https://ultralisp.org,</a> и в нем довольно много пришлось переделывать из-за того, что как раз-таки обратной совместимости в новом Reblocks не было. Но зато сам по себе код Reblocks остался чистым, хотя мне пришлось перепилить для поддержки новой версии еще несколько библиотек, которые его используют.  </p>
+
+<p>Иногда обратную совместимость сохранить полезно. Но это стоит делать в том случае, если поддержать ее достаточно дешево и там не будет каких-то адовых костылей.  </p>
+
+<p>Приходилось ли вам ломать обратную совместимость в своих библиотеках или каком-то ином программном коде? Если да, то расскажите, чем это обернулось. Были ли какие-то серьезные последствия? Или, наоборот, вы рады принятому решению?</p>
+  </div><div class="row-fluid"> <h1><a href="/ru/posts/pro-strukturnoe-logg-40/">Про структурное логгирование в Python и Yandex Cloud Function</a></h1> <p class="date-posted">posted on 2025-06-14</p> <p><img src="../images/40.jpeg" alt="" /></p>
 
 <p>Сегодня я продолжал возиться со своим pet-project, который одной ногой работает в SaleBot, а второй - использует Yandex Cloud Functions и YDB для того, чтобы запускать более сложную бизнес-логику.</p>
 
@@ -181,13 +196,4 @@
 <p>А вообще моя мечта – научиться обучать нейросетку писать сносный код на Common Lisp. Пока что по большей части неюзабельное что-то выходит – то с синтаксисом косяки, то нейронка выдумывает несуществующие библиотеки.</p>
 
 <p>Думаю на курсе как раз позадавать вопросы на тему дообучения нейронки на своих исходниках – так можно было бы обучить её на всех либах что есть в Quicklisp! Уверен, выйдет круто!</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/kak-igrayuchi-izuchit-30/">Как играючи изучить SQL?</a></h1> <p class="date-posted">posted on 2025-03-11</p> <p><img src="../images/30.jpeg" alt="" /></p>
-
-<p>Сегодня случайно наткнулся на проект, в котором предлагается изучать SQL в виде игры в детектива. Проект называется <a href="https://www.sqlnoir.com/" >SQL Noir</a>.</p>
-
-<p>🕵️ В каждом уроке тебе предлагается расследовать преступление, кражу убийство и тд. Дается некоторая вводная и предварительное направление поисков. А сами поиски предлагается делать исследуя данные в базе данных с помощью запросов. Запросы можно прямо на сайте делать и тут же видеть результат. В базе отдельные таблички с описанием разных мест, персонажей, улик и так далее.</p>
-
-<p>Первые уроки довольно тривиальные. Да и всего в проекте пока только 4 урока. Однако к добавлению новых криминальных драм приглашаются все желающие. У ребят на GitHub довольно <a href="https://github.com/hristo2612/SQLNoir/blob/main/CONTRIBUTING.md" >подробно описано</a>, как добавить новый детективный сценарий в эту игру.</p>
-
-<p>Думаю такое может быть интересно в первую очередь полным новичкам, и быть может даже детям. В школах SQL уже преподают?</p>
   </div> <div id="relative-nav"> <ul class="pager"> <li class="previous"><a href="/ru/posts/page-3/">Previous</a></li> <li class="next"><a href="/ru/posts/page-5/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
