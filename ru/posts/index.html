@@ -27,6 +27,24 @@
       gtag('config', 'G-FL71WXK73K');
     </script>
       </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Страница 1</h1> <div class="row-fluid"> <h1><a href="/ru/posts/otschet-vremeni-v-raz-79/">Отсчет времени в разметке на GitHub</a></h1> <p class="date-posted">posted on 2026-09-05</p> <p><img src="images/79.jpeg" alt="" /></p>
+
+<p>Недавно исследовал, как выглядят комментарии Codex в pull request на GitHub. В некоторых из них увидел время, показывающее, как давно агент сделал ревью. Сначала подумал, что это какая-то обычная часть интерфейса GitHub, но оказалось — нет.</p>
+
+<p>В markdown разметку GitHub можно вставить специальный элемент <code>&lt;relative-time&gt;</code>. Ему передаётся момент времени, а на фронтенде он сам превращается в понятную надпись вроде «5 minutes ago». И продолжает её обновлять, даже если страницу не рефрешить.</p>
+
+<p>Например, выглядит это так:</p>
+
+<pre><code>
+&lt;relative-time datetime="2026-09-05T12:00:00Z"&gt;
+  5 сентября 2026
+&lt;/relative-time&gt;
+</code></pre>
+
+<p>Я сделал <a href="https://gist.github.com/svetlyak40wt/716a74948f3dc09dd3030932af122d32" >простой gist</a>, где можно посмотреть на это вживую.</p>
+
+<p>Мне кажется, такой элемент особенно хорошо подходит для документации. Можно пометить функцию как устаревающую и написать, что она будет удалена из API в определённую дату. Вместо статичной даты читатель увидит, сколько дней осталось до удаления.</p>
+
+<p>Прикольно то, что <code>relative-time</code> — не внутренний компонент GitHub. Это <a href="https://github.com/github/relative-time-element" >отдельный веб-компонент</a>, который можно поставить в свой проект.</p>
   </div><div class="row-fluid"> <h1><a href="/ru/posts/herdr-vmesto-tmux-dl-78/">Herdr вместо tmux для работы с несколькими AI-агентами</a></h1> <p class="date-posted">posted on 2026-08-31</p> <p><img src="images/78.jpeg" alt="" /></p>
 
 <p>У меня обычно одновременно запущено несколько AI-агентов: один что-то пишет в одном проекте, другой разбирается с багом в другом, третий ждёт, пока я отвечу на вопрос. Раньше для этого я поднимал tmux-сессии.</p>
