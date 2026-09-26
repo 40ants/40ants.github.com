@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang=""> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>40Ants - Posts with tag &quot;opensource&quot;</title>  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" href="/favicon.ico" type="image/x-icon" /> <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" /> <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" /> <link rel="manifest" href="/manifest.json" /> <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" /> <link href="/css/custom.css" rel="stylesheet" media="screen" /> <link rel="alternate" href="/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/posts/atom.xml" type="application/atom+xml" /> <link rel="alternate" href="/ru/posts/rss.xml" type="application/rss+xml" /> <link rel="alternate" href="/ru/posts/atom.xml" type="application/atom+xml" /> 
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(42462884, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/42462884" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL71WXK73K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FL71WXK73K');
+    </script>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Posts with tag &quot;opensource&quot;</h1> <div class="row-fluid"> <h1><a href="/ru/posts/kak-ne-otkryt-lishni-84/">Как не открыть лишний порт на сервере</a></h1> <p class="date-posted">posted on 2026-09-26</p> <p><img src="../../posts/images/84.jpeg" alt="" /></p>
+
+<p>Сегодня возился с настройкой сервисов умного дома на Raspberry Pi. На таких машинках постоянно что-нибудь меняется: устанавливаешь новое ПО, обновляешь старое, правишь конфиги, пробуешь очередной сервис. И в какой-то момент хочется убедиться, что после всех этих изменений наружу не стал смотреть какой-нибудь неожиданный порт.</p>
+
+<p>Проверять это вручную неудобно. Можно запустить Nmap, но тогда придётся сканировать диапазон портов и потом разбираться с результатом. Мне же нужна была более узкая проверка для собственных серверов: узнать, какие сетевые порты машина действительно слушает, и проверить, доступны ли они с моего компьютера.</p>
+
+<p>Поэтому я сделал небольшую утилиту <a href="https://40ants.com/ports-checker/" >ports-checker</a>.</p>
+
+<p>Сначала она подключается к серверу по SSH и получает список портов, которые слушают на внешних интерфейсах. Затем SSH-соединение закрывается, и каждый найденный порт проверяется уже с компьютера, на котором запущена команда. Таким образом, <code>ports-checker</code> сопоставляет взгляд изнутри сервера с тем, что реально доступно по сети.</p>
+
+<p>Ожидаемые открытые порты можно перечислить через allowlist:</p>
+
+<pre><code>
+ports-checker --allow 22,80,443
+</code></pre>
+
+<p>Если доступен только SSH, веб-сервер и HTTPS — всё хорошо. Если после установки очередного сервиса обнаружится ещё один порт, которого нет в списке, утилита сообщит об ошибке и завершится с кодом 1.</p>
+
+<p>Благодаря коду возврата такую проверку можно встроить в скрипт настройки сервера или запускать после обновлений. Тогда неожиданно открытый порт не затеряется среди остальных изменений, а сразу сломает проверку и привлечёт внимание.</p>
+
+<p>Это не замена Nmap и не универсальный сканер безопасности. <code>ports-checker</code> проверяет только те порты, которые уже слушает удалённая машина. Зато для автоматического контроля собственных Raspberry Pi и небольших серверов этого как раз достаточно. А ещё, эта утилита решает проблему того, что на запуски nmap по широкому диапазону портов, в некоторых окружениях, могут срабатывать секалерты, например у провадера. Такой же кастомный скрипт, делающий несколько проверок, их не стриггерит.</p>
+  </div> <div id="relative-nav"> <ul class="pager">   </ul> </div> <div class="row-fluid"> <p>This blog covers <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/llm/">llm</a>, <a href="/ru/tag/codabrus/">codabrus</a>, <a href="/ru/tag/ai/">ai</a>, <a href="/ru/tag/codeassistant/">codeassistant</a>, <a href="/ru/tag/clos/">clos</a>, <a href="/ru/tag/actors/">actors</a>, <a href="/ru/tag/learning/">learning</a>, <a href="/ru/tag/news/">news</a>, <a href="/ru/tag/automation/">automation</a>, <a href="/ru/tag/voice/">voice</a>, <a href="/ru/tag/projects/">projects</a>, <a href="/ru/tag/git/">git</a>, <a href="/ru/tag/tools/">tools</a>, <a href="/ru/tag/holism/">holism</a>, <a href="/ru/tag/zerocoder/">zerocoder</a>, <a href="/ru/tag/python/">python</a>, <a href="/ru/tag/aider/">aider</a>, <a href="/ru/tag/cursor/">cursor</a>, <a href="/ru/tag/project/">project</a>, <a href="/ru/tag/i18n/">i18n</a>, <a href="/ru/tag/poftheday/">poftheday</a>, <a href="/ru/tag/visualization/">visualization</a>, <a href="/ru/tag/closed/">closed</a>, <a href="/ru/tag/tips/">tips</a>, <a href="/ru/tag/seo/">seo</a>, <a href="/ru/tag/telegram/">telegram</a>, <a href="/ru/tag/bot/">bot</a>, <a href="/ru/tag/прототип/">прототип</a>, <a href="/ru/tag/smarthome/">smarthome</a>, <a href="/ru/tag/yandexcloud/">yandexcloud</a>, <a href="/ru/tag/logging/">logging</a>, <a href="/ru/tag/ideas/">ideas</a>, <a href="/ru/tag/experiment/">experiment</a>, <a href="/ru/tag/software/">software</a>, <a href="/ru/tag/thoughts/">thoughts</a>, <a href="/ru/tag/programming/">programming</a>, <a href="/ru/tag/hackathon/">hackathon</a>, <a href="/ru/tag/mtstruetech/">mtstruetech</a>, <a href="/ru/tag/robotics/">robotics</a>, <a href="/ru/tag/web/">web</a>, <a href="/ru/tag/github/">github</a>, <a href="/ru/tag/problems/">problems</a>, <a href="/ru/tag/salebot/">salebot</a>, <a href="/ru/tag/bots/">bots</a>, <a href="/ru/tag/notes/">notes</a>, <a href="/ru/tag/emacs/">emacs</a>, <a href="/ru/tag/macos/">macos</a>, <a href="/ru/tag/lisp/">lisp</a>, <a href="/ru/tag/failures/">failures</a>, <a href="/ru/tag/infrastructure/">infrastructure</a>, <a href="/ru/tag/lispworks/">lispworks</a>, <a href="/ru/tag/life/">life</a>, <a href="/ru/tag/идеи/">идеи</a>, <a href="/ru/tag/mcp/">mcp</a>, <a href="/ru/tag/raspberrypi/">raspberrypi</a>, <a href="/ru/tag/security/">security</a>, <a href="/ru/tag/opensource/">opensource</a>, <a href="/ru/tag/sql/">sql</a>, <a href="/ru/tag/nix/">nix</a>, <a href="/ru/tag/ultralisp/">ultralisp</a>, <a href="/ru/tag/tutorials/">tutorials</a>, <a href="/ru/tag/reblocks/">reblocks</a>, <a href="/ru/tag/yandex/">yandex</a>, <a href="/ru/tag/cloud/">cloud</a> </p> </div>  </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
