@@ -2,13 +2,17 @@
 
 (defpackage #:the40ants/seo
   (:use #:cl)
-  (:export #:description-from-html))
+  (:export #:description-from-html
+           #:description-from-rendered-html))
 
 (when (probe-file "static/seo-descriptions.lisp")
   (load "static/seo-descriptions.lisp"))
 
 (unless (fboundp 'the40ants/seo:description-from-html)
   (error "The SEO description implementation is missing"))
+
+(unless (fboundp 'the40ants/seo:description-from-rendered-html)
+  (error "The rendered-excerpt compatibility path is missing"))
 
 (defun check-description (html expected)
   (let ((actual (the40ants/seo:description-from-html html)))
@@ -26,6 +30,17 @@
 (check-description
  "<video src='demo.mp4'></video><p>Это один короткий абзац &amp; он остаётся целиком.</p>"
  "Это один короткий абзац & он остаётся целиком.")
+
+(unless (equal "Первый абзац."
+               (the40ants/seo:description-from-rendered-html
+                "<p>Первый абзац.</p><!--more--><p>Второй абзац.</p>"))
+  (error "Rendered HTML was not split at <!--more-->"))
+
+(unless (equal "Первый абзац."
+               (the40ants/seo:description-from-rendered-html
+                "<p>Первый абзац.</p><p>Второй абзац.</p>"
+                "<p>Первый абзац.</p>"))
+  (error "StatiCL's rendered excerpt was not preferred"))
 
 (let ((description
         (the40ants/seo:description-from-html

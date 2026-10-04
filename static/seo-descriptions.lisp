@@ -1,6 +1,7 @@
 (defpackage #:the40ants/seo
   (:use #:cl)
-  (:export #:description-from-html))
+  (:export #:description-from-html
+           #:description-from-rendered-html))
 
 (in-package #:the40ants/seo)
 
@@ -73,6 +74,16 @@
       (shorten-description text))))
 
 
+(defun description-from-rendered-html (html &optional excerpt)
+  (when html
+    (let ((more-position (search "<!--more-->" html)))
+      (or (and excerpt (description-from-html excerpt))
+          (description-from-html (if more-position
+                                     (subseq html 0 more-position)
+                                     html))
+          (description-from-html html)))))
+
+
 (defmethod staticl/theme:template-vars :around
     ((site staticl/site:site) (post staticl/content/post:post)
      &key (hash (make-hash-table :test 'equal)))
@@ -80,8 +91,6 @@
     (unless (and (gethash "description" vars)
                  (plusp (length (string-trim " " (gethash "description" vars)))))
       (setf (gethash "description" vars)
-            (or (description-from-html
-                 (staticl/content/html-content:content-html-excerpt post))
-                (description-from-html
-                 (staticl/content/html-content:content-html post)))))
+            (description-from-rendered-html (gethash "html" vars)
+                                            (gethash "excerpt" vars))))
     vars))
