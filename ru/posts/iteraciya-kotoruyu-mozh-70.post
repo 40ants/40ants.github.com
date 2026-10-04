@@ -1,0 +1,53 @@
+;;;;;
+title: Итерация которую можно прервать
+tags: actors, commonlisp, ai
+created-at: 2026-05-16T22:29:34.000000Z
+format: md
+tg-chat-id: -1002102092834
+tg-message-id: 70
+tg-backlink: https://t.me/the40ants/70
+;;;;;
+
+
+
+
+Итерация которую можно прервать. С акторами не всё так просто.
+
+Вот вам небольшая демка того, как в системе акторов можно реализовать итерацию таким образом, чтобы её можно было безопасно прервать. Я собираюсь использовать этот подход для того, чтобы организовать работу с код-ассистентом и тулами, которые он запускает. Это нужно сделать так, чтобы код-ассистента можно было прервать в любой момент и сделать это безопасно.
+
+В этом демо используется фреймворк Sento, реализующий актеры для Common Lisp.
+
+Вот полный код примера:
+
+```
+
+(defun make-interruptable-actor-loop-example ()
+  (ac:actor-of *sys*
+               :destroy (lambda (&rest args)
+                          ;; По сообщению :stop актор будет полностью
+                          ;; остановлен и его нельзя будет запустить ещё раз
+                          (log:info "Destroy called with ARGS = ~A" args))
+               :receive (let ((stopped nil))
+                          (lambda (message)
+                            (log:info "Processing" message)
+                            (case message
+                              ;; Но с помощью :break итерацию можно приостановить,
+                              ;; а потом продолжить заново с помощью :run.
+                              (:break
+                                 (log:info "Stopping")
+                                 (setf stopped t))
+                              (:run
+                                 (log:info "Running")
+                                 (setf stopped nil)
+                                 (act:tell act:*self* :next-iteration))
+                              (t
+                                 (unless stopped
+                                   (log:info "Sleeping")
+                                   (sleep 3)
+                                   (log:info "Going to next iteration")
+                                   (act:tell act:*self* :next-iteration))))))))
+
+```
+
+
+
