@@ -1,7 +1,7 @@
 {namespace staticl.theme.the40ants}
 
 {template index}
-<h1 class="page-header">{$content.title}</h1>
+{if $content.title != 'Страница 1'}{if $content.title != 'Page 1'}<h1 class="page-header">{$content.title}</h1>{/if}{/if}
 {foreach $obj in $content.items}
   <div class="row-fluid">
     <h2><a href="{$obj.url}">{$obj.title}</a></h2>
