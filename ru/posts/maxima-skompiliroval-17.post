@@ -13,6 +13,8 @@ tg-backlink: https://t.me/the40ants/17
 
 [Maxima](https://maxima.sourceforge.io/) это программа для работы с математическими выражениями. Примечательно то, что эта система написана на Common Lisp.
 
+<!--more-->
+
 И вот недавно на Reddit появилось [сообщение](https://www.reddit.com/r/Common_Lisp/comments/1ic56tu/ecl_runs_maxima_in_a_browser_ecldevel/), что Maxima удалось скомпилировать в WebAssembley так что теперь её можно запустить прямо в браузере.
 
 Я записал для вас небольшую гифку с демкой, а кому интересно, тот может сам потыкать в пример развернутый на сайте:
