@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+  <title id="title">Prompt preview</title>
+  <desc id="desc">Preview showing what to paste into Codex</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="760" fill="url(#bg)"/>
+  <rect x="48" y="44" width="1184" height="672" rx="28" fill="#0b1220" stroke="#334155"/>
+  <rect x="48" y="44" width="1184" height="76" rx="28" fill="#111827"/>
+  <circle cx="94" cy="82" r="10" fill="#ef4444"/>
+  <circle cx="126" cy="82" r="10" fill="#f59e0b"/>
+  <circle cx="158" cy="82" r="10" fill="#22c55e"/>
+  <text x="210" y="90" fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">What to paste into Codex</text>
+
+  <text x="90" y="170" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="24">Use the skill with clear natural-language requests.</text>
+
+  <rect x="88" y="206" width="1104" height="88" rx="18" fill="#111827" stroke="#1f2937"/>
+  <text x="116" y="260" fill="#f8fafc" font-family="Consolas, Menlo, monospace" font-size="28">Use $seo to run a full SEO audit for https://example.com.</text>
+
+  <rect x="88" y="322" width="1104" height="88" rx="18" fill="#111827" stroke="#1f2937"/>
+  <text x="116" y="376" fill="#f8fafc" font-family="Consolas, Menlo, monospace" font-size="28">Use $seo to validate schema markup on https://example.com.</text>
+
+  <rect x="88" y="438" width="1104" height="88" rx="18" fill="#111827" stroke="#1f2937"/>
+  <text x="116" y="492" fill="#f8fafc" font-family="Consolas, Menlo, monospace" font-size="28">Use $seo to review my Next.js codebase for SEO issues before launch.</text>
+
+  <rect x="88" y="574" width="1104" height="96" rx="18" fill="#172033" stroke="#334155"/>
+  <text x="116" y="622" fill="#22c55e" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Tip</text>
+  <text x="176" y="622" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="24">You do not need slash commands.</text>
+  <text x="116" y="654" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="22">In Codex, the easiest format is: Use $seo to ...</text>
+</svg>

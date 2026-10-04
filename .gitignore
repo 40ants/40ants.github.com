@@ -2,3 +2,13 @@
 /.qlot/
 .DS_Store
 /stage/
+
+
+# APM dependencies
+apm_modules/
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/

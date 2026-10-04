@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEO"
+  short_description: "Website and codebase SEO audit"
+  default_prompt: "Use $seo to audit https://example.com or a local web project and return a simple fix plan."
