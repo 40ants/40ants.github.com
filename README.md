@@ -30,4 +30,6 @@ Open <http://localhost:8000/>. Edit the source files and regenerate the site to 
 
 Each `.post` or `.page` file starts with metadata between `;;;;;` lines, followed by its Markdown or Spinneret body. For site-wide layout or metadata changes, edit the theme rather than generated HTML.
 
+Blog posts may set `description:` in their metadata to control the HTML meta description. If it is absent, `static/seo-descriptions.lisp` derives a short plain-text description from the excerpt before `<!--more-->` (or from the full post for short posts). Images, video, and code blocks are omitted. An explicit description always takes precedence. Run `XDG_CACHE_HOME=/tmp/40ants-asdf-cache qlot exec sbcl --script tests/seo-descriptions.lisp` to check this behavior locally.
+
 The [build workflow](.github/workflows/build.yml) runs the same Qlot/StatiCL commands on pushes to `develop` and on a weekly schedule, then publishes `stage/` with `gh-pages`.
