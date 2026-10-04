@@ -29,146 +29,31 @@
       </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <h1 class="page-header">Posts with tag &quot;codeassistant&quot;</h1> <div class="row-fluid"> <h1><a href="/ru/posts/herdr-vmesto-tmux-dl-78/">Herdr вместо tmux для работы с несколькими AI-агентами</a></h1> <p class="date-posted">posted on 2026-08-31</p> <p><img src="../../posts/images/78.jpeg" alt="" /></p>
 
 <p>У меня обычно одновременно запущено несколько AI-агентов: один что-то пишет в одном проекте, другой разбирается с багом в другом, третий ждёт, пока я отвечу на вопрос. Раньше для этого я поднимал tmux-сессии.</p>
-
-<p>Tmux отлично решает базовую задачу: процессы не умирают при закрытии терминала, есть окна и панели. Но когда агентов становится несколько, проверять их состояние не очень удобно. Приходится переключаться между панелями и смотреть: он ещё думает, закончил или уже ждёт от меня решения?</p>
-
-<p>Недавно попробовал <a href="https://herdr.dev/" >Herdr</a>. Это тоже терминальный мультиплексор: есть workspaces, вкладки и панели. Но в боковой панели он ещё показывает состояние агентов: работает, заблокирован вопросом, закончил работу или уже просмотрен. Поэтому можно одним взглядом понять, куда сейчас стоит пойти, а кого лучше не трогать.</p>
-
-<p>Особенно понравился remote-режим. Достаточно запустить локально:</p>
-
-<pre><code>
-herdr --remote user@server
-</code></pre>
-
-<p>Herdr сам подключается по SSH, а если на сервере нет подходящей версии, ставит совместимый бинарник и поднимает удалённую сессию. Интерфейс при этом остаётся локальным: по умолчанию используются мои локальные клавиши. Не надо, как раньше с tmux, отдельно переносить и синхронизировать конфиг между ноутбуком и сервером, хотя конечно, SSH-доступ и окружение для самих агентов на сервере всё равно надо подготовить.</p>
-
-<p>Кстати, сами настройки Herdr, более человечные, чем в Tmux. Начать хотя бы с того, что табы по умолчанию нумеруются с 1 а не с 0 и заканчивая тем, что настроечки можно менять через TUI диалоговые окна, а не только через конфиг.</p>
-
-<p>Короче, попробую пожить с Herdr вместо tmux.</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/v-chyom-slozhnost-form-81/">В чём сложность форматирования кода на Lisp?</a></h1> <p class="date-posted">posted on 2026-09-16</p> <p><img src="../../posts/images/81.jpeg" alt="" /></p>
+ <p><a href="/ru/posts/herdr-vmesto-tmux-dl-78/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/v-chyom-slozhnost-form-81/">В чём сложность форматирования кода на Lisp?</a></h1> <p class="date-posted">posted on 2026-09-16</p> <p><img src="../../posts/images/81.jpeg" alt="" /></p>
 
 <p>В нынешние времена, когда большую часть кода пишут LLM, особенно остро встаёт проблема форматирования. Нейронки часто с этим косячат — особенно с отступами. В идеале перед коммитом они должны одной командой приводить все изменённые файлы к принятому в проекте формату.</p>
-
-<p>Вы скажете, что форматирование кода — простая задача, которую давно решили. Но, к сожалению, для моего любимого Common Lisp это не так. Всё потому, что Lisp отличается от многих других языков макросами: они позволяют определять новые синтаксические конструкции, и заранее написанный форматтер может просто не знать, как правильно их форматировать.</p>
-
-<p>Впрочем, тут на помощь приходят библиотеки, в которых можно задать правила форматирования кастомных макросов. Да и сами редакторы вроде Emacs + SLY пытаются с помощью разных эвристик угадать, какой стиль лучше подойдёт той или иной форме.</p>
-
-<p>В целом меня устраивает то, как Emacs + SLY форматирует мой код. Но сейчас я ищу способ дать AI-агенту возможность из командной строки отформатировать Lisp-код так же, как это делает редактор. В следующих нескольких постах расскажу, какие способы попробовал и на чём в итоге остановился.</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/zaluplivanie-kodovog-76/">Залупливание кодового ассистента</a></h1> <p class="date-posted">posted on 2026-08-19</p> <p><img src="../../posts/images/76.jpeg" alt="" /></p>
+ <p><a href="/ru/posts/v-chyom-slozhnost-form-81/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/zaluplivanie-kodovog-76/">Залупливание кодового ассистента</a></h1> <p class="date-posted">posted on 2026-08-19</p> <p><img src="../../posts/images/76.jpeg" alt="" /></p>
 
 <p>На днях мне понадобилось добавить в <a href="https://github.com/40ants/bots" >40ants-bots</a> поддержку клиента мессенджера MAX. Раньше библиотека работала только с Telegram, а теперь хочется уметь поддерживать разные мессенджеры.</p>
-
-<p>Решил сделать это с помощью AI-ассистента и заодно испытать подход Atomic Spec, о котором недавно писал. Попросил агента продумать внедрение, разложить его на отдельные спеки и описать в них весь нужный функционал. С этим он справился вполне неплохо.</p>
-
-<p>А вот дальше хотелось максимально вайбово: дать модели реализовать всё самой, а потом только проверить результат. Тут и началось. Codex периодически останавливался и спрашивал: &quot;Что делать дальше, хозяин?&quot; Так происходит даже если явно попросить действовать автономно, решать максимум вопросов по дороге и иногда делать коммиты.</p>
-
-<p>Я задумался: сейчас много пишут, что агентов надо запускать в цикле. Но как запустить цикл, если агент в случайный момент просто заканчивает работу?</p>
-
-<p>Оказалось, что в Codex есть режим <code>/goal</code>. Передаёшь ему конечную цель, например «реализовать поддержку MAX по спекам и прогнать тесты». Дальше Codex хранит цель отдельно от очередного сообщения: после остановки проверяет, достигнута ли она, и запускает следующий заход, если нет. Агент должен либо показать, что работа действительно завершена, либо признать настоящий блокер.</p>
-
-<p>То есть автономность здесь создаёт не промт «РАБОТАЙ АВТОНОМНО», а рантайм, у которого есть понятие незавершённой цели. В этом режиме Codex несколько часов работал над задачами из спек и вот только что сообщил о финальном результате. Теперь пойду смотреть, чего он там назалупливал.</p>
-
-<p>Кстати, заодно решил посмотрел есть ли подобное в OpenCode. В нём такого режима из коробки нет, но есть плагины. <a href="https://github.com/danshapiro/opencode-goal-plugin" >danshapiro/opencode-goal-plugin</a> старается буквально воспроизвести поведение Codex: после остановки снова запускает агента и не ставит лимитов по числу заходов, времени или токенам. Полная остановка — только когда модель доказала завершение, сообщила о блокере или её остановил человек.</p>
-
-<p><a href="https://github.com/prevalentWare/opencode-goal-plugin" >prevalentWare/opencode-goal-plugin</a> делает похожую вещь, но с предохранителями: бюджетами, лимитом автоматических ходов, проверкой отсутствия прогресса, учётом дочерних задач и compaction. А <a href="https://github.com/watzon/opencode-goal" >watzon/opencode-goal</a> продолжает работу более консервативно: если в очередном ходе не было вызовов тулов, он не продолжает бесконечный разговор модели с собой.</p>
-
-<p>Получается, <code>danshapiro</code> — для тех, кто хочет максимально буквальный <code>/goal</code> из Codex. <code>prevalentWare</code> — для тех, кто хочет оставить агента работать над большим проектом, но с ограничителями.</p>
-
-<p>Надо будет обязательно сделать визуализацию таких циклов в Codabrus: смотреть, как кодовый ассистент сам себя залупливает, гораздо веселее, чем просто читать чат.</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/kak-rabotaet-ai-assi-73/">Как работает AI ассистент</a></h1> <p class="date-posted">posted on 2026-05-31</p> <p>В прошлом посте я писал о том, что хочу в качестве эксперимента сделать визуализацию работы своего кодового ассистента <a href="https://github.com/codabrus/codabrus" >Codabrus</a>.</p>
-
-<p>И вот настали долгожданные выходные, и я объединил код фронта с бэком. Получилось как на демке.</p>
-
-<p>Сообщения от пользователя отображаются синенькими блоками, ответы LLM - зелеными, а вызовы тулов - оранжевым. На блоки можно кликать чтобы видеть больше информации. Если блоки вызова тулов размещаются друг под другом - значит они выполняются параллельно. Использование акторной системы позволяет легко параллелить выполнение любой логики и у меня за выполнение каждого тула отвечает отдельный актор.</p>
-
-<p>Тул у агента пока один - вызов bash команды. Для экспериментов этого достаточно, но для реальной работы надо будет добавить редактирование и прочее. А так же хочу в интерфейс добавить отдельное окно со стримингом размышлений агента - чтобы было видно чем он занят прямо сейчас.</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/moj-setap-s-atomic-s-80/">Мой сетап с Atomic Spec и Beads</a></h1> <p class="date-posted">posted on 2026-09-15</p> <p><img src="../../posts/images/80.jpeg" alt="" /></p>
+ <p><a href="/ru/posts/zaluplivanie-kodovog-76/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/kak-rabotaet-ai-assi-73/">Как работает AI ассистент</a></h1> <p class="date-posted">posted on 2026-05-31</p> <p>В прошлом посте я писал о том, что хочу в качестве эксперимента сделать визуализацию работы своего кодового ассистента <a href="https://github.com/codabrus/codabrus" >Codabrus</a>.</p>
+ <p><a href="/ru/posts/kak-rabotaet-ai-assi-73/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/moj-setap-s-atomic-s-80/">Мой сетап с Atomic Spec и Beads</a></h1> <p class="date-posted">posted on 2026-09-15</p> <p><img src="../../posts/images/80.jpeg" alt="" /></p>
 
 <p>В одном из предыдущих постов я писал о том, <a href="https://40ants.com/ru/posts/chto-takoe-atomic-spe-75/" >что такое Atomic Spec</a>. А в одном из последних проектов настроил упряжь так, чтобы скиллы Atomic Spec работали вместе со скиллами Beads.</p>
-
-<p>Роли у них разные. Atomic Spec формирует и правит кейсы и спеки, описывающие, как должна работать система. А Beads используется для оперативного трекинга задач: хранит их статусы, контекст и связи между ними. Туда же агент складывает заметки на память, когда я прошу LLM порефлексировать и запомнить уроки на будущее.</p>
-
-<p>Сложную задачу агент разбивает на этапы, и хочется, чтобы этот план переживал сжатие контекста. Если держать его только в сессии, то какие-то детали могут потеряться. С Beads агент может вернуться к сохранённым задачам и посмотреть, что уже сделано, а что ещё осталось. А так же он может запускать сабагентов параллельно и каждый из них будет работать над своей подзадачей.</p>
-
-<p>Помимо прочих плюсов, агент обновляет статус каждой подзадачи и оставляет комменты по ходу работы. Потом можно достаточно легко проверить ключевые моменты: что он делал, на чём застрял и к чему пришёл. Без этого, разобраться что делал агент, пришлось бы копаясь в сессии.</p>
-
-<p>Ещё у меня был активен набор скиллов Superpowers — мне нравится оттуда навык проведения брейнштормов. Только если Atomic Spec работает достаточно автономно, то когда активен Superpowers агент периодически &quot;соскакивает&quot; на него, и начинает писать план в стиле superpowers, а не как atomic spec.</p>
-
-<p>Чтобы этого избежать, нужно явно прописать в <code>AGENTS.md</code>, что оркестратором выступает только Atomic Spec, а Superpowers не должен перехватывать управление. Так у агента остаётся один понятный порядок работы, а Beads хранит её текущее состояние и накопленные заметки.</p>
-
-<p>А ещё у Beads есть возможность шарить задачи между участниками команды и мерджить изменения базы. Под капотом там Dolt — база данных с версионированием, ветками и слиянием изменений. Идея похожа на работу с ветками в Git, только здесь речь о данных трекера. Эту часть я пока не опробовал, но интересно посмотреть, как она поведёт себя в командной работе.</p>
-
-<p>• <a href="https://github.com/dab512/atomic-spec" >Atomic Spec</a> — скилл для работы по этой методе
-• <a href="https://github.com/gastownhall/beads" >Beads</a> — код и описание возможностей</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/nejronka-uzhe-pishet-n-36/">Нейронка уже пишет на Common Lisp лучше стажера</a></h1> <p class="date-posted">posted on 2025-04-05</p> <p><video src="../../posts/images/36.mp4" controls style="width: 100%"></video></p>
+ <p><a href="/ru/posts/moj-setap-s-atomic-s-80/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/nejronka-uzhe-pishet-n-36/">Нейронка уже пишет на Common Lisp лучше стажера</a></h1> <p class="date-posted">posted on 2025-04-05</p> <p><video src="../../posts/images/36.mp4" controls style="width: 100%"></video></p>
 
 <p>Сейчас за час, не написав ни строчки кода сделал такую библиотеку:</p>
 
 <p><a href="https://github.com/40ants/routes/pull/1/files" >https://github.com/40ants/routes/pull/1/files</a></p>
 
 <p>там и тесты есть с документацией.</p>
-
-<p>Многое конечно еще предстоит поправить, но получилось неплохо.</p>
-
-<p>Использовал VSCode + Roo Code плагин + Claude 3.7 от Anthropic.</p>
-
-<p>Оно даже тесты само умеет запускать в терминале, смотреть что падает и чинить. Сначала пробовала запускать через голый SBCL, но адаптировалась, когда я подсказал использовать для запуска <code>qlot exec ros run</code>.</p>
-
-<p>Единственный момент, который огорчает  – в течении этого часа я чувствовал себя, как прораб миллиарда обезьян, пишущих Войну и Мир. И не получил ни капли от того количества эндорфина, котрый обычно получаю, программируя на Common Lisp.</p>
-
-<p>Завтра вчитаюсь внимательно в то что получилось, и буду этот код рефакторить с помощью нейронки.</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/ostorozhno-skill-s-s-74/">Осторожно: skill с сюрпризом!</a></h1> <p class="date-posted">posted on 2026-08-12</p> <p><img src="../../posts/images/74.jpeg" alt="" /></p>
+ <p><a href="/ru/posts/nejronka-uzhe-pishet-n-36/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/ostorozhno-skill-s-s-74/">Осторожно: skill с сюрпризом!</a></h1> <p class="date-posted">posted on 2026-08-12</p> <p><img src="../../posts/images/74.jpeg" alt="" /></p>
 
 <p>В одном из последних проектов я решил попробовать подход Atomic Spec. Это когда системные требования фиксируются в отдельных файлах, чтобы кодовый ассистент мог сверяться с ними при добавлении новых фич.</p>
-
-<p>Начал искать skill для работы с Atomic Spec и наткнулся на GitHub репу <code>lovely392/atomic-spec</code>. На первый взгляд — вроде бы свежая и улучшенная версия. Но устанавливать его не спешите.</p>
-
-<p>Похоже, автор взял существующий репозиторий, внёс косметические правки и залил результат как новый. Это не fork, поэтому связи с исходным проектом на GitHub не видно.</p>
-
-<p>А дальше в README начинается совсем странное. Вместо инструкции по установке навыка предлагается скачать ZIP-архив, распаковать его и запустить файл на Windows. Причём там отдельно объясняют, как пройти системные предупреждения и продолжить запуск. Для skill-а кодового ассистента это выглядит, мягко говоря, подозрительно.</p>
-
-<p>То есть получается такой вирус, который нужно установить самому. И это особенно неприятно в эпоху кодовых ассистентов: ассистент вполне может прочитать README, сходить по ссылке, скачать архив и выполнить инструкцию. В итоге вместо нового skill-а на компьютер может попасть какой-нибудь троян.</p>
-
-<p>Это хороший повод помнить, что skills, MCP-серверы и их инструкции — тоже часть supply chain. Перед установкой стоит посмотреть, откуда взялся репозиторий, является ли он форком, что именно менялось и почему «навык» вдруг требует запустить .exe.</p>
-
-<p>А тем, кому интересно попробовать Atomic Spec в работе, вот <a href="https://github.com/dab512/atomic-spec" >оригинальный репозиторий</a>. Там Atomic Spec — это именно методология и skill для кодового ассистента, а не Windows-приложение из архива.</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/svoj-code-assistant-44/">Свой Code Assistant</a></h1> <p class="date-posted">posted on 2025-07-20</p> <p><video src="../../posts/images/44.mp4" controls style="width: 100%"></video></p>
+ <p><a href="/ru/posts/ostorozhno-skill-s-s-74/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/svoj-code-assistant-44/">Свой Code Assistant</a></h1> <p class="date-posted">posted on 2025-07-20</p> <p><video src="../../posts/images/44.mp4" controls style="width: 100%"></video></p>
 
 <p>Все выходные я провозился с созданием своего собственного Code Assistant. Очень интересно было разобраться в том, как вообще все это работает. К сожалению, статей именно про устройство кодовых ассистантов не так уж много.</p>
-
-<p>В основном попадаются восторженные статьи про то, как круто работает вайб-кодинг, как с его помощью написали первый Hello World и тому подобное говно. Но мне повезло найти одну очень интересную статью, где автор <a href="https://blog.sshh.io/p/how-cursor-ai-ide-works" >анализирует работу IDE Cursor</a> и устройство его промпта.</p>
-
-<p>Я начал писать своего кода-ассистента, ориентируясь на исходники проекта Aider, но посматриваю и на другие проекты с открытым кодом, типа RooCode, Cline и прочих.</p>
-
-<p>Сегодня случился замечательный момент — мой ассистент смог отредактировать файл. Он самостоятельно нашел место для правки, составил патч, наложил его с помощью инструментов и внес изменения. На демо прикрепленном к этому посту, видно, что сначала ассистент попытался найти упоминание функции по кодовой базе, затем прочитал часть найденного файла с помощью инструмента read_file, а затем сгенерировал и наложил на него патч.</p>
-
-<p>Я изучил, как устроено редактирование файлов в Aider и Cursor. Там правки происходят через вызовы к LLM — формируется небольшой патч в кастомном формате, где указаны старые и новые исходники, затем эти инструкции скармливаются более быстрой LLM, которая уже и меняет исходник.</p>
-
-<p>Я пошел другим путем — для редактирования использую CLI команду patch, научив LLM формировать правильный diff. Пока работает неидеально: иногда дифф получается некорректным, и команда патч ломается. Но если показать LLM ошибку, она делает следующую попытку с исправленным патчем. Обычно ко второй-третьей попытке всё получается.</p>
-
-<p>Я планирую дальше развивать код-ассистент. Теперь нужно добавить цикл проверки изменений через тестирование.</p>
-
-<p>Особенно интересно работать с таким проектом в Common Lisp — можно быстро экспериментировать: смотреть внутренний стейт, править функции, добавлять новые инструменты и сразу тестировать изменения. Такой режим работы очень удобен. Даже для интерфейса я пока использую CL REPL, но планирую добавить веб-интерфейс и может быть консольный, как у Aider. Пока, это площадка для экспериментов!</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/sobirayus-na-ai-nati-77/">Собираюсь на AI Native Conf</a></h1> <p class="date-posted">posted on 2026-08-29</p> <p><img src="../../posts/images/77.jpeg" alt="" /></p>
+ <p><a href="/ru/posts/svoj-code-assistant-44/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/sobirayus-na-ai-nati-77/">Собираюсь на AI Native Conf</a></h1> <p class="date-posted">posted on 2026-08-29</p> <p><img src="../../posts/images/77.jpeg" alt="" /></p>
 
 <p>В октябре собираюсь пойти на <a href="https://ainativeconf.ru/" >AI Native Conf</a>. Интересно посмотреть, что сейчас происходит вокруг разработки с AI и агентами, и послушать доклады людей, которые это всё уже пробуют в реальных проектах.</p>
-
-<p>Кстати, организаторы этой конфы поделились материалами с предыдущей Agentic Dev Conf — транскрипциями докладов. Я решил собрать их в <a href="https://github.com/svetlyak40wt/agentic-dev-conf-materials-2026" >отдельный репозиторий на GitHub</a> и дополнительно добавил README с выжимками самого важного из каждого доклада. Пользуйтесь!</p>
-
-<p>Если тоже собираетесь на конференцию 20 октября — давайте там встретимся!</p>
-  </div><div class="row-fluid"> <h1><a href="/ru/posts/chto-takoe-atomic-spe-75/">Что такое Atomic Spec и зачем он кодовому ассистенту?</a></h1> <p class="date-posted">posted on 2026-08-16</p> <p>В предыдущем посте я упоминал про навык использования Atomic Spec. Расскажу, что это такое и почему этот подход особенно интересен, когда код пишет AI-ассистент.</p>
-
-<p>Обычно требования к фиче живут в задаче, обсуждении и голове автора. Ассистент получает короткую формулировку, находит похожий код и начинает действовать. Пока задача маленькая, этого хватает. Но чем она длиннее и чем больше в ней исключений, тем проще забыть исходное намерение и сделать технически аккуратную, но неправильную вещь.</p>
-
-<p>Atomic Spec предлагает хранить требования как набор маленьких «атомов»: один <code>*.spec.md</code> — одна единица знания. У атомов есть иерархия: система, домен, use case и сценарии. Внутри файла сначала лежит то, что не зависит от конкретного фреймворка: намерение, доменные правила, критерии приёмки и ограничения. Ниже — API, детали реализации и план тестов.</p>
-
-<p>Самая важная для меня часть здесь — доменные правила. Это не «проверить поле в форме» и не «вызвать такой-то метод». Это правила предметной области, которые должны оставаться верными независимо от того, на чём написан код. Например: пользователь не может зарегистрироваться с уже занятым email, заказ нельзя оплатить дважды, а скидка не должна сделать сумму отрицательной. Когда такие правила явно записаны, у ассистента появляется не только задача, но и границы, которые нельзя случайно сломать при рефакторинге.</p>
-
-<p>В Atomic Spec это превращается в последовательный процесс. Сначала аналитик фиксирует намерение, правила и критерии приёмки. Затем разработчик добавляет техническую спецификацию и код. Потом тестировщик проверяет, что каждый сценарий и каждое доменное правило покрыты тестами. Между этапами есть gate-проверки: если в требованиях остались противоречия или реализация не покрывает правило, следующий этап не начинается.</p>
-
-<p>Сам skill для кодового ассистента играет роль оркестратора. Он декомпозирует задачу на атомы, переключает роли аналитика, разработчика и тестировщика, валидирует результаты и придерживается соглашений для веток и коммитов. Получается не магический промпт «сделай правильно», а повторяемый маршрут: задача → требования → код → тесты. И все эти артефакты ссылаются на один источник.</p>
-
-<p>Конечно, для исправления одной опечатки это избыточно. Но на проекте, который развивается неделями, такая дисциплина даёт ассистенту устойчивый контекст и возможность понять, почему код устроен именно так.</p>
-
-<p>Сейчас я пробую применять эту методологию для нескольких своих проектах и <a href="https://github.com/dab512/atomic-spec" >использую skill</a>, созданный одним из моих коллег.</p>
-  </div> <div id="relative-nav"> <ul class="pager">   </ul> </div> <div class="row-fluid"> <p>This blog covers <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/llm/">llm</a>, <a href="/ru/tag/codabrus/">codabrus</a>, <a href="/ru/tag/ai/">ai</a>, <a href="/ru/tag/codeassistant/">codeassistant</a>, <a href="/ru/tag/clos/">clos</a>, <a href="/ru/tag/actors/">actors</a>, <a href="/ru/tag/learning/">learning</a>, <a href="/ru/tag/news/">news</a>, <a href="/ru/tag/automation/">automation</a>, <a href="/ru/tag/voice/">voice</a>, <a href="/ru/tag/projects/">projects</a>, <a href="/ru/tag/git/">git</a>, <a href="/ru/tag/tools/">tools</a>, <a href="/ru/tag/holism/">holism</a>, <a href="/ru/tag/zerocoder/">zerocoder</a>, <a href="/ru/tag/python/">python</a>, <a href="/ru/tag/aider/">aider</a>, <a href="/ru/tag/cursor/">cursor</a>, <a href="/ru/tag/project/">project</a>, <a href="/ru/tag/i18n/">i18n</a>, <a href="/ru/tag/poftheday/">poftheday</a>, <a href="/ru/tag/visualization/">visualization</a>, <a href="/ru/tag/closed/">closed</a>, <a href="/ru/tag/tips/">tips</a>, <a href="/ru/tag/seo/">seo</a>, <a href="/ru/tag/telegram/">telegram</a>, <a href="/ru/tag/bot/">bot</a>, <a href="/ru/tag/прототип/">прототип</a>, <a href="/ru/tag/smarthome/">smarthome</a>, <a href="/ru/tag/yandexcloud/">yandexcloud</a>, <a href="/ru/tag/logging/">logging</a>, <a href="/ru/tag/ideas/">ideas</a>, <a href="/ru/tag/experiment/">experiment</a>, <a href="/ru/tag/software/">software</a>, <a href="/ru/tag/thoughts/">thoughts</a>, <a href="/ru/tag/programming/">programming</a>, <a href="/ru/tag/hackathon/">hackathon</a>, <a href="/ru/tag/mtstruetech/">mtstruetech</a>, <a href="/ru/tag/robotics/">robotics</a>, <a href="/ru/tag/web/">web</a>, <a href="/ru/tag/github/">github</a>, <a href="/ru/tag/problems/">problems</a>, <a href="/ru/tag/salebot/">salebot</a>, <a href="/ru/tag/bots/">bots</a>, <a href="/ru/tag/notes/">notes</a>, <a href="/ru/tag/emacs/">emacs</a>, <a href="/ru/tag/macos/">macos</a>, <a href="/ru/tag/lisp/">lisp</a>, <a href="/ru/tag/failures/">failures</a>, <a href="/ru/tag/infrastructure/">infrastructure</a>, <a href="/ru/tag/lispworks/">lispworks</a>, <a href="/ru/tag/life/">life</a>, <a href="/ru/tag/идеи/">идеи</a>, <a href="/ru/tag/mcp/">mcp</a>, <a href="/ru/tag/raspberrypi/">raspberrypi</a>, <a href="/ru/tag/security/">security</a>, <a href="/ru/tag/opensource/">opensource</a>, <a href="/ru/tag/sql/">sql</a>, <a href="/ru/tag/nix/">nix</a>, <a href="/ru/tag/ultralisp/">ultralisp</a>, <a href="/ru/tag/tutorials/">tutorials</a>, <a href="/ru/tag/reblocks/">reblocks</a>, <a href="/ru/tag/yandex/">yandex</a>, <a href="/ru/tag/cloud/">cloud</a> </p> </div>  </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
+ <p><a href="/ru/posts/sobirayus-na-ai-nati-77/">Read more...</a></p> </div><div class="row-fluid"> <h1><a href="/ru/posts/chto-takoe-atomic-spe-75/">Что такое Atomic Spec и зачем он кодовому ассистенту?</a></h1> <p class="date-posted">posted on 2026-08-16</p> <p>В предыдущем посте я упоминал про навык использования Atomic Spec. Расскажу, что это такое и почему этот подход особенно интересен, когда код пишет AI-ассистент.</p>
+ <p><a href="/ru/posts/chto-takoe-atomic-spe-75/">Read more...</a></p> </div> <div id="relative-nav"> <ul class="pager">   </ul> </div> <div class="row-fluid"> <p>This blog covers <a href="/ru/tag/commonlisp/">commonlisp</a>, <a href="/ru/tag/llm/">llm</a>, <a href="/ru/tag/codabrus/">codabrus</a>, <a href="/ru/tag/ai/">ai</a>, <a href="/ru/tag/codeassistant/">codeassistant</a>, <a href="/ru/tag/clos/">clos</a>, <a href="/ru/tag/actors/">actors</a>, <a href="/ru/tag/learning/">learning</a>, <a href="/ru/tag/news/">news</a>, <a href="/ru/tag/automation/">automation</a>, <a href="/ru/tag/voice/">voice</a>, <a href="/ru/tag/projects/">projects</a>, <a href="/ru/tag/git/">git</a>, <a href="/ru/tag/tools/">tools</a>, <a href="/ru/tag/holism/">holism</a>, <a href="/ru/tag/zerocoder/">zerocoder</a>, <a href="/ru/tag/python/">python</a>, <a href="/ru/tag/aider/">aider</a>, <a href="/ru/tag/cursor/">cursor</a>, <a href="/ru/tag/project/">project</a>, <a href="/ru/tag/i18n/">i18n</a>, <a href="/ru/tag/poftheday/">poftheday</a>, <a href="/ru/tag/visualization/">visualization</a>, <a href="/ru/tag/closed/">closed</a>, <a href="/ru/tag/tips/">tips</a>, <a href="/ru/tag/seo/">seo</a>, <a href="/ru/tag/telegram/">telegram</a>, <a href="/ru/tag/bot/">bot</a>, <a href="/ru/tag/прототип/">прототип</a>, <a href="/ru/tag/smarthome/">smarthome</a>, <a href="/ru/tag/yandexcloud/">yandexcloud</a>, <a href="/ru/tag/logging/">logging</a>, <a href="/ru/tag/ideas/">ideas</a>, <a href="/ru/tag/experiment/">experiment</a>, <a href="/ru/tag/software/">software</a>, <a href="/ru/tag/thoughts/">thoughts</a>, <a href="/ru/tag/programming/">programming</a>, <a href="/ru/tag/hackathon/">hackathon</a>, <a href="/ru/tag/mtstruetech/">mtstruetech</a>, <a href="/ru/tag/robotics/">robotics</a>, <a href="/ru/tag/web/">web</a>, <a href="/ru/tag/github/">github</a>, <a href="/ru/tag/problems/">problems</a>, <a href="/ru/tag/salebot/">salebot</a>, <a href="/ru/tag/bots/">bots</a>, <a href="/ru/tag/notes/">notes</a>, <a href="/ru/tag/emacs/">emacs</a>, <a href="/ru/tag/macos/">macos</a>, <a href="/ru/tag/lisp/">lisp</a>, <a href="/ru/tag/failures/">failures</a>, <a href="/ru/tag/infrastructure/">infrastructure</a>, <a href="/ru/tag/lispworks/">lispworks</a>, <a href="/ru/tag/life/">life</a>, <a href="/ru/tag/идеи/">идеи</a>, <a href="/ru/tag/mcp/">mcp</a>, <a href="/ru/tag/raspberrypi/">raspberrypi</a>, <a href="/ru/tag/security/">security</a>, <a href="/ru/tag/opensource/">opensource</a>, <a href="/ru/tag/sql/">sql</a>, <a href="/ru/tag/nix/">nix</a>, <a href="/ru/tag/ultralisp/">ultralisp</a>, <a href="/ru/tag/tutorials/">tutorials</a>, <a href="/ru/tag/reblocks/">reblocks</a>, <a href="/ru/tag/yandex/">yandex</a>, <a href="/ru/tag/cloud/">cloud</a> </p> </div>  </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
