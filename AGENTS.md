@@ -79,3 +79,23 @@ This protocol applies when ending a Beads implementation workflow. It is subordi
 - Do not commit or push without clear authority from the active profile or the current user request.
 - If a required sync or push is blocked, stop and report the exact command and error.
 <!-- END BEADS INTEGRATION -->
+
+## Site architecture
+
+This repository is the source for `https://40ants.com/`. The active generator is **StatiCL** (Common Lisp), not Coleslaw. `.staticlrc` defines the site, navigation, theme, and generation pipeline. `qlfile` and `qlfile.lock` define the Qlot environment, including StatiCL. `.coleslawrc`, `plugins-old/`, and `static/clonify.lisp` describe or implement the older Coleslaw setup; do not use them as the source of truth for the current build.
+
+Content lives in `*.page` and `*.post` files. English posts are in `posts/`, Russian posts in `ru/posts/`, and other pages are at the repository root or under `ru/`. Each content file begins with metadata between `;;;;;` delimiters (`title`, `created-at`, `format`, optional `description` and `tags`), followed by the body. Most posts use `format: md`; some pages use `format: spinneret`. Images referenced by Russian posts are under `ru/posts/images/`. The `<!--more-->` marker appears in some posts and controls the excerpt/“Read more” split used by the index template.
+
+The `.staticlrc` pipeline loads content, then runs separate `ru/` and non-`ru/` branches for previous/next links, tag indexes, paginated post indexes, RSS, and Atom. These branches write to `ru/posts/` and `posts/` respectively; the final `sitemap` stage generates `sitemap.xml`. Changes to routing, pagination, feeds, or sitemap generation belong in `.staticlrc` or the upstream StatiCL implementation, not in individual posts.
+
+The active theme is `themes/the40ants/`, declared by `.staticlrc` and `themes/the40ants/theme.lisp`. Its Closure Templates are the shared HTML layer:
+
+- `base.tmpl`: document shell, `<head>`, page title, description meta tag, language attribute, analytics, navigation, and shared assets. It currently reads `{$site.lang}` and emits a description only when `$content.description` exists; there is no canonical link in this template.
+- `post.tmpl`: individual post heading, body, tags, date, and previous/next links.
+- `index.tmpl`: archive/index heading, post list, excerpts, “Read more” links, and pagination. It renders each post title as an `h1`; change this template for archive heading structure, while excerpt length may also require content markers or generator changes.
+
+Theme assets, including `robots.txt`, CSS, JavaScript, and images, are in the same directory. For site-wide SEO fixes, inspect the generated HTML as well as the relevant template and `.staticlrc`; a change to a post alone cannot fix a shared `<head>` or archive layout.
+
+## Build and publication
+
+The authoritative build command is the one in `.github/workflows/build.yml`: after `qlot install`, run `qlot exec .qlot/bin/staticl generate`. The generated output is `stage/` (ignored by Git). The workflow runs on pushes to `develop` and on a weekly schedule, then publishes `stage/` with the `gh-pages` tool. Check representative generated English and Russian pages, an archive page, and `stage/sitemap.xml` after template or pipeline changes. Do not edit generated `stage/` files as source.

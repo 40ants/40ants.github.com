@@ -1,0 +1,25 @@
+name: 40ants.github.com
+version: 1.0.0
+description: APM project for 40ants.github.com
+author: Alexander Artemenko
+# Which agent platforms to deploy to.
+# Resolution order: --target flag > this field > auto-detect from filesystem.
+# Accepted values: agent-skills, antigravity, claude, codex, copilot, cursor, gemini, grok-build, hermes, kiro, opencode, vscode, windsurf
+targets:
+  - codex
+dependencies:
+  apm:
+    - Luzikov/codex-seo-skill#cdbf66bf55b5b2d6e18a6ae97f81133e3324238b
+    - git: wuxiangcoding/vibecodinghub-seo-skills
+      ref: 31147e050a78b0de6e15cbb81b7c9383047e616f
+      skills:
+        - yandex-webmaster
+    - obra/superpowers
+    - anthropics/skills/skills/canvas-design
+    - anthropics/skills/skills/frontend-design
+    - anthropics/skills/skills/theme-factory
+    - anthropics/skills/skills/web-artifacts-builder
+    - anthropics/skills/skills/webapp-testing
+  mcp: []
+includes: auto
+scripts: {}

@@ -34,6 +34,17 @@
           }
         ],
         "matcher": "startup|resume|clear"
+      },
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\".codex/hooks/superpowers/hooks/run-hook.cmd\" session-start",
+            "shell": "bash",
+            "async": false
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
