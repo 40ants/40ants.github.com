@@ -38,35 +38,35 @@
 <li><p><strong>Корректно выключи исходную ВМ</strong>, чтобы получить согласованное состояние файлов и баз данных.</p></li>
 <li><p>В консоли открой <strong>Compute Cloud → Диски и хранилища → нужный диск → Создать образ</strong>. Дождись завершения создания — после этого исходную ВМ можно снова запускать.</p></li>
 <li><p>Создай временную ВМ с Ubuntu, SSH-доступом и внешним IP. Подключи к ней <strong>дополнительный диск, созданный из полученного образа</strong>. Её собственный загрузочный диск будет отдельным.</p></li>
-<li><p>Подключись к временной ВМ и найди диск-копию:</p></li>
-</ol>
+<li><p>Подключись к временной ВМ и найди диск-копию:</p>
 
 <p><code>
-   lsblk -o NAME,SIZE,TYPE,MOUNTPOINTS,SERIAL
-</code> </p>
+lsblk -o NAME,SIZE,TYPE,MOUNTPOINTS,SERIAL
+</code> </p></li>
+</ol>
 
 <p>Допустим, это <code>/dev/vdb</code>. Нужен <strong>весь диск</strong>, а не раздел <code>/dev/vdb1</code>. Его разделы должны оставаться непримонтированными; форматировать диск не нужно.</p>
 
 <ol>
-<li><strong>На своём компьютере</strong>, в терминале macOS или Linux, запусти:</li>
-</ol>
+<li><p><strong>На своём компьютере</strong>, в терминале macOS или Linux, запусти:</p>
 
 <p><code>
-   ssh USER@HELPER_IP \
-      &quot;bash -o pipefail -c 'sudo -n dd if=/dev/vdb bs=4M status=progress | gzip -1'&quot; \
-     &gt; vm-backup.img.gz.part &amp;&amp;
-   mv vm-backup.img.gz.part vm-backup.img.gz
-</code> </p>
+ ssh USER@HELPER_IP \
+    &quot;bash -o pipefail -c 'sudo -n dd if=/dev/vdb bs=4M status=progress | gzip -1'&quot; \
+   &gt; vm-backup.img.gz.part &amp;&amp;
+ mv vm-backup.img.gz.part vm-backup.img.gz
+</code> </p></li>
+</ol>
 
 <p>Замени пользователя, IP и устройство на свои. Команда предполагает, что пользователь временной ВМ может выполнять <code>sudo</code> без пароля. Образ сразу скачивается на компьютер, поэтому хранить его целиком на временной ВМ не требуется.</p>
 
 <ol>
-<li>Проверь скачанный архив:</li>
-</ol>
+<li><p>Проверь скачанный архив:</p>
 
 <p><code>
-   gzip -t vm-backup.img.gz
-</code> </p>
+  gzip -t vm-backup.img.gz
+</code> </p></li>
+</ol>
 
 <p>При успешной проверке команда завершится без вывода. Для уверенности в восстановлении лучше также проверить загрузку копии в локальном гипервизоре.</p>
 
