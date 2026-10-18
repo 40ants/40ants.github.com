@@ -33,47 +33,6 @@
 <p>Сегодня вспомнил что у меня там ещё и в S3 лежала часть статики для разных сайтиков. Решил забэкапить и их.</p>
 
 <p>Как это сделать? Нужно завести в Яндекс Облаке сервисный аккаунт с правами storage.editor и создать для него статический ключ. Так вы получите идентификатор ключа и секрет.</p>
-
-<p>Дальше создайте с ними такой конфиг для утилиты rclone:</p>
-
-<pre><code>
-[cloud]
-type = s3
-provider = Other
-access_key_id = XXXXXXXX
-secret_access_key = YYYYYYYYY
-endpoint = [https://storage.yandexcloud.net](https://storage.yandexcloud.net)
-acl = private
-</code></pre>
-
-<p>и сохраните в файл rclone.conf</p>
-
-<p>После установите саму утилиту. Я предпочитаю через nix-shell. Но можно и любым пакетным менеджером.</p>
-
-<p>Если через <code>nix-shell</code>, то нужно сделать такой файлик <code>shell.nix</code>:</p>
-
-<pre><code>
-{ pkgs ? import &lt;nixpkgs&gt; {} }:
-
-pkgs.mkShell {
-  packages = [ pkgs.rclone ];
-}
-</code></pre>
-
-<p>И запустить в этой директории команду <code>nix-shell</code> - попадете в окружение где доступен <code>rclone</code>.</p>
-
-<p>Ну и финальное, чтобы забэкапить вообще все S3 бакеты до которых сможет дотянуться аккаунт, делаем такой bash скрипт <code>backup.sh</code>:</p>
-
-<pre><code>
-#!/bin/bash
-
-for bucket in $(rclone --config rclone.conf lsd cloud: 2&gt;&1 | awk '{print $5}');
-    do echo "Backing up $bucket";
-    rclone --config rclone.conf sync cloud:$bucket ./$bucket/;
-done
-</code></pre>
-
-<p>При запуске, он сначала получит через rclone список доступных бакетов, а потом забэкапит каждый из них в ту же папку откуда запущен.</p>
  <p><a href="/ru/posts/kak-zabekapit-vse-b-87/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/chem-mozhet-byt-polez-33/">Чем может быть полезен Yandex Workflow?</a></h2> <p class="date-posted">posted on 2025-03-18</p> <p><img src="../../posts/images/33.jpeg" alt="" /></p>
 
 <p>Как рассказывал недавно, в последнее время смотрю разные вебинары от университета Зерокодер. И вот <a href="https://zerocoder.ru/prompt-engineer-with-ai-course?gcpc=4d3d5" >в одном из них</a> показывали как бот работает в связке нескольких конструкторов:</p>
