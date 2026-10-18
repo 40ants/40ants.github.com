@@ -26,7 +26,116 @@
 
       gtag('config', 'G-FL71WXK73K');
     </script>
-      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid">  <div class="row-fluid"> <h2><a href="/ru/posts/common-lisp-hardwa-85/">Common Lisp &amp; Hardware Security</a></h2> <p class="date-posted">posted on 2026-10-04</p> <p><img src="images/85.jpeg" alt="" /></p>
+      </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/"> <img class="logo" src="/img/logo.svg" title="40Ants" /> </a> <ul class="nav"> <li> <a href="/posts/">Blog</a> </li><li> <a href="/ru/posts/">Blog (RU)</a> </li><li> <a href="/tips/">Lisp Tips</a> </li><li> <a href="/projects/">Our Projects</a> </li><li> <a href="/about/">About</a> </li> </ul> </div> </div> </div> <div class="row-fluid">  <div class="row-fluid"> <h2><a href="/ru/posts/poslednie-tri-dnya-py-88/">Последние три дня пытаюсь вытащить данные со своего Яндекс Диска</a></h2> <p class="date-posted">posted on 2026-10-13</p> <p>Сначала пробовал использовать <code>rclone</code>, но в какой-то момент это API отключили. Пробовал вытаскивать данные через <code>WebDAV</code> - но он тоже уже не работает. При этом веб-интерфейс Яндекс Диска еще хоть как-то работает, хотя и не все файлы там можно скачать. Для некоторых файлов скачивание не работает, но доступны превью.</p>
+
+<p>В итоге сегодня навайпкодил небольшое приложение, которое пытается вытащить хоть что-то, используя API веб-интерфейса Яндекс.Диска. Фишка этого приложения в том, что оно не просто пытается скачать файл рекурсивно из той папки, которую вы укажете, но и если файл недоступен, если оригинал недоступен, то эта утилита пытается скачать хотя бы какую-нибудь превью этого файла. Сейчас пытаюсь с этой штуки получится восстановить семейный архив, который у меня был на Яндекс Диске и который я почему-то по наивности своей не бэкапил. </p>
+
+<p>Надеюсь и кому-то из вас эта утилитка тоже пригодится – не могу же я быть один такой, кто полагается на надежность облачных сервисов 🙂</p>
+
+<p>Ссылка на репу: <a href="https://github.com/40ants/YDiskSaver" >https://github.com/40ants/YDiskSaver</a></p>
+ <p><a href="/ru/posts/poslednie-tri-dnya-py-88/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/kak-zabekapit-vse-b-87/">Как забэкапить все бакеты в S3 Yandex Cloud?</a></h2> <p class="date-posted">posted on 2026-10-12</p> <p><img src="images/87.jpeg" alt="" /></p>
+
+<p>В прошлом посте я писал рецепт бэкапа виртулок. И мне таки удалось одну самую большую таким образом спасти, а вот с той на которой был развернут Staticbot – не повезло.</p>
+
+<p>Сегодня вспомнил что у меня там ещё и в S3 лежала часть статики для разных сайтиков. Решил забэкапить и их.</p>
+
+<p>Как это сделать? Нужно завести в Яндекс Облаке сервисный аккаунт с правами storage.editor и создать для него статический ключ. Так вы получите идентификатор ключа и секрет.</p>
+
+<p>Дальше создайте с ними такой конфиг для утилиты rclone:</p>
+
+<pre><code>
+[cloud]
+type = s3
+provider = Other
+access_key_id = XXXXXXXX
+secret_access_key = YYYYYYYYY
+endpoint = [https://storage.yandexcloud.net](https://storage.yandexcloud.net)
+acl = private
+</code></pre>
+
+<p>и сохраните в файл rclone.conf</p>
+
+<p>После установите саму утилиту. Я предпочитаю через nix-shell. Но можно и любым пакетным менеджером.</p>
+
+<p>Если через <code>nix-shell</code>, то нужно сделать такой файлик <code>shell.nix</code>:</p>
+
+<pre><code>
+{ pkgs ? import &lt;nixpkgs&gt; {} }:
+
+pkgs.mkShell {
+  packages = [ pkgs.rclone ];
+}
+</code></pre>
+
+<p>И запустить в этой директории команду <code>nix-shell</code> - попадете в окружение где доступен <code>rclone</code>.</p>
+
+<p>Ну и финальное, чтобы забэкапить вообще все S3 бакеты до которых сможет дотянуться аккаунт, делаем такой bash скрипт <code>backup.sh</code>:</p>
+
+<pre><code>
+#!/bin/bash
+
+for bucket in $(rclone --config rclone.conf lsd cloud: 2&gt;&1 | awk '{print $5}');
+    do echo "Backing up $bucket";
+    rclone --config rclone.conf sync cloud:$bucket ./$bucket/;
+done
+</code></pre>
+
+<p>При запуске, он сначала получит через rclone список доступных бакетов, а потом забэкапит каждый из них в ту же папку откуда запущен.</p>
+ <p><a href="/ru/posts/kak-zabekapit-vse-b-87/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/kak-zabekapit-virtu-86/">Как забэкапить виртуалку в Yandex Cloud</a></h2> <p class="date-posted">posted on 2026-10-09</p> <p>Ввиду неиллюзорной угрозы потерять данные, решил забэкпить данные своих виртуалок в Яндекс Облаке. Да так, чтобы образа их лежали у меня дома, на жестком диске.</p>
+
+<p>Вот краткая инструкция, как это можно сделать.</p>
+
+<ol>
+<li><strong>Корректно выключи исходную ВМ</strong>, чтобы получить согласованное состояние файлов и баз данных.</li>
+</ol>
+
+<p><strong>Update: ПОДОЖДИ СЛЕДОВАТЬ ИНСТРУКЦИИ, Я ТЕПЕРЬ НЕ МОГУ ЗАПУСТИТЬ СВОЮ ВИРТУАЛКУ – ПОЛУЧАЮ ОШИБКУ: Resource allocation is restricted</strong></p>
+
+<ol>
+<li><p>В консоли открой <strong>Compute Cloud → Диски и хранилища → нужный диск → Создать образ</strong>. Дождись завершения создания — после этого исходную ВМ можно снова запускать.</p></li>
+<li><p>Создай временную ВМ с Ubuntu, SSH-доступом и внешним IP. Подключи к ней <strong>дополнительный диск, созданный из полученного образа</strong>. Её собственный загрузочный диск будет отдельным.</p></li>
+<li><p>Подключись к временной ВМ и найди диск-копию:</p></li>
+</ol>
+
+<p>```</p>
+
+<p>lsblk -o NAME,SIZE,TYPE,MOUNTPOINTS,SERIAL</p>
+
+<p>``` </p>
+
+<p>Допустим, это <code>/dev/vdb</code>. Нужен <strong>весь диск</strong>, а не раздел <code>/dev/vdb1</code>. Его разделы должны оставаться непримонтированными; форматировать диск не нужно.</p>
+
+<ol>
+<li><strong>На своём компьютере</strong>, в терминале macOS или Linux, запусти:</li>
+</ol>
+
+<p>```shell</p>
+
+<p>ssh USER@HELPER_IP \
+     &quot;bash -o pipefail -c 'sudo -n dd if=/dev/vdb bs=4M status=progress | gzip -1'&quot; \
+     &gt; vm-backup.img.gz.part &amp;&amp;
+   mv vm-backup.img.gz.part vm-backup.img.gz</p>
+
+<p>``` </p>
+
+<p>Замени пользователя, IP и устройство на свои. Команда предполагает, что пользователь временной ВМ может выполнять <code>sudo</code> без пароля. Образ сразу скачивается на компьютер, поэтому хранить его целиком на временной ВМ не требуется.</p>
+
+<ol>
+<li>Проверь скачанный архив:</li>
+</ol>
+
+<p>```shell</p>
+
+<p>gzip -t vm-backup.img.gz</p>
+
+<p>``` </p>
+
+<p>При успешной проверке команда завершится без вывода. Для уверенности в восстановлении лучше также проверить загрузку копии в локальном гипервизоре.</p>
+
+<p>Получится <strong>полный RAW-образ диска, сжатый gzip</strong>. Если у ВМ несколько дисков, сохрани каждый отдельно. После распаковки образ занимает полный размер исходного диска. Настройки самой ВМ — CPU, RAM, сеть, BIOS/UEFI — сохрани отдельно.</p>
+
+<p>Если удобнее получить сразу <strong>QCOW2 через Object Storage</strong>, у Yandex Cloud есть <a href="https://github.com/yandex-cloud-examples/yc-disk-export-tool" >скрипт <code>yc-disk-export-tool</code></a>: он создаёт вспомогательную ВМ, экспортирует диск в бакет, откуда файл можно скачать. Для одного бэкапа вариант по SSH требует меньше настройки.</p>
+ <p><a href="/ru/posts/kak-zabekapit-virtu-86/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/common-lisp-hardwa-85/">Common Lisp &amp; Hardware Security</a></h2> <p class="date-posted">posted on 2026-10-04</p> <p><img src="images/85.jpeg" alt="" /></p>
 
 <p>Сегодня наткнулся на ещё одно интересное применение Common Lisp — <a href="https://github.com/AB-KeyNub/KeyNub-SDK/tree/master/bindings/common-lisp" >SDK KeyNub</a> для работы с аппаратным USB-ключом. Такой ключ хранит лицензию и нужен для использования коммерческого ПО. Получается, что можно на Common Lisp писать софт, для использования которого потребуется такой вот hardware-ключ.</p>
  <p><a href="/ru/posts/common-lisp-hardwa-85/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/kak-ne-otkryt-lishni-84/">Как не открыть лишний порт на сервере</a></h2> <p class="date-posted">posted on 2026-09-26</p> <p><img src="images/84.jpeg" alt="" /></p>
@@ -47,13 +156,4 @@
  <p><a href="/ru/posts/moj-setap-s-atomic-s-80/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/otschet-vremeni-v-raz-79/">Отсчет времени в разметке на GitHub</a></h2> <p class="date-posted">posted on 2026-09-05</p> <p><img src="images/79.jpeg" alt="" /></p>
 
 <p>Недавно исследовал, как выглядят комментарии Codex в pull request на GitHub. В некоторых из них увидел время, показывающее, как давно агент сделал ревью. Сначала подумал, что это какая-то обычная часть интерфейса GitHub, но оказалось — нет.</p>
- <p><a href="/ru/posts/otschet-vremeni-v-raz-79/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/herdr-vmesto-tmux-dl-78/">Herdr вместо tmux для работы с несколькими AI-агентами</a></h2> <p class="date-posted">posted on 2026-08-31</p> <p><img src="images/78.jpeg" alt="" /></p>
-
-<p>У меня обычно одновременно запущено несколько AI-агентов: один что-то пишет в одном проекте, другой разбирается с багом в другом, третий ждёт, пока я отвечу на вопрос. Раньше для этого я поднимал tmux-сессии.</p>
- <p><a href="/ru/posts/herdr-vmesto-tmux-dl-78/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/sobirayus-na-ai-nati-77/">Собираюсь на AI Native Conf</a></h2> <p class="date-posted">posted on 2026-08-29</p> <p><img src="images/77.jpeg" alt="" /></p>
-
-<p>В октябре собираюсь пойти на <a href="https://ainativeconf.ru/" >AI Native Conf</a>. Интересно посмотреть, что сейчас происходит вокруг разработки с AI и агентами, и послушать доклады людей, которые это всё уже пробуют в реальных проектах.</p>
- <p><a href="/ru/posts/sobirayus-na-ai-nati-77/">Read more...</a></p> </div><div class="row-fluid"> <h2><a href="/ru/posts/zaluplivanie-kodovog-76/">Залупливание кодового ассистента</a></h2> <p class="date-posted">posted on 2026-08-19</p> <p><img src="images/76.jpeg" alt="" /></p>
-
-<p>На днях мне понадобилось добавить в <a href="https://github.com/40ants/bots" >40ants-bots</a> поддержку клиента мессенджера MAX. Раньше библиотека работала только с Telegram, а теперь хочется уметь поддерживать разные мессенджеры.</p>
- <p><a href="/ru/posts/zaluplivanie-kodovog-76/">Read more...</a></p> </div> <div id="relative-nav"> <ul class="pager">  <li class="next"><a href="/ru/posts/page-2/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
+ <p><a href="/ru/posts/otschet-vremeni-v-raz-79/">Read more...</a></p> </div> <div id="relative-nav"> <ul class="pager">  <li class="next"><a href="/ru/posts/page-2/">Next</a></li> </ul> </div>   </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="staticl-logo" href="https://github.com/40ants/staticl"> <img height="32" src="/img/staticl-logo-small.webp" alt="Staticl logo" /> </a> <a id="lisp-logo" href="http://lisp-lang.org"> <img width="60" src="/img/made-with-lisp.svg" alt="Lisp logo" /> </a> </p> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
