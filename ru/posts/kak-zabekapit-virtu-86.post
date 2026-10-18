@@ -24,28 +24,28 @@ tg-backlink: https://t.me/the40ants/86
 
 4. Подключись к временной ВМ и найди диск-копию:
 
-   ```
-   lsblk -o NAME,SIZE,TYPE,MOUNTPOINTS,SERIAL
-   ``` 
+    ```
+    lsblk -o NAME,SIZE,TYPE,MOUNTPOINTS,SERIAL
+    ``` 
 
    Допустим, это `/dev/vdb`. Нужен **весь диск**, а не раздел `/dev/vdb1`. Его разделы должны оставаться непримонтированными; форматировать диск не нужно.
 
 5. **На своём компьютере**, в терминале macOS или Linux, запусти:
 
-   ```
-   ssh USER@HELPER_IP \
-      "bash -o pipefail -c 'sudo -n dd if=/dev/vdb bs=4M status=progress | gzip -1'" \
-     > vm-backup.img.gz.part &&
-   mv vm-backup.img.gz.part vm-backup.img.gz
-   ``` 
+     ```
+     ssh USER@HELPER_IP \
+        "bash -o pipefail -c 'sudo -n dd if=/dev/vdb bs=4M status=progress | gzip -1'" \
+       > vm-backup.img.gz.part &&
+     mv vm-backup.img.gz.part vm-backup.img.gz
+     ``` 
 
    Замени пользователя, IP и устройство на свои. Команда предполагает, что пользователь временной ВМ может выполнять `sudo` без пароля. Образ сразу скачивается на компьютер, поэтому хранить его целиком на временной ВМ не требуется.
 
 6. Проверь скачанный архив:
 
-   ```
-   gzip -t vm-backup.img.gz
-   ``` 
+      ```
+      gzip -t vm-backup.img.gz
+      ``` 
 
    При успешной проверке команда завершится без вывода. Для уверенности в восстановлении лучше также проверить загрузку копии в локальном гипервизоре.
 
