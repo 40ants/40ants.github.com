@@ -1,0 +1,68 @@
+;;;;;
+title: Как забэкапить все бакеты в S3 Yandex Cloud?
+tags: cloud, backups
+created-at: 2026-10-12T22:57:10.000000Z
+format: md
+tg-chat-id: -1002102092834
+tg-message-id: 87
+tg-backlink: https://t.me/the40ants/87
+;;;;;
+
+![](images/87.jpeg)
+
+
+В прошлом посте я писал рецепт бэкапа виртулок. И мне таки удалось одну самую большую таким образом спасти, а вот с той на которой был развернут Staticbot – не повезло.
+
+Сегодня вспомнил что у меня там ещё и в S3 лежала часть статики для разных сайтиков. Решил забэкапить и их.
+
+Как это сделать? Нужно завести в Яндекс Облаке сервисный аккаунт с правами storage.editor и создать для него статический ключ. Так вы получите идентификатор ключа и секрет.
+
+Дальше создайте с ними такой конфиг для утилиты rclone:
+
+```
+
+[cloud]
+type = s3
+provider = Other
+access_key_id = XXXXXXXX
+secret_access_key = YYYYYYYYY
+endpoint = [https://storage.yandexcloud.net](https://storage.yandexcloud.net)
+acl = private
+
+```
+
+и сохраните в файл rclone.conf
+
+После установите саму утилиту. Я предпочитаю через nix-shell. Но можно и любым пакетным менеджером.
+
+ Если через `nix-shell`, то нужно сделать такой файлик `shell.nix`:
+
+```
+
+{ pkgs ? import <nixpkgs> {} }:
+
+pkgs.mkShell {
+  packages = [ pkgs.rclone ];
+}
+
+```
+
+И запустить в этой директории команду `nix-shell` - попадете в окружение где доступен `rclone`.
+
+Ну и финальное, чтобы забэкапить вообще все S3 бакеты до которых сможет дотянуться аккаунт, делаем такой bash скрипт `backup.sh`:
+
+```shell
+
+#!/bin/bash
+
+for bucket in $(rclone --config rclone.conf lsd cloud: 2>&1 | awk '{print $5}');
+    do echo "Backing up $bucket";
+    rclone --config rclone.conf sync cloud:$bucket ./$bucket/;
+done
+
+```
+
+При запуске, он сначала получит через rclone список доступных бакетов, а потом забэкапит каждый из них в ту же папку откуда запущен.
+
+
+
