@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yandex Webmaster"
+  short_description: "Fetch and analyze Yandex Webmaster performance data"
+  default_prompt: "Use $yandex-webmaster to check access readiness, guide setup when needed, and fetch search performance data."

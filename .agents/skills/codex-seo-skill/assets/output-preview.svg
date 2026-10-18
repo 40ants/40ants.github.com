@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+  <title id="title">Output preview</title>
+  <desc id="desc">Preview showing the kind of SEO result the skill returns</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020"/>
+      <stop offset="100%" stop-color="#172033"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="760" fill="url(#bg)"/>
+  <rect x="48" y="44" width="1184" height="672" rx="28" fill="#ffffff"/>
+  <text x="90" y="102" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">What you get back</text>
+  <text x="90" y="144" fill="#64748b" font-family="Segoe UI, Arial, sans-serif" font-size="24">Short diagnosis, priority list, quick wins, and a practical fix plan.</text>
+
+  <rect x="88" y="186" width="1104" height="104" rx="18" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="116" y="226" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Short diagnosis</text>
+  <text x="116" y="264" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="22">The site can be indexed, but weak metadata and missing schema are holding it back.</text>
+
+  <text x="90" y="338" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Top issues</text>
+
+  <rect x="88" y="364" width="1104" height="62" rx="14" fill="#fef2f2" stroke="#fecaca"/>
+  <text x="116" y="404" fill="#991b1b" font-family="Segoe UI, Arial, sans-serif" font-size="22">High - homepage title is too generic</text>
+
+  <rect x="88" y="438" width="1104" height="62" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="116" y="478" fill="#9a3412" font-family="Segoe UI, Arial, sans-serif" font-size="22">High - pricing page has no canonical</text>
+
+  <rect x="88" y="512" width="1104" height="62" rx="14" fill="#fefce8" stroke="#fde68a"/>
+  <text x="116" y="552" fill="#854d0e" font-family="Segoe UI, Arial, sans-serif" font-size="22">Medium - sitemap includes duplicate parameter URLs</text>
+
+  <text x="90" y="628" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Quick wins</text>
+  <text x="116" y="668" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="22">- rewrite homepage title and meta</text>
+  <text x="116" y="700" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="22">- add canonical to key pages</text>
+</svg>

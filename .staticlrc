@@ -2,10 +2,13 @@
 (in-package :staticl-user)
 
 (ql:quickload (list "staticl/format/spinneret"
+                    "plump"
                     "dexador"
                     "github"
                     "secret-values"
                     "jonathan"))
+
+(load "static/seo-descriptions.lisp")
 
 
 (site "40Ants"
